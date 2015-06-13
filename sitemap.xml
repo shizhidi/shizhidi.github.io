@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shizhidi.github.io/machjax/index.html</loc>
+    <lastmod>2015-06-13T15:29:43.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>https://shizhidi.github.io/all-archives/index.html</loc>
     <lastmod>2015-06-13T06:16:12.000Z</lastmod>
   </url>
