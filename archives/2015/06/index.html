@@ -10,6 +10,8 @@
     <meta name="description" content="shizhidi&#39;s blog">
     <link rel="icon" href="/assets/images/null">
     
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
     <!--STYLES-->
     <link rel="stylesheet" href="/assets/css/font-awesome.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
@@ -27,8 +29,21 @@
         <a class="header-title-link" href="https://shizhidi.github.io">shizhidi&#39;s blog</a>
     </h1>
     
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="http://www.gravatar.com/avatar/7410c03d44514d8eb7dbe6cdf70c2632?s=90"/>
+        </a>
+    
 </header>
             <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="http://www.gravatar.com/avatar/7410c03d44514d8eb7dbe6cdf70c2632?s=90"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
     
     
     <ul class="sidebar-buttons">
@@ -82,6 +97,15 @@
     
     <ul class="sidebar-buttons">
         
+        <li class="sidebar-button">
+            
+            <a  class="sidebar-button-link" href="https://github.com/shizhidi" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
     </ul>
     
     <ul class="sidebar-buttons">
@@ -101,38 +125,54 @@
             <div id="main">
                 
     
-<div id="archives" class="main-content-wrap">
-    <form id="filter-form" action="#">
-        <input name="date" type="text" class="form-control input--xlarge" placeholder="Search a date" autofocus="autofocus">
-    </form>
-    <h5 class="archive-result text-color-base text-xlarge"></h5>
-    <section class="boxes">
+<section class="post-group main-content-wrap">
+    
         
-            
-            
-            
-                
-                
-                <div class="archive archive-year box" data-date="2015">
-                    <h4 class="archive-title">
-                        <a class="link-unstyled" href="/archives/2015">2015</a>
-                    </h4>
-            
-            
-                
-                <ul class="archive-posts archive-month" data-date="201506">
-                    <h5 class="archive-title">
-                        <a class="link-unstyled" href="/archives/2015/06">June</a>
-                    </h5>
-                
-            
-                <li class="archive-post archive-day" data-date="20150604">
-                    <a class="archive-post-title" href="https://shizhidi.github.io/2015/06/04/hello-world/">Hello World</a>
-                    <span class="archive-post-date"> - 04/06/2015</span>
-                </li>
         
-    </section>
+                <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+        
+            <div class="post-wrap">
+                <div class="post-header">
+                    <h1 class="post-title" itemprop="headline">
+                        
+                                <a class="link-unstyled" href="https://shizhidi.github.io/2015/06/04/hello-world/">Hello World</a>
+                        
+                    </h1>
+                    <div class="post-meta">
+    <time  itemprop="datePublished" content="Thu Jun 04 2015 21:26:54 GMT+0800">
+        Jun 04, 2015
+    </time>
+    
 </div>
+                </div>
+                <div class="post-excerpt" itemprop="articleBody">
+                    
+                        <p>
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick<br>
+                    
+                    
+                        
+                            <a href="https://shizhidi.github.io/2015/06/04/hello-world/" class="post-excerpt_link link ">Continue reading</a>
+                            
+                        
+                    
+                    
+                        </p>
+                    
+                </div>
+            </div>
+            
+        </article>
+    
+    <div class="pagination-bar">
+    <ul class="pagination">
+        
+        
+        <li class="pagination-number">Page 1 of 1</li>
+    </ul>
+</div>
+</section>
 
 
                 <footer id="footer" class="main-content-wrap">
@@ -150,8 +190,16 @@
             <i class="fa fa-remove"></i>
         </div>
         
+            <img id="about-card-picture" src="http://www.gravatar.com/avatar/7410c03d44514d8eb7dbe6cdf70c2632?s=110"/>
+        
             <h4 id="about-card-name">Edison</h4>
         
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
         
         
     </div>
