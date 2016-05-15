@@ -2,23 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://shizhidi.github.io/all-archives/index.html</loc>
-    <lastmod>2015-06-13T06:16:12.000Z</lastmod>
+    <loc>/2016/03/12/BuildRaspberriesPie/</loc>
+    <lastmod>2016-05-15T02:36:32.249Z</lastmod>
   </url>
   
   <url>
-    <loc>https://shizhidi.github.io/all-tags/index.html</loc>
-    <lastmod>2015-06-13T06:15:51.000Z</lastmod>
+    <loc>/all-archives/index.html</loc>
+    <lastmod>2015-06-13T06:16:12.184Z</lastmod>
   </url>
   
   <url>
-    <loc>https://shizhidi.github.io/all-categories/index.html</loc>
-    <lastmod>2015-06-13T06:12:24.000Z</lastmod>
+    <loc>/all-tags/index.html</loc>
+    <lastmod>2015-06-13T06:15:51.964Z</lastmod>
   </url>
   
   <url>
-    <loc>https://shizhidi.github.io/2015/06/04/hello-world/</loc>
-    <lastmod>2015-06-04T13:26:54.000Z</lastmod>
+    <loc>/all-categories/index.html</loc>
+    <lastmod>2015-06-13T06:12:24.365Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2015/06/04/hello-world/</loc>
+    <lastmod>2015-06-04T13:26:54.223Z</lastmod>
   </url>
   
 </urlset>

@@ -4,9 +4,9 @@
   <title><![CDATA[shizhidi's blog]]></title>
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="https://shizhidi.github.io//"/>
-  <updated>2015-06-04T13:26:54.000Z</updated>
-  <id>https://shizhidi.github.io//</id>
+  <link href="//"/>
+  <updated>2016-05-15T02:36:32.249Z</updated>
+  <id>//</id>
   
   <author>
     <name><![CDATA[Edison]]></name>
@@ -16,11 +16,60 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[树莓派快速搭建hexo博客系统]]></title>
+    <link href="/2016/03/12/BuildRaspberriesPie/"/>
+    <id>/2016/03/12/BuildRaspberriesPie/</id>
+    <published>2016-03-12T15:02:51.000Z</published>
+    <updated>2016-05-15T02:36:32.249Z</updated>
+    <content type="html"><![CDATA[<h2 id="物品清单">物品清单</h2><ol>
+<li>树莓派一个</li>
+<li>SDHC 读卡器 1个(可选,有就不用买)。</li>
+<li>8G TF小卡 class 10 卡一张。(入门可选,个人感觉16G的性价比更高)</li>
+<li>网线一条</li>
+<li>5V 2A的电源,一定要2A，一般手机充电看下是否可用（后续加模块，传感器，保证供电）。</li>
+<li>笔记本电脑/或者台式电脑一台。<br><img src="http://shizhidi.qiniudn.com/blog/P60129-122326.png" alt="已装好的树莓派"></li>
+</ol>
+<h6 id="下载操作系统">下载操作系统</h6><p> 选择官方提供的Raspbian，官方提供的Raspberry Pi专用Debian。打开下载页后，选择Raspbian “wheezy”的Zip下载。<br><a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">下载页面</a><br>解压后，我们得到一个.img文件 </p>
+<h6 id="烧写系统">烧写系统</h6><p> 你的SD卡通过读卡器插进电脑里，使用Win32DiskImager把系统写进卡里面。打开Win32DiskImager，选择.img文件，选择SD卡，点Write。非常简单<br><a href="http://pan.baidu.com/s/1nuNvX6D" target="_blank" rel="external">Win32DiskImage下载页面</a></p>
+<h6 id="登录树莓派系统">登录树莓派系统</h6><p> 把卡插到树莓派上面,并且网线插上(一端接路由)，电源插好通电。等待20多秒，系统就启动好了。<br>通过ssh登录到树莓派,首先获取IP。<a href="http://pan.baidu.com/s/1jHV9A4I" target="_blank" rel="external">网段扫描工具</a><br>把对应RaspberryPi 的机器的IP地址记录下来。<br>打开PUTTY<br><img src="http://shizhidi.qiniudn.com/blog/putty.png" alt="putty"><br>用户:pi 密码:raspberry (默认账户密码)</p>
+<h6 id="登录成功配置PI">登录成功配置PI</h6><p> <code>sudo raspi-config</code><br> 出现配置界面,选择expand filesystem 把整个系统的可用空间扩展到储存卡的大小,之后提示重新启动。</p>
+<h3 id="远程桌面树莓派">远程桌面树莓派</h3><p> 还是打开PUTTY通过ssh链接,安装一个服务xdrp即可<br> <code>输入如下命令安装：sudo apt-get install xrdp</code><br> 安装完成打开电脑的远程桌面,输入IP,用户名-密码同上。</p>
+<hr>
+<h2 id="安装_hexo_静态博客">安装 hexo 静态博客</h2><ol>
+<li>安装nodejs的arm环境</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://nodejs.org/dist/v0.<span class="number">10.26</span>/node-v0.<span class="number">10.26</span>-linux-arm-pi.tar.gz</span><br><span class="line">sudo tar zxvf node-v0.<span class="number">10.26</span>-linux-arm-pi.tar.gz </span><br><span class="line">sudo mv node-v0.<span class="number">10.26</span>-linux-arm-pi/ node</span><br><span class="line">sudo mv node /usr/<span class="built_in">local</span>/</span><br><span class="line">sudo chown -R pi.pi /usr/<span class="built_in">local</span>/node</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>解锁root账户<br>在命令行下执行<br><code>sudo passwd root</code><br>执行此命令后系统会提示输入两遍的root密码，输入你想设的密码即可，然后在执行<br><code>sudo passwd --unlock root</code><br>这样就可以解锁root账户了。</p>
+</li>
+<li><p>配置环境变量</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"PATH=$PATH:/usr/local/node/bin"</span> &gt;&gt; /etc/<span class="keyword">profile</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"export PATH"</span> &gt;&gt; /etc/<span class="keyword">profile</span></span><br><span class="line"><span class="keyword">source</span> /etc/<span class="keyword">profile</span></span><br><span class="line">node -<span class="keyword">v</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装HEXO</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm <span class="keyword">install</span></span><br><span class="line">hexo <span class="keyword">server</span></span></span><br></pre></td></tr></table></figure>
+<p>后面写博客维护，主题 插件之类，就自己去hexo 看官方文档API。</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="物品清单">物品清单</h2><ol>
+<li>树莓派一个</li>
+<li>SDHC 读卡器 1个(可选,有就不用买)。</li>
+<li>8G TF小卡 class 10 卡一张。(入门可选,个人感觉16G的性价比更高)</li>
+<li>网线一条</li>
+]]>
+    </summary>
+    
+      <category term="Raspberry pie" scheme="/tags/Raspberry-pie/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Hello World]]></title>
-    <link href="https://shizhidi.github.io/2015/06/04/hello-world/"/>
-    <id>https://shizhidi.github.io/2015/06/04/hello-world/</id>
-    <published>2015-06-04T13:26:54.000Z</published>
-    <updated>2015-06-04T13:26:54.000Z</updated>
+    <link href="/2015/06/04/hello-world/"/>
+    <id>/2015/06/04/hello-world/</id>
+    <published>2015-06-04T13:26:54.223Z</published>
+    <updated>2015-06-04T13:26:54.223Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
