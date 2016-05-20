@@ -1,0 +1,26 @@
+<!--HTML5中的DOCTYPE声明非常简洁,不需要记住很长的DTD和URL。在所有的浏览器中,DOCTYPE会强制使用标准模式,
+因此可以立刻在应用中使用,毫无副作用。-->
+<!DOCTYPE html>
+
+<!--XHTML的xmlns属性在HTML5的HTML序列化中是无效的,因此不要使用它(请参看补充资料“HTML与XML”)。
+一定要使用lang属性来指定文档语言。-->
+<html lang="en">
+<head>
+    <!--<meta>元素现在支持charset属性。在定义页面字符集方面,这个属性要比过去组合使用的http-equiv和
+    content属性要更为好记一些。这里我们用的8位Unicode编码。注意,在HTML5的XML序列中,这个标签需要自闭和,
+    比如应该写成<meta charset="utf-8"/>。参看补充资料“HTML与XML”来详细了解这一点。-->
+    <meta charset="utf-8">
+    <title>Hello, HTML5!</title>
+
+    <!--所有的现代浏览器都会假设样式表的<link>元素都默认具有一个text/css的MIME类型,因此可以在HTML文档中放心地
+    省略他们。-->
+    <link rel="stylesheet" href="style.css">
+
+    <!--浏览器会假设<script>元素都具有一个 text/javascript的MIME类型,因此不需要指定该属性,除非使用的不是
+    javascript脚本-->
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>Hello, HTML5!</h1>
+</body>
+</html>

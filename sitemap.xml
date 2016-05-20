@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2016/05/19/html5/html5Introduction/</loc>
+    <lastmod>2016-05-19T15:01:15.666Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/05/19/hello-world/</loc>
+    <lastmod>2016-05-19T14:31:35.170Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/all-archives/index.html</loc>
     <lastmod>2016-05-15T03:17:15.753Z</lastmod>
   </url>
@@ -17,13 +27,8 @@
   </url>
   
   <url>
-    <loc>/2016/03/12/BuildRaspberriesPie/</loc>
+    <loc>/2016/03/12/RaspberriesPie/BuildRaspberriesPie/</loc>
     <lastmod>2016-05-15T03:02:23.025Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2015/06/04/hello-world/</loc>
-    <lastmod>2015-06-04T13:26:54.223Z</lastmod>
   </url>
   
 </urlset>
