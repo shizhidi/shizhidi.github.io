@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-05-21T03:56:28.278Z</updated>
+  <updated>2016-05-21T09:06:42.371Z</updated>
   <id>//</id>
   
   <author>
@@ -20,16 +20,15 @@
     <link href="/2016/05/19/html5Introduction/"/>
     <id>/2016/05/19/html5Introduction/</id>
     <published>2016-05-19T13:35:45.000Z</published>
-    <updated>2016-05-21T03:56:28.278Z</updated>
-    <content type="html"><![CDATA[<h4 id="简介">简介</h4><p> HTML5 是现在web开发的最热门主题之一,这是有充分理由的。这不仅因为他是最新的Web标记语言,<br>还因为它制定了Web应用开发的一整套标准。上一个版本的HTML语言(以及它那么严格著称的基于XML)主要<br>把HTML限定为一种用于页面文档的标记性语言。HTML5则是第一个将Web作为应用开发平台的HTML语言。<br> HTML5定义了一系列新元素,用以帮助开发者创建富互联网应用,另外还提供了一些标准javaScript API,<br>用来在浏览器内实现类原生应用。&lt;video&gt;元素就是HTML5的新元素中的一员,有了它,我们就可以在浏览器中<br>播放视频,而无需安装任何额外插件。另外,HTML5还提供了Media Element Interface,能让我们借助<br>JavaScript来控制视频播放。它还具有开发游戏,构建移动应用等诸多功能。</p>
+    <updated>2016-05-21T09:06:42.371Z</updated>
+    <content type="html"><![CDATA[<h4 id="简介">简介</h4><p>   HTML5 是现在web开发的最热门主题之一,这是有充分理由的。这不仅因为他是最新的Web标记语言,<br>还因为它制定了Web应用开发的一整套标准。上一个版本的HTML语言(以及它那么严格著称的基于XML)主要<br>把HTML限定为一种用于页面文档的标记性语言。HTML5则是第一个将Web作为应用开发平台的HTML语言。<br> HTML5定义了一系列新元素,用以帮助开发者创建富互联网应用,另外还提供了一些标准javaScript API,<br>用来在浏览器内实现类原生应用。&lt;video&gt;元素就是HTML5的新元素中的一员,有了它,我们就可以在浏览器中<br>播放视频,而无需安装任何额外插件。另外,HTML5还提供了Media Element Interface,能让我们借助<br>JavaScript来控制视频播放。它还具有开发游戏,构建移动应用等诸多功能。</p>
 <h5 id="探索标记语言:HTML5速览">探索标记语言:HTML5速览</h5><ol>
-<li><p>HTML5文档的基本结构</p>
+<li>HTML5文档的基本结构</li>
+</ol>
 <blockquote>
 <p>文档以&lt;!DOCTYPE&gt;声明开头<br>其他<html> <head> <meta>信息及样式表,</head><body>与HTML4无差别。</body></html></p>
 </blockquote>
-<p><strong>HTML5的一些细微差别</strong></p>
-</li>
-</ol>
+<p> <strong>HTML5的一些细微差别</strong></p>
 <ul>
 <li>HTML5的DOCTYPE声明的格式;</li>
 <li>如何使用开放的<html>元素;</html></li>
@@ -38,11 +37,46 @@
 </li>
 </ul>
 <ol>
-<li>使用新的语义元素创建博客页面</li>
+<li><p>使用新的语义元素创建博客页面</p>
+<p><a href="/assets/examples/html5-ia/ch1/html4-blog.html">HTML4或XHTML来书写博客文章</a><br><strong>对比</strong><br><a href="/assets/examples/html5-ia/ch1/html5-blog.html">HTML5来书写博客文章</a></p>
+<p>另外两个重要的HTML5元素：&lt;aside&gt;与&lt;mark&gt;<br>你可以用&lt;aside&gt;元素来定义一个在页面中独立于主要内容区域的部分。可表现为边栏,如在一博客内,<br>可能会在文章旁边放上广告。<br>&lt;mark&gt;元素可以用来展示文档中应被标记或者说突出显示的文本部分,通常用来高亮显示文档中的搜索词。</p>
+</li>
+<li><p>使用ARIA角色来增强可访问性</p>
+<p>WAI-ARIA指无障碍网页应用。主要针对的是视觉缺陷，失聪，行动不便的残疾人以及假装残疾的测试人员。尤其像盲人，眼睛看不到，其浏览网页则需要借助辅助设备，如屏幕阅读器，屏幕阅读机可以大声朗读或者输出盲文。<br>而ARIA就是可以让屏幕阅读器准确识别网页中的内容，变化，状态的技术规范，可以让盲人这类用户也能无障碍阅读！<br><a href="www.w3.org/TR/wai-aria/roles#combobox">WAI-ARIA1.0规范文档的一个范例</a></p>
+</li>
+<li><p>IE6~IE8的支持情况</p>
+<p>在页面上应用&lt;header&gt;元素,将下列代码放入页面的&lt;head&gt;内。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;!--[if lte IE 8]&gt;</span></span><br><span class="line"><span class="variable">&lt;script&gt;</span>document.createElement(<span class="string">"header"</span>);<span class="variable">&lt;/script&gt;</span></span><br><span class="line"><span class="variable">&lt;![endif]&gt;</span></span><br></pre></td></tr></table></figure>
+<p>另一种是使用 HTML shiv脚本来解决这个问题。</p>
+</li>
+<li><p>HTML5所引入的新表单特性</p>
+<p>使用新的表单输入类型,改善数据输入语义<br>HTML5引入的新表单输入类型,color,date,datetime,datetime-local,email,month,number,range,search,tel,time,url,week。<br>改变字段行为的新属性,拿其中的placeholder属性来说,它可以让文本字段在没有输入之前,显示一些预设文本。<br>HTML5新引入的输入元素属性<br>autocomplete autofocus list max min multiple pattern required step placeholder</p>
+</li>
+<li><p>进度条、度量器和可折叠内容</p>
+<p>使用进度条来显示完成的进度</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">progress</span> <span class="attribute">value</span>=<span class="value">"50"</span> <span class="attribute">max</span>=<span class="value">"100"</span>&gt;</span><span class="tag">&lt;/<span class="title">progress</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">progress</span>&gt;</span><span class="tag">&lt;/<span class="title">progress</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用度量器来显示已知范围内的用户数据</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"0"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"1"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"4"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"7"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"10"</span>&gt;&lt;/meter&gt;</span><br></pre></td></tr></table></figure>
+<p>无需JavaScript,使用&lt;details&gt;和&lt;summary&gt;来创建可折叠内容</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;details&gt;</span></span><br><span class="line">    <span class="variable">&lt;summary&gt;</span>Section Heading<span class="variable">&lt;/summary&gt;</span></span><br><span class="line">    This is an example of using <span class="variable">&lt;details&gt;</span> and <span class="variable">&lt;summary&gt;</span>;</span><br><span class="line">    <span class="keyword">to</span> create collapsible content without using JavaScript.</span><br><span class="line"><span class="variable">&lt;/details&gt;</span></span><br></pre></td></tr></table></figure>
+<p>回退方案参见 <a href="http://mng.bz/cJhc" target="_blank" rel="external">http://mng.bz/cJhc</a></p>
+</li>
 </ol>
-<p><a href="/assets/examples/html5-ia/ch1/html4-blog.html">HTML4或XHTML来书写博客文章</a></p>
-<p> <strong>对比</strong></p>
-<p><a href="/assets/examples/html5-ia/ch1/html5-blog.html">HTML5来书写博客文章</a></p>
+<h5 id="标记：附加的Web规范">标记：附加的Web规范</h5><ol>
+<li>微数据<br>使用HTML5中的微数据,可以为Web页面添加语义信息。另一方面,搜索引擎和浏览器也可以通过微数据,向用户提供额外的功能。<br>下例展示微数据的实际应用。<br><a href="/assets/examples/html5-ia/ch1/html5-microdata.html">微数据实例</a><br>微数据的使用,可以极大地改善应用(或Web页面)在搜索结果中的表现。</li>
+</ol>
+<h5 id="HTML5的DOM_API">HTML5的DOM API</h5><p> HTML5新增的DOM API</p>
+<ul>
+<li>2D Cancas</li>
+<li>音频与视频</li>
+<li>拖放</li>
+<li>跨文档通信</li>
+<li>服务器发送事件</li>
+<li>WebSockets</li>
+<li>文档编辑</li>
+<li>Web Storage</li>
+<li>离线Web 应用</li>
+</ul>
 ]]></content>
     <summary type="html">
     <![CDATA[本文主要介绍了html5及相关API详解。]]>
