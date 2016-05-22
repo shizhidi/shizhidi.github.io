@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-05-21T09:06:42.371Z</updated>
+  <updated>2016-05-22T13:39:17.459Z</updated>
   <id>//</id>
   
   <author>
@@ -20,8 +20,9 @@
     <link href="/2016/05/19/html5Introduction/"/>
     <id>/2016/05/19/html5Introduction/</id>
     <published>2016-05-19T13:35:45.000Z</published>
-    <updated>2016-05-21T09:06:42.371Z</updated>
-    <content type="html"><![CDATA[<h4 id="简介">简介</h4><p>   HTML5 是现在web开发的最热门主题之一,这是有充分理由的。这不仅因为他是最新的Web标记语言,<br>还因为它制定了Web应用开发的一整套标准。上一个版本的HTML语言(以及它那么严格著称的基于XML)主要<br>把HTML限定为一种用于页面文档的标记性语言。HTML5则是第一个将Web作为应用开发平台的HTML语言。<br> HTML5定义了一系列新元素,用以帮助开发者创建富互联网应用,另外还提供了一些标准javaScript API,<br>用来在浏览器内实现类原生应用。&lt;video&gt;元素就是HTML5的新元素中的一员,有了它,我们就可以在浏览器中<br>播放视频,而无需安装任何额外插件。另外,HTML5还提供了Media Element Interface,能让我们借助<br>JavaScript来控制视频播放。它还具有开发游戏,构建移动应用等诸多功能。</p>
+    <updated>2016-05-22T13:39:17.459Z</updated>
+    <content type="html"><![CDATA[<h4 id="简介">简介</h4><p> HTML5 是现在web开发的最热门主题之一,这是有充分理由的。这不仅因为他是最新的Web标记语言,<br>还因为它制定了Web应用开发的一整套标准。上一个版本的HTML语言(以及它那么严格著称的基于XML)主要<br>把HTML限定为一种用于页面文档的标记性语言。HTML5则是第一个将Web作为应用开发平台的HTML语言。</p>
+<p> HTML5定义了一系列新元素,用以帮助开发者创建富互联网应用,另外还提供了一些标准javaScript API,<br>用来在浏览器内实现类原生应用。&lt;video&gt;元素就是HTML5的新元素中的一员,有了它,我们就可以在浏览器中<br>播放视频,而无需安装任何额外插件。另外,HTML5还提供了Media Element Interface,能让我们借助<br>JavaScript来控制视频播放。它还具有开发游戏,构建移动应用等诸多功能。</p>
 <h5 id="探索标记语言:HTML5速览">探索标记语言:HTML5速览</h5><ol>
 <li>HTML5文档的基本结构</li>
 </ol>
@@ -63,9 +64,9 @@
 </li>
 </ol>
 <h5 id="标记：附加的Web规范">标记：附加的Web规范</h5><ol>
-<li>微数据<br>使用HTML5中的微数据,可以为Web页面添加语义信息。另一方面,搜索引擎和浏览器也可以通过微数据,向用户提供额外的功能。<br>下例展示微数据的实际应用。<br><a href="/assets/examples/html5-ia/ch1/html5-microdata.html">微数据实例</a><br>微数据的使用,可以极大地改善应用(或Web页面)在搜索结果中的表现。</li>
+<li>微数据<br>使用HTML5中的微数据,可以为Web页面添加语义信息。另一方面,搜索引擎和浏览器也可以通过微数据,向用户提供额外的功能。下例展示微数据的实际应用。<br><a href="/assets/examples/html5-ia/ch1/html5-microdata.html">微数据实例</a><br>微数据的使用,可以极大地改善应用(或Web页面)在搜索结果中的表现。</li>
 </ol>
-<h5 id="HTML5的DOM_API">HTML5的DOM API</h5><p> HTML5新增的DOM API</p>
+<h5 id="HTML5的DOM—API">HTML5的DOM—API</h5><p><strong>HTML5新增的DOM-API</strong></p>
 <ul>
 <li>2D Cancas</li>
 <li>音频与视频</li>
@@ -77,6 +78,15 @@
 <li>Web Storage</li>
 <li>离线Web 应用</li>
 </ul>
+<p><strong>其他API和规范</strong></p>
+<ul>
+<li>地理定位API(Geolocation_API)</li>
+<li>索引数据库API(IndexedDB_API)</li>
+<li>文件API、文件阅读器API、文件编辑器API与文件系统API</li>
+<li>可伸缩矢量图形</li>
+<li>Web Graphics Library</li>
+</ul>
+<p>HTML5是HTML自1991问世至今最重要的版本。尽管HTML开始只是一种比较简单的标记型语言,却现在已发展成为一种复杂的网页设计及Web应用开发的重要平台。另外,它和CSS及JavaScript有着非常紧密的关系。HTML5是最先认识到这一关系重要性的语言,并且其规范中囊括了许多的面向Web应用开发的JavaScrit API。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[本文主要介绍了html5及相关API详解。]]>
