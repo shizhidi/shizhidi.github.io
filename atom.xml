@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-05-26T14:20:22.043Z</updated>
+  <updated>2016-05-26T14:22:32.368Z</updated>
   <id>//</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[文件编辑和管理：富文本格式、文件存储、拖放]]></title>
+    <title><![CDATA[文件编辑和管理：富文本格式、文件存储、拖放(三)]]></title>
     <link href="/2016/05/25/fileEditingAndManagement/"/>
     <id>/2016/05/25/fileEditingAndManagement/</id>
     <published>2016-05-25T14:52:30.000Z</published>
-    <updated>2016-05-26T14:20:22.043Z</updated>
+    <updated>2016-05-26T14:22:32.368Z</updated>
     <content type="html"><![CDATA[<h4 id="主要内容">主要内容</h4><ul>
 <li>富文本HTML编辑</li>
 <li>利用地理定位进行位置识别</li>
