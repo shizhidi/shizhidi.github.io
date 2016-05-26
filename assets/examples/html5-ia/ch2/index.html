@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Order Form</title>
     <link rel="stylesheet" href="style.css">
-    <script src="modernizr.js"></script>					
+    <!--加载Modernizr库。为什么没有加载monthpicker.js呢?那是因为,稍后将用Modernizr.load方法来动态地加载该文件,而且仅当用户所用的浏览器需要时,才进行加载。-->
+    <script src="modernizr.js"></script>
     <script src="app.js"></script>
 </head>
 <body>
@@ -16,19 +17,22 @@
                     <li>
                         <label class="required">
                             <div>Full Name</div>
+                            <!--name字段是表单的第一输入项,所以理应让其自动获取焦点,而且它还需要用户输入才能有效,所以是需要required属性。-->
                             <input name="name" required autofocus>			
                         </label>
                     </li>
                     <li>
                         <label class="required">
                             <div>Email Address</div>
+                            <!--email字段使用了新的email输入类型,它也需要用到required属性。-->
                             <input type="email" name="email" required>		
                         </label>
                     </li>
                     <li>
                         <label>
                             <div>Postal Address</div>
-                            <input name="address1" placeholder="Address Line 1">	
+                            <input name="address1" placeholder="Address Line 1">
+                            <!--地址字段的每一行都用了placeholder属性来表明每个字段所用到的相关信息。-->
                         </label>
                         <div>&nbsp;</div>
                         <input name="address2" placeholder="Address Line 2">		
@@ -47,6 +51,8 @@
                         <label>
                             <div>Home Phone No.</div>
                             <input type="tel" name="homephone">
+                            <!--住宅电话与移动电话这两个字段都用到了tel输入类型。尽管对于常用浏览器来说,这一输入类型似乎与其他输入类型没有太大差异,
+                            但当用户使用移动浏览器时，只显示数字的虚拟键盘却能便于用户输入电话号码。-->
                         </label>
                     </li>
                     <li>
@@ -76,7 +82,8 @@
                     <li>
                         <label class="required">
                             <div>Password</div>
-                            <input type="password" name="password" required>		
+                            <input type="password" name="password" required>
+                            <!--password和confirm_password字段都需要用到required属性。-->
                         </label>
                     </li>
                     <li>
@@ -104,11 +111,14 @@
                         </td>
                         <td>The Ultimate Smartphone</td>
                         <td>
+                            <!--使用number输入类型来让用户在订单中输入每种产品的购买数量。利用min属性设置购买数量的最小值为0,利用max属性设置购买数量的最大值为99。
+                            每个字段都有一个data-*属性data-price,用来保存每种产品的单价。-->
                             <input type="number" data-price="399.99" name="quantity" 
                               value="0" min="0" max="99" maxlength="2">		
                         </td>
                         <td>$399.99</td>
                         <td>
+                            <!--<output>元素将保存每种产品的购买金额总计,默认值设为$0.00。-->
                             <output name="item_total" class="item_total">$0.00</output>	
                         </td>
                     </tr>
