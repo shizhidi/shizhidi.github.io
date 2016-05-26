@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-05-26T14:22:32.368Z</updated>
+  <updated>2016-05-26T15:04:13.541Z</updated>
   <id>//</id>
   
   <author>
@@ -20,14 +20,14 @@
     <link href="/2016/05/25/fileEditingAndManagement/"/>
     <id>/2016/05/25/fileEditingAndManagement/</id>
     <published>2016-05-25T14:52:30.000Z</published>
-    <updated>2016-05-26T14:22:32.368Z</updated>
+    <updated>2016-05-26T15:04:13.541Z</updated>
     <content type="html"><![CDATA[<h4 id="主要内容">主要内容</h4><ul>
 <li>富文本HTML编辑</li>
 <li>利用地理定位进行位置识别</li>
 <li>在本地文件系统中使用文件</li>
 <li>实现拖放操作</li>
 </ul>
-<h4 id="Super_HTML5_Editor_编辑器"><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch3/index.html" target="_blank" rel="external">Super HTML5 Editor 编辑器</a></h4><p>通过编辑器实例,将掌握以下知识点。</p>
+<h4 id="Super_HTML5_Editor_编辑器"><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch3/index.html" target="_blank" rel="external">Super HTML5 Editor 编辑器</a></h4><p><strong>通过编辑器实例,将掌握以下知识点。</strong></p>
 <ul>
 <li>HTML Editing API。 用户可以使用富文本控件来编辑HTML标签。</li>
 <li>Geolocation API。 可以获取用户当前位置,以供地图使用。</li>
@@ -35,7 +35,13 @@
 <li>拖放操作。可以简化文件的导入和导出操作。</li>
 <li>探讨单页应用对用户的好处。</li>
 </ul>
-<h6 id="Super_HTML5_Editor：应用概述、必备知识以及初始步骤">Super HTML5 Editor：应用概述、必备知识以及初始步骤</h6>]]></content>
+<h6 id="Super_HTML5_Editor：应用概述、必备知识以及初始步骤">Super HTML5 Editor：应用概述、必备知识以及初始步骤</h6><p> 可以创建空文件,可以从本地计算机导入文件,查看已存在的文件,对文件执行查看、编辑、删除、导出操作。还可进行拖放操作。可以用两种编辑器来编辑文件内容：可视化的“所见即所得”的编辑器与原始的HTML标记编辑器。可以保存修改结果,预览文件内容并返回文件编辑器界面。如不保存修改就离开编辑器视图,就会警告。<br>当用Chrome在本地目录(不是服务器端)测试实例时,需要在Chrome后面加上下面这行: <strong>—Allow-File-Access-From-Files</strong><br>如果不这样做，客户端文件系统就会无法访问,Geolocation API也就无法定位你的当前位置了。</p>
+<h6 id="富文本编辑与地理定位">富文本编辑与地理定位</h6><ul>
+<li>利用designMode属性提示浏览器,使HTML页面可以编辑。</li>
+<li>使用Editing API的execCommand方法来提供富文本编辑控制。</li>
+<li>使用Geolocation API。</li>
+</ul>
+]]></content>
     <summary type="html">
     <![CDATA[本文主要讲解-富文本格式、文件存储、拖放操作。]]>
     
