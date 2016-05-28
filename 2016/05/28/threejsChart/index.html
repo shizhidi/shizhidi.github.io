@@ -1,244 +1,321 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  
-  <title><![CDATA[shizhidi's blog]]></title>
-  <subtitle><![CDATA[just do it!]]></subtitle>
-  <link href="/atom.xml" rel="self"/>
-  <link href="//"/>
-  <updated>2016-05-28T14:22:28.817Z</updated>
-  <id>//</id>
-  
-  <author>
-    <name><![CDATA[Edison]]></name>
+<!DOCTYPE html>
+<html>
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[通过three.js画一个简单的圆柱图谱]]></title>
-    <link href="/2016/05/28/threejsChart/"/>
-    <id>/2016/05/28/threejsChart/</id>
-    <published>2016-05-28T13:01:52.000Z</published>
-    <updated>2016-05-28T14:22:28.817Z</updated>
-    <content type="html"><![CDATA[<h4 id="通过threejs画一个简单的圆柱图谱">通过threejs画一个简单的圆柱图谱</h4><p> 简单描述工作中需要的功能,需要一个3D的图谱,在图谱上监测塔基和塔顶的晃动程度,并以贝塞尔曲线的方式展示出来。数据都是现场采集过来。当然本文是模拟的数据。</p>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title>通过three.js画一个简单的圆柱图谱 - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">通过three.js画一个简单的圆柱图谱</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Sat May 28 2016 21:01:52 GMT+0800">
+        May 28, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/web/">web</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h4 id="通过threejs画一个简单的圆柱图谱">通过threejs画一个简单的圆柱图谱</h4><p> 简单描述工作中需要的功能,需要一个3D的图谱,在图谱上监测塔基和塔顶的晃动程度,并以贝塞尔曲线的方式展示出来。数据都是现场采集过来。当然本文是模拟的数据。</p>
 <h4 id="介绍代码">介绍代码</h4><p><a href="https://shizhidi.github.io/assets/examples/CylinderGeometry/index.html" target="_blank" rel="external">查看该文例子</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line">var gui = new dat.GUI(),twoPi = Math.PI * <span class="number">2</span>;</span><br><span class="line">var scene = new THREE.Scene();//初始化场景</span><br><span class="line"></span><br><span class="line">//初始化透视相机</span><br><span class="line">var camera = new THREE.PerspectiveCamera( <span class="number">75</span>, window.innerWidth / window.innerHeight, <span class="number">0.1</span>, <span class="number">50</span> );</span><br><span class="line">camera.position.z = <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">var renderer = new THREE.WebGLRenderer( &#123; antialias: <span class="literal">true</span> &#125; ); //初始化渲染器</span><br><span class="line">renderer.setPixelRatio( window.devicePixelRatio ); //设置设备像素比</span><br><span class="line">renderer.setSize( window.innerWidth, window.innerHeight ); // 调整输出画布的大小</span><br><span class="line">document.body.appendChild( renderer.domElement ); //将渲染器添加到body元素里</span><br><span class="line"></span><br><span class="line">var orbit = new THREE.OrbitControls( camera, renderer.domElement ); //缩放</span><br><span class="line">orbit.enableZoom = <span class="literal">true</span>; //是否可以滚轮缩放</span><br><span class="line"></span><br><span class="line">var ambientLight = new THREE.AmbientLight( <span class="number">0</span>x000000 ); //初始化环境灯光</span><br><span class="line">scene.add( ambientLight );</span><br><span class="line"></span><br><span class="line">var lights = []; //初始化点光源</span><br><span class="line">lights[ <span class="number">0</span> ] = new THREE.PointLight( <span class="number">0</span>xffffff, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line">lights[ <span class="number">1</span> ] = new THREE.PointLight( <span class="number">0</span>xffffff, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line">lights[ <span class="number">2</span> ] = new THREE.PointLight( <span class="number">0</span>xffffff, <span class="number">1</span>, <span class="number">0</span> );</span><br><span class="line"></span><br><span class="line">//设置三维位置</span><br><span class="line">lights[ <span class="number">0</span> ].position.set( <span class="number">0</span>, <span class="number">200</span>, <span class="number">0</span> );</span><br><span class="line">lights[ <span class="number">1</span> ].position.set( <span class="number">100</span>, <span class="number">200</span>, <span class="number">100</span> );</span><br><span class="line">lights[ <span class="number">2</span> ].position.set( - <span class="number">100</span>, - <span class="number">200</span>, - <span class="number">100</span> );</span><br><span class="line"></span><br><span class="line">scene.add( lights[ <span class="number">0</span> ] );</span><br><span class="line">scene.add( lights[ <span class="number">1</span> ] );</span><br><span class="line">scene.add( lights[ <span class="number">2</span> ] );</span><br><span class="line"></span><br><span class="line">var mesh = new THREE.Object3D(); //创建三维模型</span><br><span class="line"></span><br><span class="line">//添加<span class="number">3</span>D线框</span><br><span class="line">mesh.add( new THREE.LineSegments(</span><br><span class="line"></span><br><span class="line">    new THREE.Geometry(),</span><br><span class="line"></span><br><span class="line">    new THREE.LineBasicMaterial( &#123;</span><br><span class="line">        color : <span class="number">0</span>xffffff,</span><br><span class="line">        transparent : <span class="literal">true</span>,</span><br><span class="line">        opacity : <span class="number">0.3</span>,</span><br><span class="line">        linewidth : <span class="number">1</span></span><br><span class="line">    &#125; )</span><br><span class="line"></span><br><span class="line">) );</span><br><span class="line"></span><br><span class="line">//添加立方体的二次贝塞尔曲线</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">addCurve</span></span>() &#123;</span><br><span class="line">    originalData3D.forEach(<span class="keyword">function</span>(val,index,array)&#123;</span><br><span class="line">        var curve = new THREE.CubicBezierCurve3(</span><br><span class="line">                new THREE.Vector3( val[<span class="number">0</span>].x[<span class="number">2</span>], <span class="number">11</span>, val[<span class="number">0</span>].z[<span class="number">2</span>] ),</span><br><span class="line">                new THREE.Vector3( val[<span class="number">0</span>].x[<span class="number">1</span>], <span class="number">8</span>, val[<span class="number">0</span>].z[<span class="number">1</span>] ),</span><br><span class="line">                new THREE.Vector3( val[<span class="number">0</span>].x[<span class="number">0</span>], <span class="number">4</span>, val[<span class="number">0</span>].z[<span class="number">0</span>] ),</span><br><span class="line">                new THREE.Vector3( <span class="number">0</span>, -<span class="number">11</span>, <span class="number">0</span> )</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        var geometry = new THREE.Geometry(),color = <span class="number">0</span>x00ff00;</span><br><span class="line">        geometry.vertices = curve.getPoints( <span class="number">50</span> );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ( index &gt; <span class="number">8</span>) color = <span class="number">0</span>xff0000;</span><br><span class="line">        var line = new THREE.Line(</span><br><span class="line">                geometry,</span><br><span class="line">                new THREE.LineBasicMaterial( &#123;</span><br><span class="line">                    color : color,</span><br><span class="line">                    transparent: <span class="literal">true</span>,</span><br><span class="line">                    opacity: (index+<span class="number">1</span>) * <span class="number">0.1</span></span><br><span class="line">                &#125; )</span><br><span class="line">        );</span><br><span class="line">        mesh.add(line);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//默认数据</span><br><span class="line">var originalData = [</span><br><span class="line">        &#123;dire:<span class="number">30</span>,angle:<span class="number">0.0198</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">33</span>,angle:<span class="number">0.0227</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">36</span>,angle:<span class="number">0.0173</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">34</span>,angle:<span class="number">0.0232</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">36</span>,angle:<span class="number">0.0208</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">35</span>,angle:<span class="number">0.0226</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">35</span>,angle:<span class="number">0.0223</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">32</span>,angle:<span class="number">0.0194</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">30</span>,angle:<span class="number">0.0182</span>,time:<span class="number">1462428620</span>&#125;,</span><br><span class="line">        &#123;dire:<span class="number">30</span>,angle:<span class="number">0.0199</span>,time:<span class="number">1462428620</span>&#125;</span><br><span class="line">],originalData3D = [];</span><br><span class="line">/**</span><br><span class="line"> * 按比例尺换算所需的<span class="number">3</span>D数据点</span><br><span class="line"> * */</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">conversion</span></span>()&#123;</span><br><span class="line">    var scale = d3.scale.linear()</span><br><span class="line">            .domain([<span class="number">0</span>,<span class="number">0.05</span>])</span><br><span class="line">            .range([<span class="number">0</span>,<span class="number">5</span>]),oneDeg = Math.PI / <span class="number">180</span>;</span><br><span class="line"></span><br><span class="line">    originalData.forEach(<span class="keyword">function</span>(val,index,array)&#123;</span><br><span class="line">        var tempData = [],cxArray = [],cyArray = [];</span><br><span class="line">        var cx = scale(val.angle) * Math.cos(oneDeg*val.dire - Math.PI/<span class="number">2</span>);</span><br><span class="line">        var cy = scale(val.angle) * Math.sin(oneDeg*val.dire - Math.PI/<span class="number">2</span>);</span><br><span class="line">        var avgCx = cx / <span class="number">3</span>;</span><br><span class="line">        var avgCy = cy / <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">for</span> (var i = <span class="number">1</span>; i &lt;= <span class="number">2</span>; i++)&#123;</span><br><span class="line">            cxArray.push(avgCx * i);</span><br><span class="line">            cyArray.push(avgCy * i);</span><br><span class="line">        &#125;</span><br><span class="line">        cxArray.push(cx);</span><br><span class="line">        cyArray.push(cy);</span><br><span class="line">        tempData.push(&#123;</span><br><span class="line">            x : cxArray,</span><br><span class="line">            z : cyArray</span><br><span class="line">        &#125;);</span><br><span class="line">        originalData3D.push(tempData);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">conversion();</span><br><span class="line"></span><br><span class="line">addCurve();</span><br><span class="line"></span><br><span class="line">//在三维中添加圆柱体几何图形</span><br><span class="line">var options = (<span class="keyword">function</span> CylinderGeometry( mesh ) &#123;</span><br><span class="line"></span><br><span class="line">    var data = &#123;</span><br><span class="line">        radiusTop : <span class="number">5</span>,</span><br><span class="line">        radiusBottom : <span class="number">5</span>,</span><br><span class="line">        height : <span class="number">22</span>,</span><br><span class="line">        radiusSegments : <span class="number">64</span>,</span><br><span class="line">        heightSegments : <span class="number">1</span>,</span><br><span class="line">        openEnded : <span class="literal">false</span>,</span><br><span class="line">        thetaStart : <span class="number">0</span>,</span><br><span class="line">        thetaLength : twoPi</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">generateGeometry</span></span>() &#123;</span><br><span class="line">    </span><br><span class="line">        var geometry = new THREE.CylinderGeometry(</span><br><span class="line">                               data.radiusTop,</span><br><span class="line">                               data.radiusBottom,</span><br><span class="line">                               data.height,</span><br><span class="line">                               data.radiusSegments,</span><br><span class="line">                               data.heightSegments,</span><br><span class="line">                               data.openEnded,</span><br><span class="line">                               data.thetaStart,</span><br><span class="line">                               data.thetaLength</span><br><span class="line">                           );</span><br><span class="line">                           </span><br><span class="line">        mesh.children[ <span class="number">0</span> ].geometry.dispose();</span><br><span class="line"></span><br><span class="line">        mesh.children[ <span class="number">0</span> ].geometry = new THREE.WireframeGeometry( geometry );</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var folder = gui.addFolder( <span class="string">'THREE.CylinderGeometry'</span> );</span><br><span class="line"></span><br><span class="line">    folder.add( data, <span class="string">'radiusTop'</span>, <span class="number">1</span>, <span class="number">30</span> ).onChange( generateGeometry );</span><br><span class="line">    folder.add( data, <span class="string">'radiusBottom'</span>, <span class="number">1</span>, <span class="number">30</span> ).onChange( generateGeometry );</span><br><span class="line">    folder.add( data, <span class="string">'height'</span>, <span class="number">1</span>, <span class="number">50</span> ).onChange( generateGeometry );</span><br><span class="line">    folder.add( data, <span class="string">'radiusSegments'</span>, <span class="number">3</span>, <span class="number">64</span> ).step( <span class="number">1</span> ).onChange( generateGeometry );</span><br><span class="line">    folder.add( data, <span class="string">'heightSegments'</span>, <span class="number">1</span>, <span class="number">64</span> ).step( <span class="number">1</span> ).onChange( generateGeometry );</span><br><span class="line">    folder.add( data, <span class="string">'openEnded'</span> ).onChange( generateGeometry );</span><br><span class="line">    folder.add( data, <span class="string">'thetaStart'</span>, <span class="number">0</span>, twoPi ).onChange( generateGeometry );</span><br><span class="line">    folder.add( data, <span class="string">'thetaLength'</span>, <span class="number">0</span>, twoPi ).onChange( generateGeometry );</span><br><span class="line">    generateGeometry();</span><br><span class="line">    <span class="built_in">return</span> &#123;&#125;;</span><br><span class="line">&#125;)(mesh);</span><br><span class="line"></span><br><span class="line">scene.add( mesh );</span><br><span class="line"></span><br><span class="line">var prevFog = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">//通过场景和相机渲染出画面</span><br><span class="line">var render = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line"></span><br><span class="line">    requestAnimationFrame( render );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( ! options.fixed ) &#123;</span><br><span class="line"></span><br><span class="line">        mesh.rotation.x += <span class="number">0.005</span>;</span><br><span class="line">        mesh.rotation.y += <span class="number">0.005</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    renderer.render( scene, camera );</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//当窗口大小缩放,图形随着大小改变</span><br><span class="line">window.addEventListener( <span class="string">'resize'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line"></span><br><span class="line">    camera.aspect = window.innerWidth / window.innerHeight;</span><br><span class="line">    camera.updateProjectionMatrix();</span><br><span class="line"></span><br><span class="line">    renderer.setSize( window.innerWidth, window.innerHeight );</span><br><span class="line"></span><br><span class="line">&#125;, <span class="literal">false</span> );</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span>Interval(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">&#125;,<span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">render();</span><br></pre></td></tr></table></figure>
 <h4 id="附上中文快速入门3D图形学知识">附上中文快速入门3D图形学知识</h4><p> 快速了解threejs三大组建,场景,相机,灯光,材质,渲染器,坐标系。<a href="http://www.hewebgl.com/article/articledir/1" target="_blank" rel="external">链接地址</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要讲解通过threejs画一个简单的圆柱图谱。]]>
-    
-    </summary>
-    
-      <category term="3Dchart,threejs" scheme="/tags/3Dchart-threejs/"/>
-    
-      <category term="web" scheme="/categories/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[文件编辑和管理：富文本格式、文件存储、拖放(三)]]></title>
-    <link href="/2016/05/25/fileEditingAndManagement/"/>
-    <id>/2016/05/25/fileEditingAndManagement/</id>
-    <published>2016-05-25T14:52:30.000Z</published>
-    <updated>2016-05-26T15:05:23.463Z</updated>
-    <content type="html"><![CDATA[<h4 id="主要内容">主要内容</h4><ul>
-<li>富文本HTML编辑</li>
-<li>利用地理定位进行位置识别</li>
-<li>在本地文件系统中使用文件</li>
-<li>实现拖放操作</li>
-</ul>
-<h4 id="Super_HTML5_Editor_编辑器"><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch3/index.html" target="_blank" rel="external">Super HTML5 Editor 编辑器</a></h4><p><strong>通过编辑器实例,将掌握以下知识点。</strong></p>
-<ul>
-<li>HTML Editing API。 用户可以使用富文本控件来编辑HTML标签。</li>
-<li>Geolocation API。 可以获取用户当前位置,以供地图使用。</li>
-<li>File System API。通过客户端沙盒来存储用户文件。</li>
-<li>拖放操作。可以简化文件的导入和导出操作。</li>
-<li>探讨单页应用对用户的好处。</li>
-</ul>
-<h6 id="Super_HTML5_Editor：应用概述、必备知识以及初始步骤">Super HTML5 Editor：应用概述、必备知识以及初始步骤</h6><p> 可以创建空文件,可以从本地计算机导入文件,查看已存在的文件,对文件执行查看、编辑、删除、导出操作。还可进行拖放操作。可以用两种编辑器来编辑文件内容：可视化的“所见即所得”的编辑器与原始的HTML标记编辑器。可以保存修改结果,预览文件内容并返回文件编辑器界面。如不保存修改就离开编辑器视图,就会警告。<br>当用Chrome在本地目录(不是服务器端)测试实例时,需要在Chrome后面加上下面这行: <strong>—Allow-File-Access-From-Files</strong><br>如果不这样做，客户端文件系统就会无法访问,Geolocation API也就无法定位你的当前位置了。</p>
-<h6 id="富文本编辑与地理定位">富文本编辑与地理定位</h6><ul>
-<li>利用designMode属性提示浏览器,使HTML页面可以编辑。</li>
-<li>使用Editing API的execCommand方法来提供富文本编辑控制。</li>
-<li>使用Geolocation API。</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要讲解-富文本格式、文件存储、拖放操作。]]>
-    
-    </summary>
-    
-      <category term="html5" scheme="/tags/html5/"/>
-    
-      <category term="web" scheme="/categories/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[创建表单：输入小部件、数据绑定以及数据验证(二)]]></title>
-    <link href="/2016/05/22/createForm/"/>
-    <id>/2016/05/22/createForm/</id>
-    <published>2016-05-22T13:44:07.000Z</published>
-    <updated>2016-05-26T14:16:01.250Z</updated>
-    <content type="html"><![CDATA[<h5 id="表单的功能概述与所需知识">表单的功能概述与所需知识</h5><p>允许用户输入个人数据、登录详细信息、订购及付款信息。<a href="https://shizhidi.github.io/assets/examples/html5-ia/ch2/index.html" target="_blank" rel="external">表单实例</a></p>
-<p> 表单实例由4部分组成,每一部分都容纳在一个&lt;fieldset&gt;块中</p>
-<ul>
-<li>联系方式明细<br>请求用户名称(Full Name)、电子邮件地址(Email Address)、通讯地址(Postal Address)、家庭电话(Home Phone No)或移动电话(cell Phone No)<br>、Skype用户名(Skype Name)及Twitter(Twitter@)</li>
-<li>登录明细<br>要求用户填写两次密码(确保前后输入的密码相同)</li>
-<li>订单明细<br>包含3种产品的一个表,为每一种产品都提供了产品编号(Product Code)、产品描述(Description)及产品价格(Price)。用户可以输入每种产品的数量值(Qty),<br>单种产品的价格小计(Total)及整个订单的价格总计(Order Total)都能自动计算出来</li>
-<li>付款明细<br>需要用户输入信用卡详细信息: 持卡人姓名(Name on Card)、信用卡号(Credit Card No.)、信用卡有效期(月/年)(Expiry Date)及卡片背面的CVV2安全码(CVV2 No.)</li>
-</ul>
-<p>在提交表单时,用户有两种选择: 提交订单或保存订单。“提交订单”按钮会执行数据验证及订单处理; “保存订单”按钮则将绕过数据验证,将所有订单细节保存下来,从而便于用户日后重新填写未完成的表单。</p>
-<p><strong>该表单使用了一下这些HTML5的新特性</strong></p>
-<ol>
-<li>在适当的时候,利用表单的&lt;input&gt;元素类型(email、tel、number和month)及属性(required、pattern、autofocus、placeholder、max与min),为用户提供更好的部件及数据验证功能。</li>
-<li>保存每一产品价格的data-*属性、valueNumber属性并以数字格式读取输入值,以及用&lt;output&gt;元素来呈现金额小计与总计。</li>
-<li>通过formnovalidate与formaction属性来绕过数据验证并保存未完成的表单。</li>
-<li>通过约束验证API来执行自定义验证,并及时发现用户所提交的表单中所包含的无效元素,利用css3伪类选择器处理无效元素的样式。</li>
-<li>利用一些polyfill和JavaScript的Modernizr.js库,让表单更好地呈现在那些不支持HTML5特性的浏览器上。虽然从严格意义上来说,Modernizr.js和polyfill并不是HTML5的特性,但对于HTML5应用的实际开发来说,还是强烈建议使用它们。</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要讲解-创建表单：输入小部件、数据绑定以及数据验证。]]>
-    
-    </summary>
-    
-      <category term="html5" scheme="/tags/html5/"/>
-    
-      <category term="web" scheme="/categories/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[HTML5:从文档到应用的转变(一)]]></title>
-    <link href="/2016/05/19/html5Introduction/"/>
-    <id>/2016/05/19/html5Introduction/</id>
-    <published>2016-05-19T13:35:45.000Z</published>
-    <updated>2016-05-22T13:39:17.459Z</updated>
-    <content type="html"><![CDATA[<h4 id="简介">简介</h4><p> HTML5 是现在web开发的最热门主题之一,这是有充分理由的。这不仅因为他是最新的Web标记语言,<br>还因为它制定了Web应用开发的一整套标准。上一个版本的HTML语言(以及它那么严格著称的基于XML)主要<br>把HTML限定为一种用于页面文档的标记性语言。HTML5则是第一个将Web作为应用开发平台的HTML语言。</p>
-<p> HTML5定义了一系列新元素,用以帮助开发者创建富互联网应用,另外还提供了一些标准javaScript API,<br>用来在浏览器内实现类原生应用。&lt;video&gt;元素就是HTML5的新元素中的一员,有了它,我们就可以在浏览器中<br>播放视频,而无需安装任何额外插件。另外,HTML5还提供了Media Element Interface,能让我们借助<br>JavaScript来控制视频播放。它还具有开发游戏,构建移动应用等诸多功能。</p>
-<h5 id="探索标记语言:HTML5速览">探索标记语言:HTML5速览</h5><ol>
-<li>HTML5文档的基本结构</li>
-</ol>
-<blockquote>
-<p>文档以&lt;!DOCTYPE&gt;声明开头<br>其他<html> <head> <meta>信息及样式表,</head><body>与HTML4无差别。</body></html></p>
-</blockquote>
-<p> <strong>HTML5的一些细微差别</strong></p>
-<ul>
-<li>HTML5的DOCTYPE声明的格式;</li>
-<li>如何使用开放的<html>元素;</html></li>
-<li><p>在<head>部分中,如何使用各种元素的精简版本。</head></p>
-<p>例子：<a href="/assets/examples/html5-ia/ch1/hello.html">Hello,World!</a></p>
-</li>
-</ul>
-<ol>
-<li><p>使用新的语义元素创建博客页面</p>
-<p><a href="/assets/examples/html5-ia/ch1/html4-blog.html">HTML4或XHTML来书写博客文章</a><br><strong>对比</strong><br><a href="/assets/examples/html5-ia/ch1/html5-blog.html">HTML5来书写博客文章</a></p>
-<p>另外两个重要的HTML5元素：&lt;aside&gt;与&lt;mark&gt;<br>你可以用&lt;aside&gt;元素来定义一个在页面中独立于主要内容区域的部分。可表现为边栏,如在一博客内,<br>可能会在文章旁边放上广告。<br>&lt;mark&gt;元素可以用来展示文档中应被标记或者说突出显示的文本部分,通常用来高亮显示文档中的搜索词。</p>
-</li>
-<li><p>使用ARIA角色来增强可访问性</p>
-<p>WAI-ARIA指无障碍网页应用。主要针对的是视觉缺陷，失聪，行动不便的残疾人以及假装残疾的测试人员。尤其像盲人，眼睛看不到，其浏览网页则需要借助辅助设备，如屏幕阅读器，屏幕阅读机可以大声朗读或者输出盲文。<br>而ARIA就是可以让屏幕阅读器准确识别网页中的内容，变化，状态的技术规范，可以让盲人这类用户也能无障碍阅读！<br><a href="www.w3.org/TR/wai-aria/roles#combobox">WAI-ARIA1.0规范文档的一个范例</a></p>
-</li>
-<li><p>IE6~IE8的支持情况</p>
-<p>在页面上应用&lt;header&gt;元素,将下列代码放入页面的&lt;head&gt;内。</p>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;!--[if lte IE 8]&gt;</span></span><br><span class="line"><span class="variable">&lt;script&gt;</span>document.createElement(<span class="string">"header"</span>);<span class="variable">&lt;/script&gt;</span></span><br><span class="line"><span class="variable">&lt;![endif]&gt;</span></span><br></pre></td></tr></table></figure>
-<p>另一种是使用 HTML shiv脚本来解决这个问题。</p>
-</li>
-<li><p>HTML5所引入的新表单特性</p>
-<p>使用新的表单输入类型,改善数据输入语义<br>HTML5引入的新表单输入类型,color,date,datetime,datetime-local,email,month,number,range,search,tel,time,url,week。<br>改变字段行为的新属性,拿其中的placeholder属性来说,它可以让文本字段在没有输入之前,显示一些预设文本。<br>HTML5新引入的输入元素属性<br>autocomplete autofocus list max min multiple pattern required step placeholder</p>
-</li>
-<li><p>进度条、度量器和可折叠内容</p>
-<p>使用进度条来显示完成的进度</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">progress</span> <span class="attribute">value</span>=<span class="value">"50"</span> <span class="attribute">max</span>=<span class="value">"100"</span>&gt;</span><span class="tag">&lt;/<span class="title">progress</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">progress</span>&gt;</span><span class="tag">&lt;/<span class="title">progress</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>使用度量器来显示已知范围内的用户数据</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"0"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"1"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"4"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"7"</span>&gt;&lt;/meter&gt;</span><br><span class="line">&lt;meter <span class="variable">min=</span><span class="string">"0"</span> <span class="variable">max=</span><span class="string">"10"</span> <span class="variable">low=</span><span class="string">"3"</span> <span class="variable">high=</span><span class="string">"7"</span> <span class="variable">optimum=</span><span class="string">"9"</span> <span class="variable">value=</span><span class="string">"10"</span>&gt;&lt;/meter&gt;</span><br></pre></td></tr></table></figure>
-<p>无需JavaScript,使用&lt;details&gt;和&lt;summary&gt;来创建可折叠内容</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;details&gt;</span></span><br><span class="line">    <span class="variable">&lt;summary&gt;</span>Section Heading<span class="variable">&lt;/summary&gt;</span></span><br><span class="line">    This is an example of using <span class="variable">&lt;details&gt;</span> and <span class="variable">&lt;summary&gt;</span>;</span><br><span class="line">    <span class="keyword">to</span> create collapsible content without using JavaScript.</span><br><span class="line"><span class="variable">&lt;/details&gt;</span></span><br></pre></td></tr></table></figure>
-<p>回退方案参见 <a href="http://mng.bz/cJhc" target="_blank" rel="external">http://mng.bz/cJhc</a></p>
-</li>
-</ol>
-<h5 id="标记：附加的Web规范">标记：附加的Web规范</h5><ol>
-<li>微数据<br>使用HTML5中的微数据,可以为Web页面添加语义信息。另一方面,搜索引擎和浏览器也可以通过微数据,向用户提供额外的功能。下例展示微数据的实际应用。<br><a href="/assets/examples/html5-ia/ch1/html5-microdata.html">微数据实例</a><br>微数据的使用,可以极大地改善应用(或Web页面)在搜索结果中的表现。</li>
-</ol>
-<h5 id="HTML5的DOM—API">HTML5的DOM—API</h5><p><strong>HTML5新增的DOM-API</strong></p>
-<ul>
-<li>2D Cancas</li>
-<li>音频与视频</li>
-<li>拖放</li>
-<li>跨文档通信</li>
-<li>服务器发送事件</li>
-<li>WebSockets</li>
-<li>文档编辑</li>
-<li>Web Storage</li>
-<li>离线Web 应用</li>
-</ul>
-<p><strong>其他API和规范</strong></p>
-<ul>
-<li>地理定位API(Geolocation_API)</li>
-<li>索引数据库API(IndexedDB_API)</li>
-<li>文件API、文件阅读器API、文件编辑器API与文件系统API</li>
-<li>可伸缩矢量图形</li>
-<li>Web Graphics Library</li>
-</ul>
-<p>HTML5是HTML自1991问世至今最重要的版本。尽管HTML开始只是一种比较简单的标记型语言,却现在已发展成为一种复杂的网页设计及Web应用开发的重要平台。另外,它和CSS及JavaScript有着非常紧密的关系。HTML5是最先认识到这一关系重要性的语言,并且其规范中囊括了许多的面向Web应用开发的JavaScrit API。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要介绍了html5及相关API详解。]]>
-    
-    </summary>
-    
-      <category term="html5" scheme="/tags/html5/"/>
-    
-      <category term="web" scheme="/categories/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[树莓派快速搭建hexo博客系统]]></title>
-    <link href="/2016/03/12/BuildRaspberriesPie/"/>
-    <id>/2016/03/12/BuildRaspberriesPie/</id>
-    <published>2016-03-12T15:02:51.000Z</published>
-    <updated>2016-05-21T03:31:14.016Z</updated>
-    <content type="html"><![CDATA[<h2 id="物品清单">物品清单</h2><ol>
-<li>树莓派一个</li>
-<li>SDHC 读卡器 1个(可选,有就不用买)。</li>
-<li>8G TF小卡 class 10 卡一张。(入门可选,个人感觉16G的性价比更高)</li>
-<li>网线一条</li>
-<li>5V 2A的电源,一定要2A，一般手机充电看下是否可用（后续加模块，传感器，保证供电）。</li>
-<li>笔记本电脑/或者台式电脑一台。<br><img src="http://shizhidi.qiniudn.com/blog/P60129-122326.png" alt="已装好的树莓派"></li>
-</ol>
-<h6 id="下载操作系统">下载操作系统</h6><p> 选择官方提供的Raspbian，官方提供的Raspberry Pi专用Debian。打开下载页后，选择Raspbian “wheezy”的Zip下载。<br><a href="http://www.raspberrypi.org/downloads" target="_blank" rel="external">下载页面</a><br>解压后，我们得到一个.img文件 </p>
-<h6 id="烧写系统">烧写系统</h6><p> 你的SD卡通过读卡器插进电脑里，使用Win32DiskImager把系统写进卡里面。打开Win32DiskImager，选择.img文件，选择SD卡，点Write。非常简单<br><a href="http://pan.baidu.com/s/1nuNvX6D" target="_blank" rel="external">Win32DiskImage下载页面</a></p>
-<h6 id="登录树莓派系统">登录树莓派系统</h6><p> 把卡插到树莓派上面,并且网线插上(一端接路由)，电源插好通电。等待20多秒，系统就启动好了。<br>通过ssh登录到树莓派,首先获取IP。<a href="http://pan.baidu.com/s/1jHV9A4I" target="_blank" rel="external">网段扫描工具</a><br>把对应RaspberryPi 的机器的IP地址记录下来。<br>打开PUTTY<br><img src="http://shizhidi.qiniudn.com/blog/putty.png" alt="putty"><br>用户:pi 密码:raspberry (默认账户密码)</p>
-<h6 id="登录成功配置PI">登录成功配置PI</h6><p> <code>sudo raspi-config</code><br> 出现配置界面,选择expand filesystem 把整个系统的可用空间扩展到储存卡的大小,之后提示重新启动。</p>
-<h3 id="远程桌面树莓派">远程桌面树莓派</h3><p> 还是打开PUTTY通过ssh链接,安装一个服务xdrp即可<br> <code>输入如下命令安装：sudo apt-get install xrdp</code><br> 安装完成打开电脑的远程桌面,输入IP,用户名-密码同上。</p>
-<hr>
-<h2 id="安装_hexo_静态博客">安装 hexo 静态博客</h2><ol>
-<li>安装nodejs的arm环境</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://nodejs.org/dist/v0.<span class="number">10.26</span>/node-v0.<span class="number">10.26</span>-linux-arm-pi.tar.gz</span><br><span class="line">sudo tar zxvf node-v0.<span class="number">10.26</span>-linux-arm-pi.tar.gz </span><br><span class="line">sudo mv node-v0.<span class="number">10.26</span>-linux-arm-pi/ node</span><br><span class="line">sudo mv node /usr/<span class="built_in">local</span>/</span><br><span class="line">sudo chown -R pi.pi /usr/<span class="built_in">local</span>/node</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>解锁root账户<br>在命令行下执行<br><code>sudo passwd root</code><br>执行此命令后系统会提示输入两遍的root密码，输入你想设的密码即可，然后在执行<br><code>sudo passwd --unlock root</code><br>这样就可以解锁root账户了。</p>
-</li>
-<li><p>配置环境变量</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"PATH=$PATH:/usr/local/node/bin"</span> &gt;&gt; /etc/<span class="keyword">profile</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"export PATH"</span> &gt;&gt; /etc/<span class="keyword">profile</span></span><br><span class="line"><span class="keyword">source</span> /etc/<span class="keyword">profile</span></span><br><span class="line">node -<span class="keyword">v</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装HEXO</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br><span class="line">npm <span class="keyword">install</span></span><br><span class="line">hexo <span class="keyword">server</span></span></span><br></pre></td></tr></table></figure>
-<p>后面写博客维护，主题 插件之类，就自己去hexo 看官方文档API。</p>
-</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要讲解了如何在Raspberry pie上搭建hexo博客。]]>
-    
-    </summary>
-    
-      <category term="Raspberry pie" scheme="/tags/Raspberry-pie/"/>
-    
-      <category term="OpenSourceHardware" scheme="/categories/OpenSourceHardware/"/>
-    
-  </entry>
-  
-</feed>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/3Dchart-threejs/">3Dchart,threejs</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/25/fileEditingAndManagement/" data-tooltip="文件编辑和管理：富文本格式、文件存储、拖放(三)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/05/28/threejsChart/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/05/28/threejsChart/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/05/28/threejsChart/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-threejsChart" data-title="通过three.js画一个简单的圆柱图谱" data-url="/2016/05/28/threejsChart/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/25/fileEditingAndManagement/" data-tooltip="文件编辑和管理：富文本格式、文件存储、拖放(三)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/05/28/threejsChart/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/05/28/threejsChart/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/05/28/threejsChart/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>

@@ -6,12 +6,17 @@
     <link rel="stylesheet" href="style.css">
     <script src="app.js"></script>
 </head>
+<!--该类的值确定了当前显示的是哪一种视图。本节稍后再介绍如何在两种视图间跳转。-->
 <body class="browser-view">
     <header><h1>Super HTML5 Editor</h1></header>
-    <section id="list">                                                 
+
+    <!--文件浏览器视图-->
+    <section id="list">
         <h1>File Browser</h1>
-        <details open id="filedrop">                                            
+        <details open id="filedrop">
+            <!--这一区域将是一个目标下拉区域。-->
             <summary>Create File</summary>
+            <!--create表单将可以让用户创建新的空文件-->
             <form name="create">                                                
                 <div>
                     <h2>Create an empty file</h2>
@@ -20,7 +25,8 @@
                 </div>
             </form>
             <div class="spacer">OR</div>
-            <form name="import">                                                
+            <form name="import">
+                <!--import 表单可以让用户从本地计算机上导入文件。-->
                 <div>
                     <h2>Import existing file(s)</h2>
                     <input type="file" name="files" multiple accept="text/html">
@@ -39,17 +45,23 @@
             <div class="note top">
                 You currently have <span id="file_count">0</span> file(s):
             </div>
-            <ul id="files"></ul>                                                
+
+            <!--文件列表-->
+            <ul id="files"></ul>
+
             <div class="note">
                 <strong>Note</strong>: You can drag any of the files in the list 
                 above to your computer to export them from the application.
             </div>
         </details>        
     </section>
-            
+
+    <!--文件编辑器视图-->
     <section id="editor">                                               
         <h1>Editing <span id="file_name"></span><a href="#list">Back to File Browser</a></h1>
-            <div class="mode-toolbar">                                              
+            <div class="mode-toolbar">
+
+                <!--两个按钮能让用户在可视化编辑模式与HTML编辑模式间进行切换。-->
                 <div class="left">
                     <div>Edit Mode:</div>
                     <button id="edit_visual" class="split_left active">Visual</button>
@@ -65,7 +77,8 @@
             <summary>File Contents</summary>
             <div id="file_contents">
                 <div id="file_contents_visual">
-                    <div id="file_contents_visual_toolbar">                     
+                    <div id="file_contents_visual_toolbar">
+                        <!--内容格式化按钮,可以让用户对编辑窗口内当前选中的内容进行格式化处理。-->
                         <button data-command="bold"><strong>B</strong></button>
                         <button data-command="italic"><em>I</em></button>
                         <button data-command="underline"><u>U</u></button>
@@ -76,6 +89,8 @@
                         <button data-command="insertImage">Image</button>
                         <button data-command="insertMap">Location Map</button>
                     </div>
+
+                    <!--可视化编辑器是一个<iframe>元素,稍后利用design-Mode属性来实现可编辑性。-->
                     <iframe id="file_contents_visual_editor"></iframe>          
                 </div>
                 <div id="file_contents_html">

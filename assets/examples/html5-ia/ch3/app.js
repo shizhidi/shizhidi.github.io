@@ -4,6 +4,8 @@
     var view, fileName, isDirty = false,
         unsavedMsg = 'Unsaved changes will be lost. Are you sure?',
         unsavedTitle = 'Discard changes';
+    //以上变量用于存储当前视图与文件名(判断是否在文件编辑器视图中),以及一个用来文档是否被修改(isDirty)
+
     var markDirty = function() {
       isDirty = true;
     };
@@ -13,10 +15,14 @@
     var checkDirty = function() {
       if(isDirty) { return unsavedMsg; }
     };
+
+    //如果用户试图关闭当前浏览器窗口或者导航至其他页面,你将检查他们是否修改后未保存,如果必要的话,可以对这种行为警告用户。
     window.addEventListener('beforeunload',  checkDirty, false);
+
+    //jump事件处理器利用URL的散列值来切换两种视图。
     var jump = function(e) {
       var hash = location.hash;
-      if(hash.indexOf('/') > -1) {
+      if(hash.indexOf('/') > -1) { //如果URL散列值包含一个斜杠,则它将为斜杠后的文件(如果存在的话)呈现文件编辑器视图。
         var parts = hash.split('/'),
             fileNameEl = document.getElementById('file_name');
         view = parts[0].substring(1) + '-view';
@@ -33,10 +39,10 @@
           location.href = e.oldURL;
         }
       }
-      document.body.className = view;
+      document.body.className = view; //利用<body>元素中的类属性来指定当前视图。必要时,由CSS负责显示或隐藏视图。
     };
     jump();
-    window.addEventListener('hashchange', jump, false);
+    window.addEventListener('hashchange', jump, false); //当页面加载或URL散列值变更时,条用jump函数。
 
     //开启designMode,连接两种编辑器
     var editVisualButton = document.getElementById('edit_visual'),
@@ -47,11 +53,12 @@
         htmlView = document.getElementById('file_contents_html'),
         htmlEditor = document.getElementById('file_contents_html_editor');
 
-    visualEditorDoc.designMode = 'on';
+    visualEditorDoc.designMode = 'on';//开启designMode属性,将可视化编辑器iframe切换到可编辑状态。
 
-    visualEditorDoc.addEventListener('keyup', markDirty, false);
+    visualEditorDoc.addEventListener('keyup', markDirty, false); //当用户在任何一种编辑器状态下进行改动后,将文件标记为dirty状态。
     htmlEditor.addEventListener('keyup', markDirty, false);
 
+    //更新可视化编辑器的内容。UpdateVisual-Editor每次执行后,都会构建一个新文档,因此必须添加一个新的keyup事件。
     var updateVisualEditor = function(content) {
       visualEditorDoc.open();
       visualEditorDoc.write(content);
