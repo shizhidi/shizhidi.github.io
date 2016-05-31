@@ -204,7 +204,7 @@
     <link href="/2016/05/19/html5Introduction/"/>
     <id>/2016/05/19/html5Introduction/</id>
     <published>2016-05-19T13:35:45.000Z</published>
-    <updated>2016-05-22T13:39:17.459Z</updated>
+    <updated>2016-05-31T16:05:19.693Z</updated>
     <content type="html"><![CDATA[<h4 id="简介">简介</h4><p> HTML5 是现在web开发的最热门主题之一,这是有充分理由的。这不仅因为他是最新的Web标记语言,<br>还因为它制定了Web应用开发的一整套标准。上一个版本的HTML语言(以及它那么严格著称的基于XML)主要<br>把HTML限定为一种用于页面文档的标记性语言。HTML5则是第一个将Web作为应用开发平台的HTML语言。</p>
 <p> HTML5定义了一系列新元素,用以帮助开发者创建富互联网应用,另外还提供了一些标准javaScript API,<br>用来在浏览器内实现类原生应用。&lt;video&gt;元素就是HTML5的新元素中的一员,有了它,我们就可以在浏览器中<br>播放视频,而无需安装任何额外插件。另外,HTML5还提供了Media Element Interface,能让我们借助<br>JavaScript来控制视频播放。它还具有开发游戏,构建移动应用等诸多功能。</p>
 <h5 id="探索标记语言:HTML5速览">探索标记语言:HTML5速览</h5><ol>
@@ -218,12 +218,12 @@
 <li>HTML5的DOCTYPE声明的格式;</li>
 <li>如何使用开放的<html>元素;</html></li>
 <li><p>在<head>部分中,如何使用各种元素的精简版本。</head></p>
-<p>例子：<a href="/assets/examples/html5-ia/ch1/hello.html">Hello,World!</a></p>
+<p>例子：<a href="https://shizhidi.github.io/assets/examples/html5-ia/ch1/hello.html" target="_blank" rel="external">Hello,World!</a></p>
 </li>
 </ul>
 <ol>
 <li><p>使用新的语义元素创建博客页面</p>
-<p><a href="/assets/examples/html5-ia/ch1/html4-blog.html">HTML4或XHTML来书写博客文章</a><br><strong>对比</strong><br><a href="/assets/examples/html5-ia/ch1/html5-blog.html">HTML5来书写博客文章</a></p>
+<p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch1/html4-blog.html" target="_blank" rel="external">HTML4或XHTML来书写博客文章</a><br><strong>对比</strong><br><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch1/html5-blog.html" target="_blank" rel="external">HTML5来书写博客文章</a></p>
 <p>另外两个重要的HTML5元素：&lt;aside&gt;与&lt;mark&gt;<br>你可以用&lt;aside&gt;元素来定义一个在页面中独立于主要内容区域的部分。可表现为边栏,如在一博客内,<br>可能会在文章旁边放上广告。<br>&lt;mark&gt;元素可以用来展示文档中应被标记或者说突出显示的文本部分,通常用来高亮显示文档中的搜索词。</p>
 </li>
 <li><p>使用ARIA角色来增强可访问性</p>
@@ -248,7 +248,7 @@
 </li>
 </ol>
 <h5 id="标记：附加的Web规范">标记：附加的Web规范</h5><ol>
-<li>微数据<br>使用HTML5中的微数据,可以为Web页面添加语义信息。另一方面,搜索引擎和浏览器也可以通过微数据,向用户提供额外的功能。下例展示微数据的实际应用。<br><a href="/assets/examples/html5-ia/ch1/html5-microdata.html">微数据实例</a><br>微数据的使用,可以极大地改善应用(或Web页面)在搜索结果中的表现。</li>
+<li>微数据<br>使用HTML5中的微数据,可以为Web页面添加语义信息。另一方面,搜索引擎和浏览器也可以通过微数据,向用户提供额外的功能。下例展示微数据的实际应用。<br><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch1/html5-microdata.html" target="_blank" rel="external">微数据实例</a><br>微数据的使用,可以极大地改善应用(或Web页面)在搜索结果中的表现。</li>
 </ol>
 <h5 id="HTML5的DOM—API">HTML5的DOM—API</h5><p><strong>HTML5新增的DOM-API</strong></p>
 <ul>

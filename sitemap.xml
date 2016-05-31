@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2016/05/19/html5Introduction/</loc>
+    <lastmod>2016-05-31T16:05:19.693Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/05/28/ScriptCommunication/</loc>
     <lastmod>2016-05-31T16:00:55.232Z</lastmod>
   </url>
@@ -24,11 +29,6 @@
   <url>
     <loc>/2016/05/22/createForm/</loc>
     <lastmod>2016-05-26T14:16:01.250Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/05/19/html5Introduction/</loc>
-    <lastmod>2016-05-22T13:39:17.459Z</lastmod>
   </url>
   
   <url>
