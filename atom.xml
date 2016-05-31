@@ -86,7 +86,7 @@
     <link href="/2016/05/28/ScriptCommunication/"/>
     <id>/2016/05/28/ScriptCommunication/</id>
     <published>2016-05-28T14:51:19.000Z</published>
-    <updated>2016-05-28T14:58:15.156Z</updated>
+    <updated>2016-05-31T16:00:55.232Z</updated>
     <content type="html"><![CDATA[<h4 id="主要内容">主要内容</h4><ul>
 <li>服务器发送事件和服务器端发起的事件驱动通信</li>
 <li>用于双向、事件驱动通信的WebSocket</li>
@@ -98,9 +98,9 @@
     
     </summary>
     
-      <category term="3Dchart,threejs" scheme="/tags/3Dchart-threejs/"/>
+      <category term="html5" scheme="/tags/html5/"/>
     
-      <category term="html5" scheme="/categories/html5/"/>
+      <category term="web" scheme="/categories/web/"/>
     
   </entry>
   
