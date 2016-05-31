@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title>javascript性能优化：加载和执行(一) - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">javascript性能优化：加载和执行(一)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Tue May 31 2016 20:39:35 GMT+0800">
+        May 31, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/javascript/">javascript</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h4 id="叙述">叙述</h4><p> javascript在浏览器中不能同时做其他任何事情,所以同一时刻,只能做一件事。JavaScript执行过程耗时越久,浏览器等待响应的事件就越长。<br>&lt;script&gt;标签每次的出现会让页面等待脚本的解析和执行。因为脚本的执行过程中可能会修改页面内容。例子:在页面中使用document.write()。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">title</span>&gt;</span>Script Example<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="openscad"></span><br><span class="line">          document.write<span class="params">(<span class="string">"The date is "</span>+<span class="params">(new Date<span class="params">()</span>)</span>.toDateString<span class="params">()</span>)</span>;</span><br><span class="line">        </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>浏览器遇到&lt;script&gt;标签时，会停止处理页面,先执行javaScript代码,然后再继续解析和渲染页面。</p>
+<h4 id="脚本位置">脚本位置</h4><p> 正确的脚本放置位置,不会阻塞页面的渲染,dom加载完后下载执行脚本。现代浏览器允许并行下载javascript文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">title</span>&gt;</span>Script Example<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"styles.css"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">     </span><br><span class="line">     <span class="tag">&lt;<span class="title">--</span> <span class="attribute">Example</span> <span class="attribute">of</span> <span class="attribute">recommended</span> <span class="attribute">script</span> <span class="attribute">positioning</span> <span class="attribute">--</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"file1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"file2.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"file3.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="组织脚本">组织脚本</h4><p> 把多个脚本合并为一个javascript文件加载,可以减少性能消耗,可以通过打包工具。</p>
+<h4 id="无阻塞的脚本">无阻塞的脚本</h4><p> 可以利用window.load事件触发后再下载脚本。</p>
+<h4 id="延迟的脚本">延迟的脚本</h4><p> HTML5规范中引入了async属性,用于异步加载脚本。async与defer的相同点是采用并行下载,在下载过程中不会产生阻塞。区别在于执行时机,async是加载完成后自动执行,而defer需要等待页面完成后执行。(defer属性执行的脚本不会修改DOM)。<br>例子:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"file1.js"</span> defer&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>任何带有defer属性的&lt;script&gt;元素在DOM完成加载之前都不会被执行。多个带defer属性的文件下载时,不会阻塞浏览器的其他进程,可以与页面中的其他资源并行下载。<br>例子：展示defer属性如何影响脚本行为。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">title</span>&gt;</span>Script Defer Example<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="lisp"></span><br><span class="line">     alert<span class="list">(<span class="string">"defer"</span>)</span><span class="comment">;</span></span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="lisp"></span><br><span class="line">     alert<span class="list">(<span class="string">"script"</span>)</span><span class="comment">;</span></span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span><br><span class="line">     <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       alert(<span class="string">"load"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>不支持defer属性的浏览器的弹出顺序是“defer”、“script”、“load”。而在支持defer属性的浏览器上,弹出的顺序是:“script”、“defer”、“load”。带有defer属性的元素不是跟在第二个后面执行,而是在onload事件处理器执行之前被调用。<br>HTML规范定义：defer属性仅当src属性声明时才生效。</p>
+<h4 id="动态脚本元素">动态脚本元素</h4><p> 标准的DOM方法创建一个新的&lt;script&gt;元素:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">script.src = <span class="string">"file1.js"</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(<span class="string">"script"</span>);</span><br></pre></td></tr></table></figure>
+<p>无论何时启动下载,文件的下载和执行过程都不会阻塞页面的其他进程。当代码包含供其他页面其他脚本调用的接口时,可以用&lt;script&gt;元素触发一个load事件来实现。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line"></span><br><span class="line">script.onload= <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="string">"Script loaded!"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">script.src = <span class="string">"file1.js"</span>;</span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(script);</span><br></pre></td></tr></table></figure>
+<p>下面函数封装了标准及IE特有的实现方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span>(<span class="params">url, callback</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span>  script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">    script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (script.readyState)&#123;</span><br><span class="line">        script.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (script.readyState == <span class="string">"loaded"</span> || script.readyState == <span class="string">"complete"</span>)&#123;</span><br><span class="line">                script.onreadystatechange = <span class="literal">null</span>;</span><br><span class="line">                callback();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; <span class="comment">//其他浏览器</span></span><br><span class="line">        script.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            callback();</span><br><span class="line">        &#125;;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    script.src = url;</span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>].appendChild(script);</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果多个文件的下载顺序很重要,更好的做法是把它们按正确顺序合并成一个文件。动态脚本加载凭借着它在跨浏览器兼容性和易用的优势,成为最通用的无阻塞加载解决方案。</p>
+<h4 id="XMLHttpRequest脚本注入">XMLHttpRequest脚本注入</h4><p> 另一种无阻塞加载脚本的方法是使用XMLHttpRequest(XHR)对象获取脚本并注入页面中。创建一个XHR对象,然后用它下载JavaScript文件,最后通过创建动态&lt;script&gt;元素将代码注入页面中。下面是例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> xht = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">"get"</span>,<span class="string">"file1.js"</span>,<span class="literal">true</span>);</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.state &lt; <span class="number">300</span> || xhr.status == <span class="number">304</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">            script.type = <span class="string">"text/javascript"</span>;</span><br><span class="line">            script.text = xhr.responseText;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式的主要局限性是JavaScript文件必须与所请求的页面处于相同的域,这意味着JavaScript文件不能从CDN下载。因此,大型的Web应用通常不会采用XHR脚本注入技术。</p>
+<h4 id="推荐的无阻塞模式">推荐的无阻塞模式</h4><p> 当向页面中添加大量javascript的的代码时,可以先动态加载所需代码(比如前面讲的loadScript函数),让后加载初始化页面剩下的代码。<br>例子：放到body闭合标签之前。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;scirpt type=<span class="string">"text/javascript"</span> src=<span class="string">"loader.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line">    loadScript(<span class="string">"the-test.js"</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Application.init();</span><br><span class="line">    &#125;);    </span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>第二种是把loadScript函数直接嵌入页面,避免多产生一次HTTP请求。<br>例子：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;scirpt type="text/javascript"&gt;</span><br><span class="line">    function loadScript(url, callback)&#123;</span><br><span class="line">        </span><br><span class="line">            var  script = document.createElement("script");</span><br><span class="line">            script.type = "text/javascript";</span><br><span class="line">            </span><br><span class="line">            if (script.readyState)&#123;</span><br><span class="line">                script.onreadystatechange = function()&#123;</span><br><span class="line">                    if (script.readyState == "loaded" || script.readyState == "complete")&#123;</span><br><span class="line">                        script.onreadystatechange = null;</span><br><span class="line">                        callback();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;else&#123; //其他浏览器</span><br><span class="line">                script.onload = function()&#123;</span><br><span class="line">                    callback();</span><br><span class="line">                &#125;;</span><br><span class="line">            </span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            script.src = url;</span><br><span class="line">            document.getElementsByTagName("head")[0].appendChild(script);</span><br><span class="line">        &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    loadScript("the-test.js",function()&#123;</span><br><span class="line">        Application.init();</span><br><span class="line">    &#125;);    </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果采用第二种方式,建议使用YUI Compressor 把初始化代码压缩到最小尺寸。</p>
+<p><strong>YUI3 的方式</strong><br> 由页面中的少量代码来加载丰富的功能组件。在页面中使用YUI3:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://yui.yahooapis.com/combo?3.0.0/build/yui/yui-min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//只需在YUI的use()方法中声明("dom")并提供回调函数即可:</span><br><span class="line">YUI().use("dom",function()&#123;</span><br><span class="line">    Y.DOM.addClass(document.body,"loaded");</span><br><span class="line">&#125;)</span></span><br></pre></td></tr></table></figure>
+<p><strong>lazyLoad类库</strong><br> lazload是loadScript()函数的增强版。用法示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script src=<span class="string">"lazyload-min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line">    lazyload.js(<span class="string">"the-rest.js"</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Application.init();</span><br><span class="line">    &#125;)</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>同样支持下载多个Javascript文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script src=<span class="string">"lazyload-min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line">    lazyload.js([<span class="string">"first-file.js"</span>,<span class="string">"the-rest.js"</span>],<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Application.init();</span><br><span class="line">    &#125;)</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>建议减少文件数,因为每次下载还是一个独立的HTTP请求,而且回调函数会等待所有文件都下载完成后才会执行。<br>lazyload同样可以加载css,但没太大意义.因为css文件本是并行下载,不会阻塞页面的其他进程。</p>
+<p><strong>LANjs</strong><br> 该工具对加载过程更精细的控制,并试图同时下载尽可能多的代码。用法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"lab.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="php"></span><br><span class="line">    <span class="variable">$LAB</span>.script(<span class="string">"the-rest.js"</span>) <span class="comment">//需要下载的文件</span></span><br><span class="line">        .wait(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;  <span class="comment">//下在执行完毕后所调用的函数</span></span><br><span class="line">            Application.init();</span><br><span class="line">        &#125;);</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>下载多个javascript文件,只需链式调用另一个$LAB.script()方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"lab.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="openscad"></span><br><span class="line">    $LAB.script<span class="params">(<span class="string">"first-file.js"</span>)</span> <span class="comment">//需要下载的文件</span></span><br><span class="line">        .script<span class="params">(<span class="string">"the-rest.js"</span>)</span> <span class="comment">//需要下载的文件</span></span><br><span class="line">        .wait<span class="params">(function<span class="params">()</span>&#123;  //下在执行完毕后所调用的函数</span><br><span class="line">            Application.init<span class="params">()</span>;</span><br><span class="line">        &#125;)</span>;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>LAB 允许你使用wait()方法来指定哪些文件需要等待其他文件加载并执行完。只需在script()后面加上wait()。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"lab.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="openscad"></span><br><span class="line">    $LAB.script<span class="params">(<span class="string">"first-file.js"</span>)</span>.wait<span class="params">()</span> <span class="comment">//需要下载的文件</span></span><br><span class="line">        .script<span class="params">(<span class="string">"the-rest.js"</span>)</span> <span class="comment">//需要下载的文件</span></span><br><span class="line">        .wait<span class="params">(function<span class="params">()</span>&#123;  //下在执行完毕后所调用的函数</span><br><span class="line">            Application.init<span class="params">()</span>;</span><br><span class="line">        &#125;)</span>;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="总结">总结</h4><p> 列举几种方法减少javascript对性能的影响：</p>
+<ul>
+<li>&lt;body&gt;闭合标签之前,将所有的&lt;script&gt;标签放到页面底部。这能确保在脚本执行前页面已经完成了渲染。</li>
+<li>合并脚本。页面中的&lt;script&gt;标签越少,加载也就越快,响应也更迅速。无论外链文件还是内嵌脚本都是如此。</li>
+<li>有多种无阻塞下载javascript的方法：<ul>
+<li>使用&lt;script&gt;标签的defer属性;</li>
+<li>使用动态创建的&lt;script&gt;元素来下载并执行代码。</li>
+<li>使用XHR对象下载JavaScript代码并注入页面中。</li>
+</ul>
+</li>
+</ul>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/性能优化/">性能优化</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/28/ScriptCommunication/" data-tooltip="传递消息：HTML5的脚本通信技术(四)(后续记录)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/05/31/LoadAndExecute/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/05/31/LoadAndExecute/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/05/31/LoadAndExecute/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-LoadAndExecute" data-title="javascript性能优化：加载和执行(一)" data-url="/2016/05/31/LoadAndExecute/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/28/ScriptCommunication/" data-tooltip="传递消息：HTML5的脚本通信技术(四)(后续记录)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/05/31/LoadAndExecute/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/05/31/LoadAndExecute/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/05/31/LoadAndExecute/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>

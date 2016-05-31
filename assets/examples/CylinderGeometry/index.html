@@ -31,28 +31,12 @@
 		</style>
 	</head>
 	<body>
-
-		<!-- <a id='newWindow' href='./geometry-browser.html' target='_blank'>Open in New Window</a> -->
-
-		<script src="./three.js"></script>
-		<script src='./dat.gui.min.js'></script>
-		<script src="./OrbitControls.js"></script>
-        <script src="./d3.js"></script>
+		<script src="../../js/three.js"></script>
+		<script src='dat.gui.min.js'></script>
+		<script src="OrbitControls.js"></script>
+        <script src="../../js/d3.js"></script>
 		<script>
-			function updateGroupGeometry( mesh, geometry ) {
-
-//				mesh.children[ 0 ].geometry.dispose();
-				mesh.children[ 0 ].geometry.dispose();
-
-//				mesh.children[ 0 ].geometry = new THREE.WireframeGeometry( geometry );
-				mesh.children[ 0 ].geometry = geometry;
-
-				// these do not update nicely together if shared
-			}
-
-//			document.getElementById( 'newWindow' ).href += window.location.hash;
-
-			var twoPi = Math.PI * 2,oneDeg = Math.PI / 180;
+			var gui = new dat.GUI(),twoPi = Math.PI * 2;
 			var scene = new THREE.Scene();
 			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 50 );
 			camera.position.z = 30;
@@ -83,33 +67,20 @@
 
 			var mesh = new THREE.Object3D();
 
-            mesh.add( new THREE.LineSegments(
+			mesh.add( new THREE.LineSegments(
 
-                    new THREE.Geometry(),
+				new THREE.Geometry(),
 
-                    new THREE.LineBasicMaterial( {
-                        color: 0xffffff,
-                        transparent: true,
-                        opacity: 1
-                    } )
+				new THREE.LineBasicMaterial( {
+					color : 0xffffff,
+					transparent : true,
+					opacity : 0.3,
+                    linewidth : 1
+				} )
 
-            ) );
+			) );
 
-            /*mesh.add( new THREE.Mesh(
-
-                    new THREE.Geometry(),
-
-                    new THREE.MeshPhongMaterial( {
-                        color: 0x156289,
-                        emissive: 0x072534,
-                        side: THREE.DoubleSide,
-                        shading: THREE.FlatShading,
-                        transparent: true,
-                        opacity: 0.2
-                    } )
-
-            ) );*/
-
+            //添加立方体的二次贝塞尔曲线
             function addCurve() {
                 originalData3D.forEach(function(val,index,array){
                     var curve = new THREE.CubicBezierCurve3(
@@ -180,20 +151,6 @@
 
             addCurve();
 
-            //添加圆柱体的材质
-			/*mesh.add( new THREE.Mesh(
-
-				new THREE.Geometry(),
-
-				new THREE.MeshPhongMaterial( {
-					color: 0x156289,
-					emissive: 0x072534,
-					side: THREE.DoubleSide,
-					shading: THREE.FlatShading
-				} )
-
-			) );*/
-
 			var options = (function CylinderGeometry( mesh ) {
 
 				var data = {
@@ -209,8 +166,7 @@
 
 				function generateGeometry() {
 
-					updateGroupGeometry( mesh,
-						new THREE.CylinderGeometry(
+					var geometry = new THREE.CylinderGeometry(
 							data.radiusTop,
 							data.radiusBottom,
 							data.height,
@@ -219,12 +175,15 @@
 							data.openEnded,
 							data.thetaStart,
 							data.thetaLength
-						)
 					);
+
+					mesh.children[ 0 ].geometry.dispose();
+
+					mesh.children[ 0 ].geometry = new THREE.WireframeGeometry( geometry );
 
 				}
 
-				/*var folder = gui.addFolder( 'THREE.CylinderGeometry' );
+				var folder = gui.addFolder( 'THREE.CylinderGeometry' );
 
 				folder.add( data, 'radiusTop', 1, 30 ).onChange( generateGeometry );
 				folder.add( data, 'radiusBottom', 1, 30 ).onChange( generateGeometry );
@@ -233,57 +192,24 @@
 				folder.add( data, 'heightSegments', 1, 64 ).step( 1 ).onChange( generateGeometry );
 				folder.add( data, 'openEnded' ).onChange( generateGeometry );
 				folder.add( data, 'thetaStart', 0, twoPi ).onChange( generateGeometry );
-				folder.add( data, 'thetaLength', 0, twoPi ).onChange( generateGeometry );*/
-
+				folder.add( data, 'thetaLength', 0, twoPi ).onChange( generateGeometry );
 				generateGeometry();
-
 				return {};
 			})(mesh);
-
-            for (var i = 2; i < 5; i++){
-                var geometry = new THREE.CircleGeometry( i, 64 );
-                geometry.translate ( 0, 0, -11 );
-                geometry.rotateX(oneDeg*90);
-//                geometry.rotateY(oneDeg*90);
-                mesh.add( new THREE.Line(
-                        geometry,
-                        new THREE.LineBasicMaterial( {
-                            color: 0xffffff,
-                            transparent: true,
-                            opacity: 1
-                        } )
-                ) );
-            }
-
-            //添加文字
-            var loader = new THREE.FontLoader();
-            loader.load( '../../examples/fonts/' + 'helvetiker' + '_' + 'regular' + '.typeface.js', function ( font ) {
-
-                var geometry = new THREE.TextGeometry( '北', {
-                    font: font,
-                    size: data.size,
-                    height: data.height,
-                    curveSegments: data.curveSegments,
-                    bevelEnabled: data.bevelEnabled,
-                    bevelThickness: data.bevelThickness,
-                    bevelSize: data.bevelSize
-                } );
-                geometry.center();
-
 
 			scene.add( mesh );
 
 			var prevFog = false;
-//            mesh.rotation.x = 1;
 
 			var render = function () {
 
 				requestAnimationFrame( render );
 
-				var time = Date.now() * 0.001;
 				if ( ! options.fixed ) {
+
+					mesh.rotation.x += 0.005;
 //					mesh.rotation.y += 0.005;
-//                    console.log(mesh.rotation.x);
+
 				}
 
 				renderer.render( scene, camera );
