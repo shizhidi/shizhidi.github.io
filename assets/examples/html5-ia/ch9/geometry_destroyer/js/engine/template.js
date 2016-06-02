@@ -17,17 +17,19 @@ gd.template = {
         // Passive = 0, friendly a, enemy b
         type: 0,
 
+        // 把碰撞侦测放在字符串中,a代表友方,b代表敌人,0代表被动。在碰撞侦测过程中,友方或敌人实体可能会发生碰撞,但被动实体则不会发生碰撞。
         // Determines position
         x: 0,
         y: 0,
-        z: 0,
+        z: 0,  //z轴的存在,标明元素处于3D空间内。稍后我们再详细介绍这一点。
 
         // Creates an artifical zoom without a complex transformation matrix or camera
-        zoom: -80,
+        zoom: -80, //使用焦距变化在WebGL应用中虚拟出一台摄像机。通常,实现这个功能需要编写很多代码,但在该例中,为了加速开发进程,
+                   //我们将其设定为固定的值,算是一种取巧。
 
         // Returns x, y, z in an array
         position: function() {
-            return [this.x, this.y, this.z + this.zoom];
+            return [this.x, this.y, this.z + this.zoom]; //组装并返回一个用WebGL可编辑格式表示的位置坐标。
         },
 
         // Width and height relative to 3D world, manually set
@@ -35,20 +37,20 @@ gd.template = {
         height: 0,
 
         update: function() {
-            // place code before animating here
+            // 在实体被绘制前,update()经常会被调用。
         },
 
-        // Passes the object hit during a collision for processing
+        // 碰撞会触发kill方法。
         collide: function(object) {
             this.kill();
         },
 
-        // Logic fired at object destruction
+        // 在cp.core.draw()再次运行之前,将实体送入实体墓地进行删除。
         kill: function() {
             gd.core.graveyard.storage.push(this);
         },
 
-        // Rotation information, used in core.js
+        // 旋转稍后会为每个实体设置一种各不相同的角度。
         rotate: {
             angle: 0,
             axis: false

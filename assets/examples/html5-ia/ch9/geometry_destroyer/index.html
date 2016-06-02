@@ -7,15 +7,19 @@
 
 <body>
     <div id="container">
+        <!--Canvas是运行WebGl应用的必须条件,所以一定要加入<canvas>标签-->
         <canvas id="canvas" width="800" height="600">
             Download Chrome to experience the demo!
         </canvas>
 
+        <!--计分器-->
         <span id="score">Score: <span id="count">0</span></span>
 
+        <!--向玩家显示的初始文本-->
         <p id="title" class="strong screen">Geometry Destroyer</p>
         <p id="start" class="screen">Push <span class="strong">X</span> to Start</p>
 
+        <!--游戏结束时显示的文本-->
         <p id="end" class="screen hide">
             <span class="strong">Game Over</span>
         </p>
@@ -23,7 +27,9 @@
         <p id="ctrls">Move: Arrow Keys | Shoot: Hold X</p>
     </div>
 
-    <!-- Color fragments -->
+    <!-- Color fragments
+         shader-vertex用于处理位置与定点信息,shader-fragment则用于分配颜色
+    -->
     <script id="shader-fragment" type="x-shader/x-fragment">
         varying lowp vec4 vColor;
 
@@ -33,6 +39,24 @@
     </script>
 
     <!-- Vertex position and shape -->
+    <!--
+        attribute vec3 aVertexPosition;
+        attribute vec4 aVertexColor;
+        在着色器中配置位置与颜色。
+
+        uniform mat4 uMVMatrix;
+        uniform mat4 uPMatrix;
+        使用存储限定符uniform,声明这是一个全局变量,mat4则表明这是一个4*4的浮点矩阵。
+
+        varying lowp vec4 vColor;
+        使用存储限定符vary-ing,声明位于基本形状表面上的颜色数据会变化。
+
+        void main(void) {
+            gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            vColor = aVertexColor;
+        }
+        将数据存储在正确的变量中
+    -->
     <script id="shader-vertex" type="x-shader/x-vertex">
         attribute vec3 aVertexPosition;
         attribute vec4 aVertexColor;

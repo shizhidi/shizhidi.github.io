@@ -12,18 +12,19 @@ Important, shouldn't contain any functions run during a game. Those should
 be stored in game.js. All classes are stored in template.js.
 */
 
+// 继承一个已有的gd变量或新创建一个 。非常适合通过多个文件访问gd。
 var gd = gd || {};
 
 gd.core = {
     canvas: document.getElementById("canvas"),
 
-    // Width and height of the gameplay area
+    // 游戏区域的宽度和高度
     size: function(width, height) {
-        // Set WebGL viewport ratio to prevent distortion
+        // 设置WebGL视窗比例,如果不这么做,画布的宽高比将会不正确。
         this.horizAspect = width / height;
     },
 
-    // Unique identifier key
+    // 为每一个新实体分配一个独立的ID识别器,以加速对象的搜索和删除任务。
     id: {
         count: 0,
         get: function() {
@@ -31,7 +32,7 @@ gd.core = {
         }
     },
 
-    // Contains all active game elements
+    // 保存所以生成对象的storage容器。a和b这两个容器用于碰撞侦测比对的删减过程中。友方对象放在a中,敌人放在b中。
     storage: {
         all: [],
         a: [],
@@ -44,21 +45,21 @@ gd.core = {
         if (!this.canvas.getContext) return alert('Please download a browser that supports Canvas like Google Chrome to proceed.');
         gd.gl = this.canvas.getContext("experimental-webgl");
 
-        // Manually check for WebGL support, some browsers return null and some undefined if getContext fails
+        //手动检测WebGL支持。如果get-Context()不起作用,有些浏览器会返回null,有些则会返回undefined。
         if (gd.gl === null || gd.gl === undefined)
             return alert('Uhhh, your browser doesn\'t support WebGL. Your options are build a large wooden badger or download Google Chrome.');
 
-        // Setup base properties
-        gd.gl.clearColor(0.05, 0.05, 0.05, 1.0); // Clear color = black and opaque via (r, g, b, a)
+        // 设置基本属性
+        gd.gl.clearColor(0.05, 0.05, 0.05, 1.0); // 为WebGL设定一种近似纯黑的颜色
         gd.gl.enable(gd.gl.DEPTH_TEST);
-        gd.gl.depthFunc(gd.gl.LEQUAL); // Near things near, far things far
+        gd.gl.depthFunc(gd.gl.LEQUAL); // 这两行代码能够给人建立一种景深感。
         gd.gl.clear(gd.gl.COLOR_BUFFER_BIT | gd.gl.DEPTH_BUFFER_BIT); // Clear color and depth buffer
 
         // Setup WebGL
         this.shader.init();
         this.animate();
 
-        // Fire run code when everything is ready
+        // 当所有准备就绪后,触发run
         window.onload = run;
     },
 
@@ -66,25 +67,24 @@ gd.core = {
         requestAnimFrame(gd.core.animate);
         gd.core.draw();
     },
-
+    //设置着色器
     shader: {
         // Creates the shader base
         init: function() {
-            // Literally pulls shader programs from the DOM
+            //从DOM取出着色器程序。注意这的shader-fragment和shader-vertex引用的是我们之前编写的那两个着色器
             this.fragments = this.get('shader-fragment');
             this.vertex = this.get('shader-vertex');
 
-            // Attaches both elements to a 'program'
-            // Each program can hold one fragment and one vertex shader
+            // 为着色器创建一个程序(保存一个片段着色器和定点着色器)
             this.program = gd.gl.createProgram();
-            // Attaches shaders to webGL
+
+            // 将着色器与创建的“程序”连接起来。
             gd.gl.attachShader(this.program, this.vertex);
             gd.gl.attachShader(this.program, this.fragments);
             // Attach the new program we created
             gd.gl.linkProgram(this.program);
 
-            // Failsafe incase shaders fail and backfire
-            // Great for catching errors in your setup scripting
+            //着色器加载时发生崩溃的失效保护语句
             if (!gd.gl.getProgramParameter(this.program, gd.gl.LINK_STATUS)) {
                 return alert("Shaders have FAILED to load.");
             }
@@ -92,20 +92,20 @@ gd.core = {
             // Tell WebGL its okay to use the assembled program
             gd.gl.useProgram(this.program);
 
-            // Create stored shader data for later usage
+            // 保存着色器数据，以备后续使用
             this.store();
 
-            // Delete assembled shader DOM data to save memory
+            // 从内存中清楚残留的无用着色器数据。可以手动地删除这些着色器,等待Javascript的垃圾回收器进行内存回收,但是我们这种办法能提供更多的控制
             gd.gl.deleteShader(this.fragments);
             gd.gl.deleteShader(this.vertex);
             gd.gl.deleteProgram(this.program);
         },
 
-        // Gets the shaders from the DOM
+        // 提取着色器
         get: function(id) {
             this.script = document.getElementById(id);
 
-            // No shader script in the DOM? Return nothing!
+            // 如果DOM中没有着色器脚本,则返回null,以及一个出粗信息。
             if (!this.script) {
                 alert('The requested shader script was not found in the DOM. Make sure that shader.get(id) is properly setup.');
                 return null;
@@ -114,7 +114,7 @@ gd.core = {
             this.source = "";
             this.currentChild = this.script.firstChild;
 
-            // Return compiled shader program
+            // 通过一个while循环采集着色器数据,并返回一个编译好的着色器数据。
             while (this.currentChild) {
                 if (this.currentChild.nodeType === this.currentChild.TEXT_NODE) {
                     this.source += this.currentChild.textContent; // Dump shader data here
@@ -259,6 +259,7 @@ gd.core = {
 
     // Used to destroy entities when necessary instead of doing it during the loop and potentially blowing
     // everything up by accident.
+    // 用于在更新循环末尾删除实体,以免意外引用了不存在的实体。
     graveyard: {
         storage: [],
         purge: function() {
@@ -303,13 +304,15 @@ gd.core = {
             }
 
             // Clean buffers out of browser's memory permanently
+            // javaScript 的垃圾清理机制不是很好,所以你需要手动地从实体中清理3D数据,以免程序运行得越来越慢。
             gd.gl.deleteBuffer(object.colorStorage);
             gd.gl.deleteBuffer(object.shapeStorage);
         }
     },
-
+    // 用于检测两个正方形是否发生重叠的gd.core.overlap()方法。
     overlap: function(x1, y1, width1, height1, x2, y2, width2, height2) {
-        // Modify x and y values to take into account center offset
+
+        //WebGL对象从中央开始绘制,而你需要从左上角进行计算,所以需要调整宽高的计算。
         x1 = x1 - (width1 / 2);
         y1 = y1 - (height1 / 2);
         x2 = x2 - (width2 / 2);
