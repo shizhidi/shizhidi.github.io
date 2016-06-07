@@ -9,19 +9,24 @@ Desc: All templates, objects, and other code connected to running the game.
 */
 
 (function() {
-    gd.core.init(800, 600, function() {
+
+    // 初始化游戏设置
+
+    // 从这里起,将所有代码都添加到一个自执行的函数中,以防止变量泄露到全局空间。
+    gd.core.init(800, 600, function() { // 声明宽度与高度,以及引擎加载后所触发的游戏设置逻辑
         Ctrl.init();
         Hud.init();
         gd.game.spawn('Player');
     });
 
     // x and y coordinate information for 3D space, manually retrieved
+    // 在 3D 可玩区域的宽度与高度。由于所有的衡量都是从位于中间位置的笛卡尔坐标系开始的,所以这里的宽高值都只是实际宽高值的一半。
     gd.game.size = {
         width: 43,
         height: 32
     };
 
-    var Ctrl = {
+    var Ctrl = { // 用户输入的控制器函数。
         init: function() {
             window.addEventListener('keydown', this.keyDown, true);
             window.addEventListener('keyup', this.keyUp, true);
@@ -42,7 +47,7 @@ Desc: All templates, objects, and other code connected to running the game.
                     Ctrl.right = true;
                     break;
                 case 88:
-                    Ctrl.x = true;
+                    Ctrl.x = true; // X键
                     break;
                 default:
                     break;
@@ -72,25 +77,27 @@ Desc: All templates, objects, and other code connected to running the game.
         }
     };
 
+    // 创建玩家实体
     gd.template.Player = gd.template.Entity.extend({
         // Hit collision a = friendly, b = enemy
         type: 'a',
 
         // Spawning info
-        x: -1.4,
+        x: -1.4, // 调整玩家实体的位置,使其能与文字完美对齐。
 
-        // Hitbox information
+
+        // 所有的宽度与高度衡量单位都等于一个玩家单位。
         width: 1,
         height: 1,
 
-        // Rotate on the x and y axis information
+        // 取值范围从0到360
         rotate: {
             angle: 0,
-            axis: [0, 0, 1],
+            axis: [0, 0, 1], // 只允许在2D空间内旋转玩家实体。
             speed: 3
         },
 
-        // Speed of travel
+        // 用来确定玩家位置递增程度的变量
         speed: 0.5,
 
         // Says if the player is allowed to shoot or not
@@ -100,17 +107,18 @@ Desc: All templates, objects, and other code connected to running the game.
         shootDelay: 400,
 
         init: function() {
-            // Setup triangle shape
-            this.shape([
+            // 设置三角形的形状
+            this.shape([ // 创建一个三角形,绘制并连接传入的数组数据中所代表的3个不同的点。
+                         // 数组中的每一行都代表着所绘制的点,3个数值分别是这一点的x、y、z坐标值。
                 0.0,  2.0,  0.0, // top
                -1.0, -1.0,  0.0, // left
                 1.0, -1.0,  0.0  // right
             ]);
 
             // Setup white color
-            this.color([
+            this.color([ // 对于用shape 方法绘制的每一个点赋予一种颜色,数值中每行都代表着一个颜色,4个数值分别是该颜色的R(red)、G(Green)、B(Blue)、A(Alpha)值。
                 // red, green, blue, alpha (aka transparency)
-                1.0, 1.0, 1.0, 1.0, // top
+                1.0, 1.0, 1.0, 1.0, // top // 将白色赋予刚才所创建的3个点。
                 1.0, 1.0, 1.0, 1.0, // left
                 1.0, 1.0, 1.0, 1.0  // right
             ]);
@@ -121,16 +129,19 @@ Desc: All templates, objects, and other code connected to running the game.
         boundaryBottom: function() { this.y = -gd.game.size.height; },
         boundaryLeft: function () { this.x = -gd.game.size.width; },
 
-        update: function() {
+        // 玩家实体的状态更新
+
+        update: function() {// 每当绘制新的一帧时,就会触发update逻辑。
             var self = this;
 
-            // Move left or right to rotate the player
+            // 当按下左右方向键时,就会触发玩家实体的旋转功能。之前设置的cp.core.draw()方法会自动应用旋转。
             if (Ctrl.left) {
                 this.rotate.angle += this.rotate.speed;
             } else if (Ctrl.right) {
                 this.rotate.angle -= this.rotate.speed;
             }
 
+            // 使用当前角度,自动更新玩家实体的位置
             if (Ctrl.up) {
                 this.x -= Math.sin( this.rotate.angle * Math.PI / 180 ) * this.speed;
                 this.y += Math.cos( this.rotate.angle * Math.PI / 180 ) * this.speed;
@@ -139,12 +150,12 @@ Desc: All templates, objects, and other code connected to running the game.
                 this.y -= Math.cos( this.rotate.angle * Math.PI / 180 ) * this.speed;
             }
 
-            // Level boundaries logic
+            // 避免玩家实体越过游戏界面的边界。
             gd.game.boundaries(this, this.boundaryTop, this.boundaryRight, this.boundaryBottom, this.boundaryLeft);
 
             // Detect a player shooting
             if (Ctrl.x && this.shoot) {
-                // Spawning elements need to take new parameters
+                // 当玩家实体当前位置处生成一颗子弹，将其以当前角度发射出去。
                 gd.game.spawn('Bullet', this.rotate.angle, this.x, this.y);
 
                 // Create a timer to prevent firing
@@ -155,7 +166,7 @@ Desc: All templates, objects, and other code connected to running the game.
             }
         },
 
-        kill: function() {
+        kill: function() { // 当玩家实体被消灭, HUD 和多边形生成器就会停止运行。
             this._super();
 
             // Clear timeout for leveling
@@ -166,9 +177,9 @@ Desc: All templates, objects, and other code connected to running the game.
         }
     });
 
-    // heads up display
+    // 平视显示(HUD)
     var Hud = {
-        init: function() {
+        init: function() { // 当玩家按下X键时,开始生成多边形。
             var self = this;
 
             // Setup start callback
@@ -190,14 +201,14 @@ Desc: All templates, objects, and other code connected to running the game.
             window.addEventListener('keydown', callback, true);
         },
 
-        end: function() {
+        end: function() { // 结束游戏时,显示Game Over界面。
             var self = this;
 
             // Show end game text
             this.el.end.style.display = 'block';
         },
 
-        score: {
+        score: { // 一个简单方法,用于递增并记录玩家的得分。
             count: 0,
             update: function() {
                 this.count++;
@@ -208,7 +219,7 @@ Desc: All templates, objects, and other code connected to running the game.
         },
 
         // Stores elements
-        el: {
+        el: { // 获取并存储可改变的元素,以便于引用它们。
             score: document.getElementById('count'),
             start: document.getElementById('start'),
             end: document.getElementById('end'),
@@ -216,14 +227,15 @@ Desc: All templates, objects, and other code connected to running the game.
         }
     };
 
-    // Creates a cube by using multiple vertices
+    // 制作子弹
     gd.template.Bullet = gd.template.Entity.extend({
         type: 'a',
         width: 0.6,
         height: 0.6,
         speed: 0.8,
-        angle: 0,
+        angle: 0, // angle 用来确定子弹的运动方向(0 - 360度)
 
+        // 注意,init()方法是如何在x,y坐标处产生子弹,并让子弹以玩家实体的当前角度发射出去。
         init: function(angle, x, y) {
             // Setup double sided triangle
             this.shape([
@@ -233,7 +245,7 @@ Desc: All templates, objects, and other code connected to running the game.
                 0.3, -0.3,  0.3
             ]);
 
-            // Setup bullet color by repeating
+            // 创建颜色矩阵的另一个方法。在创建大量颜色相同的点时,这一招很有用。
             var stack = [];
             for (var line = this.shapeRows; line--;)
                 stack.push(1.0, 0.0, 0.0, 1.0);
@@ -260,11 +272,12 @@ Desc: All templates, objects, and other code connected to running the game.
         }
     });
 
+    //  //多边形生成器
     var PolygonGen = {
         delay: 7000,
         limit: 9,
 
-        init: function() {
+        init: function() { //创建一个敌人生成的间隔时间,初始化多边形生成。
             var self = this;
 
             // Spawn first polygon
@@ -273,6 +286,8 @@ Desc: All templates, objects, and other code connected to running the game.
 
             // Setup spawn timer
             this.create = window.setInterval(function() {
+
+                // 避免因生成的敌人对象太多而使浏览器崩溃的失效保护方法
                 if (gd.core.storage.b.length < self.limit) {
                     // Increase count
                     if (self.count < 3)
@@ -285,7 +300,7 @@ Desc: All templates, objects, and other code connected to running the game.
             }, self.delay);
         },
 
-        clear: function() {
+        clear: function() { //停止生成多边形。
             // Clear timers
             window.clearInterval(this.create);
 
@@ -297,7 +312,7 @@ Desc: All templates, objects, and other code connected to running the game.
 
     gd.template.Polygon = gd.template.Entity.extend({
         type: 'b',
-        width: 7,
+        width: 7,  //从左到右,形状的顶点范围利用width来衡量,但height衡量的则是从上到下。
         height: 9,
 
         init: function() {
@@ -379,9 +394,11 @@ Desc: All templates, objects, and other code connected to running the game.
             // Triangle is 36 vertics
             // Square is 72
             var stack = [];
+
+            // 由于要为大量的点指定颜色,所以不能手动添加,必须动态地创建颜色图。
             for (var v = 0; v < this.shapeRows * this.shapeColumns; v += 3) {
                 // Triangle coloring
-                if (v > 108 || v <= 36) {
+                if (v > 108 || v <= 36) { //测试是否绘制的是三角形
                     stack.push(this.colorData.pyramid[0], this.colorData.pyramid[1], this.colorData.pyramid[2], 1);
 
                 // Square coloring
@@ -393,6 +410,7 @@ Desc: All templates, objects, and other code connected to running the game.
         },
 
         // Randomly genertes meta information such as speed, rotation, and other details at random
+        // 负责创建关于旋转、速度及颜色的随机信息。
         randomMeta: function() {
             this.rotate = {
                 speed: gd.game.random.number(400, 100),
@@ -411,6 +429,7 @@ Desc: All templates, objects, and other code connected to running the game.
             };
 
             // Choose 3 random colors and cache them
+            // 负责为金字塔形状和立方体生成随机的颜色信息。利用刚才创建的 Ploygon,init()中的方法来处理并组织数据。
             this.colorData = {
                 pyramid: [
                     gd.game.random.number(10, 1) / 10,
@@ -425,7 +444,7 @@ Desc: All templates, objects, and other code connected to running the game.
             };
         },
 
-        // Determines a side of the play area to spawn from
+        // 多边形的边,状态更新以及碰撞
         randomSide: function() {
             // Randomly spawn from one of four sides
             var side = gd.game.random.number(4, 1);
@@ -467,12 +486,13 @@ Desc: All templates, objects, and other code connected to running the game.
             this.x -= Math.sin( this.angle * Math.PI / 180 ) * this.speed.x;
             this.y += Math.cos( this.angle * Math.PI / 180 ) * this.speed.y;
 
-            gd.game.rotate(this);
+            gd.game.rotate(this); // 使用随机生成的旋转数据,让多边形慢慢旋转。
         },
 
         collide: function() {
             // Generate a number of particles spawned at current center
             // But only if the game has enough memory to support it
+            // 当多边形被摧毁时,在多边形的中心创建一些粒子,只有当存储区不是太满时才这样做,以防止内存被消耗殆尽。
             if (gd.core.storage.all.length < 50) {
                 for (var p = 15; p--;) {
                     gd.game.spawn('Particle', this.x, this.y);
@@ -481,7 +501,7 @@ Desc: All templates, objects, and other code connected to running the game.
 
             // Generate a random number of cubes spawned at current center
             var num = gd.game.random.number(2, 4);
-            for (var c = num; c--;) {
+            for (var c = num; c--;) {  //当多边形被摧毁时,在多边形的中心创建一系列立方体。
                 gd.game.spawn('Cube', this.x, this.y);
             }
 
@@ -489,14 +509,15 @@ Desc: All templates, objects, and other code connected to running the game.
         }
     });
 
+    // 立方体形状
     gd.template.Cube = gd.template.Entity.extend({
         type: 'b',
-        size: {
+        size: { //利用size对象和元数据方法来随机生成立方体尺寸。稍后将该实体为粒子扩展时,这能便于改变尺寸。
             max: 3,
             min: 2,
             divider: 1
         },
-        pressure: 50,
+        pressure: 50, // pressure 用来控制多边形爆裂后迸溅出的立方体的速度。
 
         meta: function() {
             // Random x and y acceleration
@@ -515,12 +536,13 @@ Desc: All templates, objects, and other code connected to running the game.
         },
 
         init: function(x, y) {
+            //利用在生成敌人时传入的参数来设定x和y。
             this.x = x;
             this.y = y;
 
             this.meta();
 
-            this.shape([
+            this.shape([ //前面板。this.s 引用了后面 gd.template.Cube.meta()生成的随机尺寸。
                 // Front
                 -this.s, -this.s,  this.s,
                  this.s, -this.s,  this.s,
@@ -553,7 +575,7 @@ Desc: All templates, objects, and other code connected to running the game.
                 -this.s,  this.s, -this.s
             ]);
 
-            this.indices([
+            this.indices([ //indices 的每一行都包含两个三角形的形状坐标,从而组成一个正方形的面板。这里的每个数值都代表indice上的一个索引,而不是x,y,z坐标值。
                  0,  1,  2,    0,  2,  3, // front
                  4,  5,  6,    4,  6,  7, // back
                  8,  9, 10,    8, 10, 11, // top
@@ -562,7 +584,7 @@ Desc: All templates, objects, and other code connected to running the game.
                 20, 21, 22,   20, 22, 23  // left
             ]);
 
-            this.color([
+            this.color([ //传入一个表示颜色的indices 数组。之前,template.js中已经设定了颜色方法,为indices输出了大量的颜色数据。
                 [1, 0, 0, 1], // Front: red
                 [0, 1, 0, 1], // Back: green
                 [0, 0, 1, 1], // Top: blue
@@ -600,7 +622,9 @@ Desc: All templates, objects, and other code connected to running the game.
         }
     });
 
-    gd.template.Particle = gd.template.Cube.extend({
+
+    // 生成粒子
+    gd.template.Particle = gd.template.Cube.extend({ //对立方体逻辑进行扩展,而不是重写一个全新的粒子实体。
         pressure: 20,
         type: 0,
         size: {
@@ -623,7 +647,7 @@ Desc: All templates, objects, and other code connected to running the game.
                 -this.s, -this.s,  0.0
             ]);
 
-            // Setup random color
+            // 随机生成RGB颜色数值,同时还带有固定的透明度。
             var r = gd.game.random.number(10, 0) / 10,
             g = gd.game.random.number(10, 0) / 10,
             b = gd.game.random.number(10, 0) / 10;
@@ -635,7 +659,7 @@ Desc: All templates, objects, and other code connected to running the game.
             ]);
 
             var self = this;
-            this.create = window.setTimeout(function() {
+            this.create = window.setTimeout(function() { //生成5秒后, 即将粒子从内存中清除,以防止内存消耗殆尽。
                 self.kill();
             }, 5000);
         }

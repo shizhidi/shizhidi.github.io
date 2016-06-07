@@ -14,6 +14,9 @@ var gd = gd || {};
 // Initialize and create an object so other classes can be stored here
 gd.template = {
     Entity: Class.extend({
+
+        // 缓冲区配置
+
         // Passive = 0, friendly a, enemy b
         type: 0,
 
@@ -56,16 +59,17 @@ gd.template = {
             axis: false
         },
 
-        shape: function(vertices) {
-            this.shapeStorage = gd.gl.createBuffer();
+        shape: function(vertices) { //创建形状时,需要调入矩阵,这个方法能处理好其他一些工作。
 
-            // Graphic storage
+            this.shapeStorage = gd.gl.createBuffer(); //创建缓冲区数据
+
+            // 存储所创建的缓冲区数据,以备后续使用。
             gd.gl.bindBuffer(gd.gl.ARRAY_BUFFER, this.shapeStorage);
 
-            // Uses float32 to change the array into a webGL edible format.
+            // 利用 float32 将数组改变成WebGL可编辑格式。
             gd.gl.bufferData(gd.gl.ARRAY_BUFFER, new Float32Array(vertices), gd.gl.STATIC_DRAW);
 
-            // Count rows
+            // 每个方法末尾都需要记录下传入的数组信息,因为附属的 sylvester.js 需要额外的数组细节。
             this.shapeColumns = 3;
             this.shapeRows = vertices.length / this.shapeColumns;
         },
@@ -73,8 +77,7 @@ gd.template = {
         color: function(vertices) {
             this.colorStorage = gd.gl.createBuffer();
 
-            // Map colors for a complex object such as a cube, before doing so, check if the first array element is a string
-            // as it should be an array
+            // 用来将较大的颜色数据包进行反编译的辅助循环函数。
             if (typeof vertices[0] === 'object') {
                 // temporary storage location for new vertices
                 var colorNew = [];
@@ -100,6 +103,7 @@ gd.template = {
             this.colorRows = vertices.length / this.colorColumns;
         },
 
+        // indices 是 index的复数形式。WebGL利用缓冲区将三角面组合成一个形状。通过使用indices,可以定义一对三角面的位置,而不必每次只能定义一个。
         indices: function(vertices) {
             this.indicesStorage = gd.gl.createBuffer();
             gd.gl.bindBuffer(gd.gl.ELEMENT_ARRAY_BUFFER, this.indicesStorage);

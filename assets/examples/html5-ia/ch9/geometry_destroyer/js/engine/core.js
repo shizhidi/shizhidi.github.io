@@ -122,7 +122,7 @@ gd.core = {
                 this.currentChild = this.currentChild.nextSibling;
             }
 
-            // Check for the type of shader accessed and process as necessary
+            // 测试正在使用的着色器类型(片段着色器还是顶点着色器),根据结果进行相应处理。
             if (this.script.type === 'x-shader/x-fragment') {
                 this.shader = gd.gl.createShader(gd.gl.FRAGMENT_SHADER);
             } else if (this.script.type === 'x-shader/x-vertex') {
@@ -131,12 +131,13 @@ gd.core = {
                 return null; // Type of current shader is unknown
             }
 
-            // Get data and compile it together
+            // 获取所有的着色器数据,把它们编译在一起。
             gd.gl.shaderSource(this.shader, this.source);
             gd.gl.compileShader(this.shader);
 
             // Compile success? If not fire an error.
             if (!gd.gl.getShaderParameter(this.shader, gd.gl.COMPILE_STATUS)) {
+                //如果没有编译成功,则返回一个出错信息。
                 alert('Shader compiling error: ' + gd.gl.getShaderInfoLog(this.shader));
                 return null;
             }
@@ -147,24 +148,29 @@ gd.core = {
 
         // Stores shader data in other places for easy usage later
         store: function() {
-            // Store the shader's attribute in an object so you can use it again later
+            // 从着色器程序中提取顶点数据,以备后续渲染3D对象。
             this.vertexPositionAttribute = gd.gl.getAttribLocation(this.program, "aVertexPosition");
             gd.gl.enableVertexAttribArray(this.vertexPositionAttribute);
 
-            // Allow usage of color data with shaders
+            // 从着色器程序中提取颜色数据
             this.vertexColorAttribute = gd.gl.getAttribLocation(this.program, "aVertexColor");
             gd.gl.enableVertexAttribArray(this.vertexColorAttribute);
         }
     },
 
     draw: function() {
+
+        //绘制形状(一)
+
+        //清除WebGL视口,以便绘制全新的帧。
         gd.gl.clear(gd.gl.COLOR_BUFFER_BIT | gd.gl.DEPTH_BUFFER_BIT);
 
-        // Field of view in degress, width/height, only get objects between 1, 300 units in distance
+        // 将观察视角从1单位距离设置为300单位距离(以防止宽高比失真)。
         this.perspectiveMatrix = makePerspective(45, this.horizAspect, 0.1, 300.0);
 
         // Loop through every object in storage.all
         for (var i in this.storage.all) {
+            // 遍历存储区中的所有实体并将它们绘制出来。for循环语句并未结束,在下面两个代码清单中还会添加一些功能。
             // Resets and creates a matrix that has 1s diagnolly and 0s everywhere else, crazy math stuff
             // Essential in processing your matrices for object creation
             // If you are a math nut and really want to understand this read http://mathworld.wolfram.com/IdentityMatrix.html
@@ -173,28 +179,30 @@ gd.core = {
               0, 1, 0
               0, 0, 1 ]
             */
-            this.loadIdentity();
+            this.loadIdentity(); // 重置并创建矩阵,1占对角线,其他位置都为0
 
-            // Run update functions before drawing anything to prevent screen pops for recently spawned items
-            this.storage.all[i].update();
+            // 在输出形状之前运行update(),以防止新实体瞬时的显示位置出错。
+            this.storage.all[i].update(); //
 
             // Draw at location x, y, z
-            // Other objects drawn before refreshing will be drawn relative to this position
+            // 从实体中提取出x,y,z坐标,明确所要绘制的位置,将其推送入一个数组。
             this.mvTranslate(this.storage.all[i].position());
-            this.mvPushMatrix();
+            this.mvPushMatrix(); // 将当前矩阵项目推送入矩阵堆栈顶部的标准化方法。
 
             // Pass rotate data if present
-            if (this.storage.all[i].rotate.axis) {
+            if (this.storage.all[i].rotate.axis) { // 如果存在旋转数据,则会在此运行。
                 this.mvRotate(
                     this.storage.all[i].rotate.angle,
                     this.storage.all[i].rotate.axis);
             }
 
-            // Pass shape data
+
+            //绘制形状(2)
+            // 将 ARRAY_BUFFER 绑定到shapeStorage对象上。
             gd.gl.bindBuffer(
                 gd.gl.ARRAY_BUFFER,
                 this.storage.all[i].shapeStorage);
-            gd.gl.vertexAttribPointer(
+            gd.gl.vertexAttribPointer( // 定义一个包含通用的顶点数据的数组。
                 this.shader.vertexPositionAttribute,
                 this.storage.all[i].shapeColumns,
                 gd.gl.FLOAT,
@@ -210,10 +218,10 @@ gd.core = {
                 gd.gl.FLOAT,
                 false, 0, 0);
 
-            this.setMatrixUniforms();
+            this.setMatrixUniforms(); // 为了让着色器正确显现,将矩阵数据从 Javascript 推送到WebGL中。
 
             // Take the matrix vertex positions and go through all of the elements from 0 to the .numItems object
-            if (this.storage.all[i].indicesStorage) {
+            if (this.storage.all[i].indicesStorage) { // 根据是否使用了indices, 对缓冲区数据进行不同的输出。
                 // Creation of 3D shape
                 gd.gl.drawElements(
                     gd.gl.TRIANGLES,
@@ -229,9 +237,12 @@ gd.core = {
             }
 
             // Restore original matrix to prevent objects from inheriting properties
-            this.mvPopMatrix();
+            this.mvPopMatrix(); // 从当前的矩阵堆栈中去除一个项目
 
-            // Collision detection for 2D elements only
+            // 绘制形状(三)
+
+            // 二维元素的碰撞检测
+            // 为了尽可能地简化逻辑,这里采用的碰撞侦测只针对 a、b两种类型的实体
             if (this.storage.all[i].type === 'a') {
                 // Check all items in the b type array only since its an a type item
                 for (var en = this.storage.b.length; en--;) {
@@ -254,7 +265,7 @@ gd.core = {
         }
 
         // Clean out killed items
-        this.graveyard.purge();
+        this.graveyard.purge(); // 将被删除的元素从墓地中清楚。之所以把它放在循环的外部进行,是为了防止意外引用了并不存在的实体。
     },
 
     // Used to destroy entities when necessary instead of doing it during the loop and potentially blowing
@@ -328,16 +339,21 @@ gd.core = {
     /* ----- Utilities | Pre-Written w/ credits -----*/
     // Matrix functions modified from Mozilla's WebGL tutorial https://developer.mozilla.org/en/WebGL/Adding_2D_content_to_a_WebGL_context
     // From Mozilla's tutorial "Nobody seems entirely clear on where it came from, but it does simplify the use of Sylvester even further by adding methods for building special types of matrices, as well as outputting HTML for displaying them."
+    // 矩阵辅助函数
     loadIdentity: function() {
+        // 加载一个单位矩阵,该矩阵由一些1和环绕其四周的0组成。
         mvMatrix = Matrix.I(4);
     },
     multMatrix: function(m) {
+        // 乘以一个矩阵。
         mvMatrix = mvMatrix.x(m);
     },
     mvTranslate: function(v) {
+        // 执行矩阵乘法运算,然后进行矩阵平移。
         this.multMatrix(Matrix.Translation($V([v[0], v[1], v[2]])).ensure4x4());
     },
     setMatrixUniforms: function() {
+        // 设定透视视角与模型视图矩阵。
         var pUniform = gd.gl.getUniformLocation(this.shader.program, "uPMatrix");
         gd.gl.uniformMatrix4fv(pUniform, false, new Float32Array(this.perspectiveMatrix.flatten()));
 
@@ -346,9 +362,9 @@ gd.core = {
     },
 
     // Additional functions by Vlad Vukicevic at http://blog.vlad1.com/
-    mvMatrixStack: [],
+    mvMatrixStack: [], // 这个堆栈将利用下列方法来控制矩阵数据。
 
-    mvPushMatrix: function(m) {
+    mvPushMatrix: function(m) { // 将制定数据移动到堆栈顶部。
         if (m) {
             this.mvMatrixStack.push(m.dup());
             mvMatrix = m.dup();
@@ -358,6 +374,7 @@ gd.core = {
     },
 
     mvPopMatrix: function() {
+        // 在JavaScript中, Pop是一个数组方法,它能将删除数组中最后一个元素,返回这个元素。在这里,mvPopMatrix()要么返回一个出错信息,要么就去除最后一项,并将其返回。
         if (! this.mvMatrixStack.length) {
             throw("Can't pop from an empty matrix stack.");
         }
@@ -366,7 +383,7 @@ gd.core = {
         return mvMatrix;
     },
 
-    mvRotate: function(angle, v) {
+    mvRotate: function(angle, v) { // cp.core.draw()中触发旋转的方法。
         var inRadians = angle * Math.PI / 180.0;
 
         var m = Matrix.Rotation(inRadians, $V([v[0], v[1], v[2]])).ensure4x4();

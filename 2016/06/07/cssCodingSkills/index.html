@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="shizhidi&#39;s blog">
-    <title>WebGl：3D应用开发 (九) - shizhidi&#39;s blog</title>
+    <title>Web标准：是敌还是友(一) - shizhidi&#39;s blog</title>
     <meta name="author" content="Edison">
     <meta name="description" content="shizhidi&#39;s blog">
     <link rel="icon" href="/assets/images/null">
@@ -137,11 +137,11 @@
     
         <div class="post-header main-content-wrap">
     
-        <h1 class="post-title" itemprop="headline">WebGl：3D应用开发 (九)</h1>
+        <h1 class="post-title" itemprop="headline">Web标准：是敌还是友(一)</h1>
     
     <div class="post-meta">
-    <time  itemprop="datePublished" content="Wed Jun 01 2016 22:07:42 GMT+0800">
-        Jun 01, 2016
+    <time  itemprop="datePublished" content="Tue Jun 07 2016 21:10:47 GMT+0800">
+        Jun 07, 2016
     </time>
     
         <span>in </span>
@@ -154,36 +154,36 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        <h4 id="主要内容">主要内容</h4><ul>
-<li>开发WebGl引擎</li>
-<li>与显卡通讯</li>
-<li>创建3D图形</li>
-</ul>
-<p>快速开发出来一个WebGl应用,下载CopperLicht,<a href="http://www.ambiera.com/copperlicht/download.html" target="_blank" rel="external">下载页面</a>。<br>其他一些项目(交互式数据展示、建筑展示、动画视频和地图等),可以使用 <code>Threejs</code> </p>
-<p>本文要创建的3D <a href="https://shizhidi.github.io/assets/examples/html5-ia/ch9/geometry_destroyer/index.html" target="_blank" rel="external">Geometry Destroyer</a>游戏应用。</p>
-<h5 id="创建一个WebGl游戏引擎">创建一个WebGl游戏引擎</h5><p>在旧版IE中使用WebGL,使用<a href="http://iewebgl.com" target="_blank" rel="external">IEWebGL插件</a>。IE6到10,都支持。注意它并不适合本文范例,和Three.js库能很好的结合。</p>
-<p>关于显卡的警告：并不是所用显卡都能支持WebGL,如果用的浏览器时Chrome或Firefox的最新版,却无法运行本文应用。可以换台电脑试一下。</p>
-<p>不能在WebGL应用中使用2D Canvas,二者不能出现在同一绘图环境中。不过,可以使用两个&lt;canvas&gt;元素来创建两个不同的绘图环境,然后通过css,让其中一个位于另一个上方。</p>
-<p>assets目录中的4个外部文件：</p>
+        <h4 id="Web标准：是敌还是友">Web标准：是敌还是友</h4><h6 id="标准的制定过程">标准的制定过程</h6><p> W3C并不“生成”标准,这些技术规范(基本上)并不是由W3C的工作人员编写完成的。</p>
+<p>css规范由css工作组成员编写。人员组成：</p>
 <ul>
-<li>Paul Irish 位于animation.js 中的 requestAnimationFrame()。</li>
-<li>John Resig的类扩展脚本classes.js的一种轻微修改版本。</li>
-<li>变换矩阵库sylvester.js。</li>
-<li>webgl_util.js的辅助函数。</li>
+<li>86名来自W3C会员公司的成员</li>
+<li>7名特邀专家</li>
+<li>5名W3C工作人员</li>
 </ul>
-<p>利用最好的动画实践来配置引擎：</p>
+<p>他们每年的会费也是W3C主要资金来源,使得W3C能够免费、开放。对于哪些东西该进入标准,浏览器厂商比W3C有更多的发言权。</p>
+<p>制定标准并不是闭门造车,工作组每周召开一次电话会议,每季度面对面会议,会议记录透明。</p>
+<p>每项规范从最初启动到最终成熟,都会经过以下阶段。</p>
+<ol>
+<li>编辑草案(ED)</li>
+<li>首个公开工作草案(FPWD)</li>
+<li>工作草案(WD)</li>
+<li>候选推荐规范(CR)</li>
+<li>提名推荐规范(PR)</li>
+<li>正式推荐规范(REC)</li>
+</ol>
+<h6 id="CSS3、CSS4以及其他传说">CSS3、CSS4以及其他传说</h6><p> 一项规范如果要推进到最终阶段,其中的每项特性必须具备两个独立的实现和全面的测试。因CSS2变得非常庞大,将CSS打散到多个不同的规范(模块)中，<br>尽管“CSS3”这个名词非常流行,但它实际上并没有在任何规范中定义过。</p>
+<h6 id="浏览器前缀">浏览器前缀</h6><p> 当新的规范出来,工作组需要网页开发者在生产环境中使用规范,以确保各项规范处理真实的开发需求。开发者都不愿尝试,所以每个浏览器厂商要加上自己的特有前缀,开发者可以自由尝试。<br>新的问题,代码冗余,有的厂商没有出现该属性的前缀。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">-ms-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">-o-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line"><span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>-ms-border-radius 和 -o-border-radius 没有出现在任何浏览器中。</p>
+<p>自动化的一些工具：</p>
 <ul>
-<li>利用requestAnimationFrame()取代setInterval,来解决移动兼容性,防止在另一个标签页中更新,防止帧速率波动。</li>
-<li>在其他浏览器中测试requestAnimationFrame(),利用Paul Irish 提供的polyfill,为像IE8这样的老式浏览器提供支持。</li>
+<li>初期的一些网站工具,<a href="http://css3please.com" target="_blank" rel="external">CSS3,Please!</a>等,把无前缀的代码粘贴进去，会自动把其他前缀都加好。很快就过气了。</li>
+<li><a href="https://github.com/ai/autoprefixer" target="_blank" rel="external">Autoprefixer</a> 采用<a href="http://caniuse.com" target="_blank" rel="external">Can I Use</a>的数据库来判断哪些前缀是需求添加的。</li>
+<li>-prefix-free 会在浏览器中进行特性检测,来决定哪些前缀是需要添加的。</li>
+<li>类似 Stylue、LESS、Sass 的常用属性加前缀的mixin。</li>
 </ul>
-<p>engine目录中的文件：</p>
-<ul>
-<li>core.js这些代码能够判断浏览器是否支持WebGL,对WebGL进行基本配置,创建一个侦测碰撞的辅助方法,并且为后面的代码预先留出位置。</li>
-<li>game.js含有几个常用方法,可缩减run.js文件尺寸,并使其易于维护。</li>
-</ul>
-<h4 id="与显卡通信">与显卡通信</h4><p> 有关显卡的一些基本知识：用户浏览器时如何处理并显示游戏对象的3D数据：<br>当把实体的3D数据发送到显卡时,这些数据起初是以数组形式(计算机数据)存在的,随后就会被GPU(图形处理单元)转换成顶点缓冲区。在这一渲染阶段,<br>需要更多的信息来装配3D形状(比如说缓冲区变量)。在处理完定点缓冲区后,这些数据就会通过顶点着色器的处理,生成屏幕位置和颜色信息。然后,GPU通过<br>三角形转配器将3D数据进一步处理成三角形片段,然后再将其送入光栅化程序,清楚掉形状当中不必要的视觉数据,生成像素片段,平滑彩色表面。随后,片段着色器<br>会继续处理形状数据,为每一像素输出色彩值及深度值。最后,通过缓存器将3D数据显示到用户屏幕上。</p>
-<p>三角面很容易拼合成人脸或者球体这种复杂的三维形体。</p>
-
+<p><code>浏览器前缀已是一场史诗般的失败</code></p>
+<h4 id="CSS编码技巧">CSS编码技巧</h4>
         
             
         
@@ -193,7 +193,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/html5/">html5</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/css-secrets/">css secrets</a>
 
             </div>
         
@@ -202,7 +202,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/07/cssCodingSkills/"  data-tooltip="Web标准：是敌还是友(一)">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -210,7 +210,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/31/LoadAndExecute/" data-tooltip="javascript性能优化：加载和执行(一)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/01/webGlDevelopment/" data-tooltip="WebGl：3D应用开发 (九)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -220,17 +220,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/01/webGlDevelopment/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/07/cssCodingSkills/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/01/webGlDevelopment/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/07/cssCodingSkills/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/01/webGlDevelopment/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/07/cssCodingSkills/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -240,7 +240,7 @@
 
         
             <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-webGlDevelopment" data-title="WebGl：3D应用开发 (九)" data-url="/2016/06/01/webGlDevelopment/"></div>
+    <div class="ds-thread" data-thread-key="post-cssCodingSkills" data-title="Web标准：是敌还是友(一)" data-url="/2016/06/07/cssCodingSkills/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -274,7 +274,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/07/cssCodingSkills/"  data-tooltip="Web标准：是敌还是友(一)">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -282,7 +282,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/05/31/LoadAndExecute/" data-tooltip="javascript性能优化：加载和执行(一)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/01/webGlDevelopment/" data-tooltip="WebGl：3D应用开发 (九)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -292,17 +292,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/01/webGlDevelopment/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/07/cssCodingSkills/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/01/webGlDevelopment/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/07/cssCodingSkills/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/01/webGlDevelopment/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/07/cssCodingSkills/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
