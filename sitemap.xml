@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2016/05/28/ScriptCommunication/</loc>
+    <lastmod>2016-06-16T15:48:27.934Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/05/25/fileEditingAndManagement/</loc>
+    <lastmod>2016-06-15T14:48:58.585Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/06/11/backgroundAndBorder/</loc>
     <lastmod>2016-06-13T16:04:41.407Z</lastmod>
   </url>
@@ -27,11 +37,6 @@
   </url>
   
   <url>
-    <loc>/2016/05/28/ScriptCommunication/</loc>
-    <lastmod>2016-05-31T16:00:55.232Z</lastmod>
-  </url>
-  
-  <url>
     <loc>/2016/05/31/LoadAndExecute/</loc>
     <lastmod>2016-05-31T15:53:38.993Z</lastmod>
   </url>
@@ -39,11 +44,6 @@
   <url>
     <loc>/2016/05/28/threejsChart/</loc>
     <lastmod>2016-05-28T14:22:28.817Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/05/25/fileEditingAndManagement/</loc>
-    <lastmod>2016-05-26T15:05:23.463Z</lastmod>
   </url>
   
   <url>

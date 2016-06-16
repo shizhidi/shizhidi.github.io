@@ -361,16 +361,26 @@
   </entry>
   
   <entry>
-    <title><![CDATA[传递消息：HTML5的脚本通信技术(四)(后续记录)]]></title>
+    <title><![CDATA[传递消息：HTML5的脚本通信技术(四)]]></title>
     <link href="/2016/05/28/ScriptCommunication/"/>
     <id>/2016/05/28/ScriptCommunication/</id>
     <published>2016-05-28T14:51:19.000Z</published>
-    <updated>2016-05-31T16:00:55.232Z</updated>
+    <updated>2016-06-16T15:48:27.934Z</updated>
     <content type="html"><![CDATA[<h4 id="主要内容">主要内容</h4><ul>
 <li>服务器发送事件和服务器端发起的事件驱动通信</li>
 <li>用于双向、事件驱动通信的WebSocket</li>
 <li>不同域间页面的客户端通信</li>
 </ul>
+<h6 id="服务器发送事件(SSE)">服务器发送事件(SSE)</h6><p>两大优点:</p>
+<ul>
+<li>服务器驱动的通信</li>
+<li>反复创建连接与添加报头的开销较小</li>
+</ul>
+<p>SSE聊天应用是通过ajax发送消息到服务器端,而客户端接收消息是从服务器端的发送事件。</p>
+<p>在旧浏览器上应用类似SSE的技术：最明显的方法就是利用持久数据帧技术,还有一种,就是利用预构建库作为回退方案。EventSource.js库。</p>
+<p>默认SSE是3秒自动请求一次服务器,类似轮询,意义不大。同ajax每3秒一次请求差不多,对手机端性能消耗大。</p>
+<p>那么如何实现让服务器主动推送呢。其实很简单，只要让服务器保持 HTTP 会话不关闭，当有新的更新时，立刻输出，并 flush() 即可。<br>服务器主动推送到客户端 ( push )，而非客户端轮询 ( pull )。</p>
+<p><a href="http://pan.baidu.com/s/1nu9k0R3" target="_blank" rel="external">聊天应用下载</a>PHP做为服务器。服务器搭建,php,mysql数据之类网上搜索如何安装配置。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[本文主要讲解HTML5的脚本通信技术。]]>
@@ -410,7 +420,7 @@
     <link href="/2016/05/25/fileEditingAndManagement/"/>
     <id>/2016/05/25/fileEditingAndManagement/</id>
     <published>2016-05-25T14:52:30.000Z</published>
-    <updated>2016-05-26T15:05:23.463Z</updated>
+    <updated>2016-06-15T14:48:58.585Z</updated>
     <content type="html"><![CDATA[<h4 id="主要内容">主要内容</h4><ul>
 <li>富文本HTML编辑</li>
 <li>利用地理定位进行位置识别</li>
@@ -425,11 +435,16 @@
 <li>拖放操作。可以简化文件的导入和导出操作。</li>
 <li>探讨单页应用对用户的好处。</li>
 </ul>
-<h6 id="Super_HTML5_Editor：应用概述、必备知识以及初始步骤">Super HTML5 Editor：应用概述、必备知识以及初始步骤</h6><p> 可以创建空文件,可以从本地计算机导入文件,查看已存在的文件,对文件执行查看、编辑、删除、导出操作。还可进行拖放操作。可以用两种编辑器来编辑文件内容：可视化的“所见即所得”的编辑器与原始的HTML标记编辑器。可以保存修改结果,预览文件内容并返回文件编辑器界面。如不保存修改就离开编辑器视图,就会警告。<br>当用Chrome在本地目录(不是服务器端)测试实例时,需要在Chrome后面加上下面这行: <strong>—Allow-File-Access-From-Files</strong><br>如果不这样做，客户端文件系统就会无法访问,Geolocation API也就无法定位你的当前位置了。</p>
+<h6 id="Super_HTML5_Editor：应用概述">Super HTML5 Editor：应用概述</h6><p> 可以创建空文件,可以从本地计算机导入文件,查看已存在的文件,对文件执行查看、编辑、删除、导出操作。还可进行拖放操作。可以用两种编辑器来编辑文件内容：可视化的“所见即所得”的编辑器与原始的HTML标记编辑器。可以保存修改结果,预览文件内容并返回文件编辑器界面。如不保存修改就离开编辑器视图,就会警告。<br>当用Chrome在本地目录(不是服务器端)测试实例时,需要在Chrome后面加上下面这行: <strong>—Allow-File-Access-From-Files</strong><br>如果不这样做，客户端文件系统就会无法访问,Geolocation API也就无法定位你的当前位置了。</p>
 <h6 id="富文本编辑与地理定位">富文本编辑与地理定位</h6><ul>
 <li>利用designMode属性提示浏览器,使HTML页面可以编辑。</li>
 <li>使用Editing API的execCommand方法来提供富文本编辑控制。</li>
 <li>使用Geolocation API。</li>
+</ul>
+<h6 id="在本地管理文件:File_System_API_、Quota_Management_API、File_API_与_File_Writer_API">在本地管理文件:File System API 、Quota Management API、File API 与 File Writer API</h6><ul>
+<li>使用File System API创建一种沙盒化的文件系统。</li>
+<li>使用Quota Management API分配本地存储空间。</li>
+<li>如何使用File Writer API与 File API来创建文件系统服务。</li>
 </ul>
 ]]></content>
     <summary type="html">

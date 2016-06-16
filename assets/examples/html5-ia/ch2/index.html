@@ -163,6 +163,7 @@
                     </tfoot>
                 </table>
             </fieldset>
+            <!--表单付款明细部分-->
             <fieldset>
                 <legend>Payment Details</legend>
                 <ul>
@@ -175,6 +176,7 @@
                     <li>
                         <label class="required">
                             <div>Credit Card No.</div>
+                            <!--信用卡号字段的正则表达式指定了输入的数据必须是数值,并且长度必须在13~16个字符之间。使用title属性为用户提供更多的字段所需信息,当用户试图提交无效值时,title属性就会产生提示信息。-->
                             <input name="card_number" pattern="[0-9]{13,16}" 	
                               maxlength="16" required title="13-16 digits, no spaces">
                         </label>
@@ -182,6 +184,7 @@
                     <li>
                         <label class="required">
                             <div>Expiry Date</div>
+                            <!--信用卡有效期利用month输入类型,显示一个日期选择器部件.并且基于YYYY-MM的格式掩码进行输入数据验证。-->
                             <input type="month" name="card_expiry" maxlength="7" 	
                               placeholder="YYYY-MM" required value="2015-06">
                         </label>
@@ -189,6 +192,7 @@
                     <li>
                         <label class="required">
                             <div>CVV2 No.</div>
+                            <!--CVV2安全码使用pattern属性和title属性提示来指定字段值,使其应该只是3个数字字符。-->
                             <input name="card_cvv2" class="cvv" maxlength="3" 	
                               pattern="[0-9]{3}" required title="exactly 3 digits"> 
                             <span>(Three digit code at back of card)</span>

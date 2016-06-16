@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="shizhidi&#39;s blog">
-    <title>传递消息：HTML5的脚本通信技术(四)(后续记录) - shizhidi&#39;s blog</title>
+    <title>传递消息：HTML5的脚本通信技术(四) - shizhidi&#39;s blog</title>
     <meta name="author" content="Edison">
     <meta name="description" content="shizhidi&#39;s blog">
     <link rel="icon" href="/assets/images/null">
@@ -137,7 +137,7 @@
     
         <div class="post-header main-content-wrap">
     
-        <h1 class="post-title" itemprop="headline">传递消息：HTML5的脚本通信技术(四)(后续记录)</h1>
+        <h1 class="post-title" itemprop="headline">传递消息：HTML5的脚本通信技术(四)</h1>
     
     <div class="post-meta">
     <time  itemprop="datePublished" content="Sat May 28 2016 22:51:19 GMT+0800">
@@ -159,6 +159,16 @@
 <li>用于双向、事件驱动通信的WebSocket</li>
 <li>不同域间页面的客户端通信</li>
 </ul>
+<h6 id="服务器发送事件(SSE)">服务器发送事件(SSE)</h6><p>两大优点:</p>
+<ul>
+<li>服务器驱动的通信</li>
+<li>反复创建连接与添加报头的开销较小</li>
+</ul>
+<p>SSE聊天应用是通过ajax发送消息到服务器端,而客户端接收消息是从服务器端的发送事件。</p>
+<p>在旧浏览器上应用类似SSE的技术：最明显的方法就是利用持久数据帧技术,还有一种,就是利用预构建库作为回退方案。EventSource.js库。</p>
+<p>默认SSE是3秒自动请求一次服务器,类似轮询,意义不大。同ajax每3秒一次请求差不多,对手机端性能消耗大。</p>
+<p>那么如何实现让服务器主动推送呢。其实很简单，只要让服务器保持 HTTP 会话不关闭，当有新的更新时，立刻输出，并 flush() 即可。<br>服务器主动推送到客户端 ( push )，而非客户端轮询 ( pull )。</p>
+<p><a href="http://pan.baidu.com/s/1nu9k0R3" target="_blank" rel="external">聊天应用下载</a>PHP做为服务器。服务器搭建,php,mysql数据之类网上搜索如何安装配置。</p>
 
         
             
@@ -216,7 +226,7 @@
 
         
             <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-ScriptCommunication" data-title="传递消息：HTML5的脚本通信技术(四)(后续记录)" data-url="/2016/05/28/ScriptCommunication/"></div>
+    <div class="ds-thread" data-thread-key="post-ScriptCommunication" data-title="传递消息：HTML5的脚本通信技术(四)" data-url="/2016/05/28/ScriptCommunication/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "credentials.php";
+include_once "credentials.php"; //数据库的详细信息
 try {
     $dbh = new PDO($db, $user, $pass);
     $preparedStatement = $dbh->prepare('INSERT INTO `log`(`session_id`,`handle`, `message`, `timestamp`) VALUES (:sid,(SELECT `handle` FROM `sessions` WHERE `session_id` = :sid),:message,NOW())');
