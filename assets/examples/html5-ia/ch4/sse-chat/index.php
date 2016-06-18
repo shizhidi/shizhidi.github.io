@@ -14,7 +14,7 @@ try {
     <meta charset="utf-8">
     <title>SSE Chat</title>
     <link href="style.css" rel="stylesheet">
-    <script src="jquery-1.7.1.min.js"></script>
+    <script src="jquery-1.7.2.min.js"></script>
     <script src="raf-polyfill.js"></script>
     <!-- 便于JavaScript获取PHP会话ID(省去了读取cookie的过程) -->
     <script>var uid='<?php print session_id(); ?>';</script>

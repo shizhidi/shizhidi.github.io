@@ -1,13 +1,16 @@
 function init() {
-    var ee = new EventEmitter();
-    var planner = new Planner(ee);
+    var ee = new EventEmitter(); //由于创建了planner对象,所有依赖EventEmitter对象。
+    var planner = new Planner(ee); //使用Event Emitter创建一个新的planner对象。
     var render;
+
+    //在firefox中,WebSocket对象被称为MozWebSocket
     if (typeof  MozWebSocket !== 'undefined') { WebSocket = MozWebSocket; }
     var ws = new WebSocket('ws://localhost:8080');
-    ws.onmessage = function(msg_json) {
-        var msg = JSON.parse(msg_json);
+    ws.onmessage = function(msg_json) { //为WebSocket添加一个事件侦听器
+        var msg = JSON.parse(msg_json); //假定WebSocket所接受的信息是一种JSON编码对象。
         switch (msg.type) {
             case 'loadPlan':
+                //当客户端首次连接时,希望服务器端能够传送一个带有最新版计划的JSON编码的planner对象。
                 planner.load_plan(msg.args.plan);
                 render = new Renderer(planner);
                 break;
@@ -23,8 +26,10 @@ function init() {
         }
     };
     ws.onerror = function(e) {
+        //便于调试,将错误记录下来并显示到控制台上
         console.log(e.reason);
-    }
+    };
+    //planner对象的on方法连接着一个事件侦听器。当事件被浏览器内的planner对象引发时,侦测到并发送到服务器端。
     planner.on('addTask', function(task) {
         var msg = {};
         msg.type = 'addTask';

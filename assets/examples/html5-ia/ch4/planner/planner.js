@@ -1,9 +1,9 @@
-var Planner = function(ee) {
+var Planner = function(ee) { //创建planner对象,接收EventEmitter参数
     var plan = {};
     plan.tasks = [];
     plan.workers = [];
-    plan.statuses = ['todo','inprogress','done'];
-    var Task = function(task_name, task_id) {
+    plan.statuses = ['todo','inprogress','done']; //设置一些私有变量
+    var Task = function(task_name, task_id) { //创建新任务的工具函数
         var that = {};
         that.name = task_name;
         if (typeof task_id === 'undefined') {
@@ -14,7 +14,7 @@ var Planner = function(ee) {
         that.owner = '';
         that.status = '';
     }
-    function get_task(task_id) {
+    function get_task(task_id) { //从计划中挑选任务的函数
         return plan.tasks[get_task_index(task_id)];
     }
     function get_task_index(task_id) {
@@ -23,7 +23,7 @@ var Planner = function(ee) {
         }
         return -1;
     }
-    function guidGenerator() {
+    function guidGenerator() { //返回伪 GUID (全局唯一标识符)的工具函数,以便让计划中创建的所有对象都能有唯一的ID。
         var S4 = function() {
            return (((1+Math.random())*0x10000)|0) .toString(16).substring(1);
         };
@@ -48,19 +48,22 @@ var Planner = function(ee) {
             }
         }
     }
-    var that = {
+    var that = { //that对象被planner构造函数返回,它就会通过JavaScript的closure特性来访问planner的私有函数
         load_plan: function(new_plan) {
             //IRL, put validation logic in here
+            //在实际应用中,会在这添加验证逻辑来检查JSON字符串是否组成了一个合法的计划。
             plan = JSON.parse(new_plan);
             ee.emit('loadPlan',plan);
         },
         get_plan: function() {
             return JSON.stringify(plan);
         },
+        //在add_task方法中,task_id参数是可选的,当任务创建时,就不需要这个参数了;但当这一时间被复制传送到服务器端或其他的客户端上时,就需要用到这个参数。
         add_task: function(task_name, task_id, source) {
             var task = Task(task_name, task_id);
+            //将创建的任务与工具函数一起推送入计划的任务数组中。
             plan.tasks.push(task);
-            ee.emit('addTask', task, source);
+            ee.emit('addTask', task, source);//发动新任务的事件
             return task.id;
         },
         move_task: function(task_id, owner, status, source) {
@@ -85,7 +88,7 @@ var Planner = function(ee) {
             plan.workers.push(worker);
             ee.emit('addWorker', worker, source);
         },
-        delete_worker: function(worker_name, source) {
+        delete_worker: function(worker_name, source) { //该方法会将worker的所有任务都移动到队列中,然后删除worker。
             var worker;
             for (var i=0; i < plan.workers.length; i++) {
                 if (plan.workers[i].name == worker_name) { worker = plan.workers[i]; }
@@ -114,7 +117,7 @@ var Planner = function(ee) {
         },
         eachListener: ee.eachListener,
         addListener: ee.addListener,
-        on: ee.on,
+        on: ee.on, //利用on方法在计划对象上添加事件侦听器
         once: ee.once,
         removeListener: ee.removeListener,
         removeAllListeners: ee.removeAllListeners,
@@ -123,4 +126,4 @@ var Planner = function(ee) {
         setMaxListeners: ee.setMaxListeners
     };
     return that;
-}
+};
