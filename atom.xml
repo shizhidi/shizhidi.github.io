@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-06-20T14:33:20.751Z</updated>
+  <updated>2016-06-20T14:36:48.810Z</updated>
   <id>//</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[移动应用：客户端存储与离线执行]]></title>
+    <title><![CDATA[移动应用：客户端存储与离线执行(五)]]></title>
     <link href="/2016/06/18/clientStoredAndOffline/"/>
     <id>/2016/06/18/clientStoredAndOffline/</id>
     <published>2016-06-18T03:32:37.000Z</published>
-    <updated>2016-06-20T14:33:20.751Z</updated>
+    <updated>2016-06-20T14:36:48.810Z</updated>
     <content type="html"><![CDATA[<h5 id="主要内容">主要内容</h5><ul>
 <li>利用Web Storage API,将数据存储在客户端</li>
 <li>管理一个完整的位于客户端上的IndexedDB数据库</li>
