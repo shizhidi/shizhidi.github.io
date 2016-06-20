@@ -1,8 +1,11 @@
 (function() {
   var Tasks = function() {
-    var nudge = function() {
+    var nudge = function() { //在ios设备上,nudge函数会隐藏浏览器工具栏,从而为应用腾出更多的显示空间。
       setTimeout(function(){ window.scrollTo(0,0); }, 1000);
-    }
+    };
+    //获取location.hash的值,并用其定义当前视图。在jump定义好之后,Tasks函数会调用它。
+    //由于用户可能会把一个视图加入书签,而不是把任务列表的主视图加入标签,所有Tasks构造函数使用jump来检查location.hash的值,
+    //以确定当前视图是否为非默认视图。
     var jump = function() {
       switch(location.hash) {
         case '#add':
@@ -15,15 +18,19 @@
           document.body.className = 'list';
       }
       nudge();
-    }
+    };
     jump();
+    //用户通过切换按钮,触发hashchange事件,并执行jump函数。
     window.addEventListener('hashchange', jump, false);
+
+    //在移动设备上,当屏幕方向改变时,如果可能的话,就调用nudge函数隐藏浏览器工具栏。
     window.addEventListener('orientationchange', nudge, false);
 
     // 5.5 从localStorage 中读取数据
     var localStorageAvailable = ('localStorage' in window);
     var loadSettings = function() {
       if(localStorageAvailable) {
+        //使用Storage API的getItem方法来获取localStorage中的数据,如果数据不存在,getItem会返回null值。
         var name = localStorage.getItem('name'),
             colorScheme = localStorage.getItem('colorScheme'),
             nameDisplay = document.getElementById('user_name'),
@@ -54,11 +61,12 @@
         var name = document.forms.settings.name.value;
         if(name.length > 0) {
           var colorScheme = document.forms.settings.color_scheme.value;
+          //使用setItem方法,将数据保存在localStorage中。如果带有该名称的项目已存在,setItem会毫无预警地将其覆盖。
           localStorage.setItem('name', name);
           localStorage.setItem('colorScheme', colorScheme);
-          loadSettings();
+          loadSettings(); //保存好数据后,调用loadSettings函数来更新应用设置。
           alert('Settings saved successfully', 'Settings saved');
-          location.hash = '#list';
+          location.hash = '#list'; //将location.hash设置为#list,会将视图重定向为任务列表视图。
         } else {
           alert('Please enter your name', 'Settings error');
         }
@@ -73,36 +81,42 @@
         if(localStorageAvailable) {
           localStorage.clear();
         }
-        loadSettings();
+        loadSettings();//当数据被清除后,调用loadSettings函数,应用设置重置为默认值。
         alert('Application data has been reset', 'Reset successful');
-        location.hash = '#list';
+        location.hash = '#list'; //重定向到列表
         dropDatabase();
       }
     }
     // 5.8 将UI与localStorage函数连接起来
     loadSettings();
-    document.forms.settings.addEventListener('submit', saveSettings, false);
+    document.forms.settings.addEventListener('submit', saveSettings, false);//为设置表单的submit和rest事件添加事件侦听器。
     document.forms.settings.addEventListener('reset', resetSettings, false);
     // 5.9 对数据库相关对象的功能侦测
     var indexedDB = window.indexedDB || window.webkitIndexedDB
     || window.mozIndexedDB || window.msIndexedDB || false,
         IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange
     || window.mozIDBKeyRange || window.msIDBKeyRange || false,
-        webSQLSupport = ('openDatabase' in window);
+        webSQLSupport = ('openDatabase' in window);//检测浏览器是否支持WebSql
     // 5.10 连接并配置数据库
-    var db;
+    var db; //使用db来存储数据库连接
     var openDB = function() {
       if(indexedDB) {
+        //open是个异步方法。当请求开始后,open会立刻返回一个IDBRequest对象。如果数据库不存在,则创建一个,然后再创建一个与该数据库的链接。
         var request = indexedDB.open('tasks', 1),
-            upgradeNeeded = ('onupgradeneeded' in request);
+            upgradeNeeded = ('onupgradeneeded' in request);//如果requestNeeded是request对象的成员,则表明浏览器支持upgradeNeeded事件。
         request.onsuccess = function(e) {
           db = e.target.result;
+          //如果upgradeNeeded事件不存在,则表明浏览器支持已不建议采用的setVersion方法。
           if(!upgradeNeeded && db.version != '1') {
+            //如果db.version不等于1,那么就表明不存在对象存储,必须先创建一个对象存储。由于对象存储只有在版本号变更事务中才能创建,
+            //所以要增加当前数据库的版本号:调用db.setVersion,并把其中的版本参数设置为1。
             var setVersionRequest = db.setVersion('1');
             setVersionRequest.onsuccess = function(e) {
               var objectStore = db.createObjectStore('tasks', {
                 keyPath: 'id'
               });
+
+              //使用createIndex为objectStore创建另一个索引。稍后,将用该索引实现应用的搜索引擎。
               objectStore.createIndex('desc', 'descUpper', {
                 unique: false
               });
@@ -113,7 +127,7 @@
           }
         }
         if(upgradeNeeded) {
-          request.onupgradeneeded = function(e) {
+          request.onupgradeneeded = function(e) {//当数据库首次创建时,会调用该事件处理器。
             db = e.target.result;
             var objectStore = db.createObjectStore('tasks', {
               keyPath: 'id'
@@ -124,7 +138,7 @@
           }
         }
       } else if(webSQLSupport) {
-        db = openDatabase('tasks','1.0','Tasks database',(5*1024*1024));
+        db = openDatabase('tasks','1.0','Tasks database',(5*1024*1024));//为tasks数据库分配5MB的存储空间
         db.transaction(function(tx) {
           var sql = 'CREATE TABLE IF NOT EXISTS tasks ('+
               'id INTEGER PRIMARY KEY ASC,'+
@@ -132,7 +146,7 @@
               'due DATETIME,'+
               'complete BOOLEAN'+
               ')';
-          tx.executeSql(sql, [], loadTasks);
+          tx.executeSql(sql, [], loadTasks);//使用事物对象tx的executeSql方法创建一个tasks表(不存在的话)。[]参数空,回调函数loadTasks
         });
       }
     }
@@ -140,7 +154,7 @@
     // 5.11 为任务项生HTML标记
     var createEmptyItem = function(query, taskList) {
       var emptyItem = document.createElement('li');
-      if(query.length > 0) {
+      if(query.length > 0) {//如果query不存在,则搜索结果将为0
         emptyItem.innerHTML = '<div class="item_title">'+
           'No tasks match your query <strong>'+query+'</strong>.'+
           '</div>';
@@ -150,7 +164,9 @@
           '</div>';
       }
       taskList.appendChild(emptyItem);
-    }
+    };
+
+    //创建并显示一个任务列表项,该任务列表项将包含标题、到期时间。复选框以及删除按钮。
     var showTask = function(task, list) {
       var newItem = document.createElement('li'),
           checked = (task.complete == 1) ? ' checked="checked"' : '';
@@ -165,7 +181,7 @@
         '<div class="item_title">'+task.desc+'</div>'+
         '<div class="item_due">'+task.due+'</div>';
       list.appendChild(newItem);
-      var markAsComplete = function(e) {
+      var markAsComplete = function(e) { //当用户选择或取消选择复选框时,就执行markAsComplete事件处理器。
         e.preventDefault();
         var updatedTask = {
           id: task.id,
@@ -175,17 +191,18 @@
           complete: e.target.checked
         };
         updateTask(updatedTask);
-      }
+      };
+      //当用户点击任务项的删除按钮时,就执行remove事件处理器。
       var remove = function(e) {
         e.preventDefault();
         if(confirm('Deleting task. Are you sure?', 'Delete')) {
           deleteTask(task.id);
         }
-      }
+      };
       document.getElementById('chk_'+task.id).onchange =
-        markAsComplete;
+        markAsComplete;//将事件处理器与任务项的复选框和删除按钮连接起来。
       document.getElementById('del_'+task.id).onclick = remove;
-    }
+    };
     // 5.12 搜索数据库，显示搜索到的任务项
     var loadTasks = function(q) {
       var taskList = document.getElementById('task_list'),

@@ -18,7 +18,7 @@ function receiver(e) {
     }
 }
 
-get_words: function(letters) {
+function get_words(letters) {
     var words = [];
     for (var i=0; i<plan.tasks.length; i++) {
         var tokens = plan.tasks[i].name.split(' ');
@@ -29,4 +29,4 @@ get_words: function(letters) {
         }
     }
     return words;
-},
+}

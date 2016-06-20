@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="shizhidi&#39;s blog">
-    <title>形状(三) - shizhidi&#39;s blog</title>
+    <title>移动应用：客户端存储与离线执行 - shizhidi&#39;s blog</title>
     <meta name="author" content="Edison">
     <meta name="description" content="shizhidi&#39;s blog">
     <link rel="icon" href="/assets/images/null">
@@ -137,11 +137,11 @@
     
         <div class="post-header main-content-wrap">
     
-        <h1 class="post-title" itemprop="headline">形状(三)</h1>
+        <h1 class="post-title" itemprop="headline">移动应用：客户端存储与离线执行</h1>
     
     <div class="post-meta">
-    <time  itemprop="datePublished" content="Sun Jun 12 2016 11:19:10 GMT+0800">
-        Jun 12, 2016
+    <time  itemprop="datePublished" content="Sat Jun 18 2016 11:32:37 GMT+0800">
+        Jun 18, 2016
     </time>
     
         <span>in </span>
@@ -154,7 +154,22 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        
+        <h5 id="主要内容">主要内容</h5><ul>
+<li>利用Web Storage API,将数据存储在客户端</li>
+<li>管理一个完整的位于客户端上的IndexedDB数据库</li>
+<li>利用Application Cache API来实现应用离线执行</li>
+</ul>
+<h5 id="移动应用My_Tasks">移动应用My Tasks</h5><p> 通过这个应用,你将主要学会以下几个关键技能:</p>
+<ul>
+<li>利用WebStorage API将数据存储在客户端</li>
+<li>利用IndexedDB数据库将数据储存在客户端</li>
+<li>利用应用缓存清单文件构建能够支持离线使用的Web应用</li>
+</ul>
+<p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch5/index.html" target="_blank" rel="external">链接地址</a></p>
+<p>注意将应用运行在服务器上,否则,它将无法在移动设备上运行,其离线功能也无法使用。</p>
+<p>Python服务器模块,node服务器,php都行。</p>
+<p>关于Web Sql:在IndexedDB之前,HTML5有个WebSql的客户端数据库规范,一种定义在浏览器中的关系数据库。现已不再是HTML5规范了,<br>但是许多浏览器厂商已经支持它,特别是移动端浏览器。例:sqllite</p>
+
         
             
         
@@ -164,7 +179,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/css-secrets/">css secrets</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/html5/">html5</a>
 
             </div>
         
@@ -173,7 +188,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/18/clientStoredAndOffline/"  data-tooltip="移动应用：客户端存储与离线执行">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -181,7 +196,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/11/backgroundAndBorder/" data-tooltip="背景与边框(二)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/12/shape/" data-tooltip="形状(三)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -191,17 +206,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/12/shape/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/18/clientStoredAndOffline/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/12/shape/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/18/clientStoredAndOffline/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/12/shape/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/18/clientStoredAndOffline/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -211,7 +226,7 @@
 
         
             <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-shape" data-title="形状(三)" data-url="/2016/06/12/shape/"></div>
+    <div class="ds-thread" data-thread-key="post-clientStoredAndOffline" data-title="移动应用：客户端存储与离线执行" data-url="/2016/06/18/clientStoredAndOffline/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -245,7 +260,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/18/clientStoredAndOffline/"  data-tooltip="移动应用：客户端存储与离线执行">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -253,7 +268,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/11/backgroundAndBorder/" data-tooltip="背景与边框(二)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/12/shape/" data-tooltip="形状(三)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -263,17 +278,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/12/shape/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/18/clientStoredAndOffline/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/12/shape/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/18/clientStoredAndOffline/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/12/shape/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/18/clientStoredAndOffline/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>

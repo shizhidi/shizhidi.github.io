@@ -27,11 +27,15 @@
         </header>
         <section class="list">
             <form name="search">
+                <!--表单允许用户通过任务描述来搜索任务列表-->
                 <input type="search" name="query" placeholder="Search tasks...">
             </form>
+
+            <!--将查询结果放到这-->
             <ul id="task_list"></ul>
         </section>
         <section class="add">
+            <!--将表单放入添加任务区块中,允许用户将新的任务添加到列表中。包含一个用户任务描述的textarea元素,以及一个用户到期时间的input元素-->
             <form name="add">
                 <label>
                     Task Description
@@ -45,6 +49,7 @@
             </form>
         </section>
         <section class="settings">
+            <!--在设置区块中,创建一个settings表单,它允许用户设定自己的名称选择一种应用配色方案。-->
             <form name="settings">
                 <label>
                     Your Name
@@ -59,6 +64,7 @@
                     </select>
                 </label>
                 <input type="submit" value="Save Settings">
+                <!--使用Input元素实现一个重置按钮,重置用户设置并清除所有任务。-->
                 <input type="reset" value="Reset All Data">
             </form>
         </section>
