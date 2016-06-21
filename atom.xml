@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-06-21T15:09:42.311Z</updated>
+  <updated>2016-06-21T15:15:22.437Z</updated>
   <id>//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2016/06/18/clientStoredAndOffline/"/>
     <id>/2016/06/18/clientStoredAndOffline/</id>
     <published>2016-06-18T03:32:37.000Z</published>
-    <updated>2016-06-21T15:09:42.311Z</updated>
+    <updated>2016-06-21T15:15:22.437Z</updated>
     <content type="html"><![CDATA[<h5 id="主要内容">主要内容</h5><ul>
 <li>利用Web Storage API,将数据存储在客户端</li>
 <li>管理一个完整的位于客户端上的IndexedDB数据库</li>
@@ -32,7 +32,7 @@
 <li>利用IndexedDB数据库将数据储存在客户端</li>
 <li>利用应用缓存清单文件构建能够支持离线使用的Web应用</li>
 </ul>
-<p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch5/index.html" target="_blank" rel="external">链接地址</a></p>
+<p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch5/index.html" target="_blank" rel="external">打开应用</a></p>
 <p>注意将应用运行在服务器上,否则,它将无法在移动设备上运行,其离线功能也无法使用。</p>
 <p>Python服务器模块,node服务器,php都行。</p>
 <p>关于Web Sql:在IndexedDB之前,HTML5有个WebSql的客户端数据库规范,一种定义在浏览器中的关系数据库。现已不再是HTML5规范了,<br>但是许多浏览器厂商已经支持它,特别是移动端浏览器。例:sqllite</p>
