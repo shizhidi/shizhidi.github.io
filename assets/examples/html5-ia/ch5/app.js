@@ -214,6 +214,8 @@
         if(query.length > 0) {
           var index = objectStore.index('desc'),
               upperQ = query.toUpperCase(),
+          //在任务描述的大写字母版本上构建一个键规范。将z添加到第2个参数上,这能让所要搜索的任务描述
+          //以搜索项开始l否则,就只返回确切匹配的结果。
               keyRange = IDBKeyRange.bound(upperQ, upperQ+'z');
           cursor = index.openCursor(keyRange);
         } else {
@@ -224,12 +226,14 @@
           if(result == null) return;
           i++;
           showTask(result.value, taskList);
+          //利用result['continue'],在索引中找寻下一个匹配项,或是对象存储中的下一个任务(如果没有进行搜索)。
+          //如果使用result.continue,则会与javaScript的保留字continue产生冲突。
           result['continue']();
-        }
+        };
         tx.oncomplete = function(e) {
           if(i == 0) { createEmptyItem(query, taskList); }
         }
-      } else if(webSQLSupport) {
+      } else if(webSQLSupport) {//如果浏览器不支持IndexedDB,而支持WebSql,则创建一查询,将任务从数据库中取出。
         db.transaction(function(tx) {
           var sql, args = [];
           if(query.length > 0) {
@@ -253,12 +257,13 @@
     var searchTasks = function(e) {
       e.preventDefault();
       var query = document.forms.search.query.value;
-      if(query.length > 0) {
+      if(query.length > 0) { //如果输入一个查询条件,将该查询以参数的形式传入loadTasks函数。
         loadTasks(query);
       } else {
         loadTasks();
       }
-    }
+    };
+    //当提交表单,调用searchTasks函数
     document.forms.search.addEventListener('submit', searchTasks, false);
     // 5.添加新任务
     var insertTask = function(e) {
@@ -266,20 +271,22 @@
       var desc = document.forms.add.desc.value,
           dueDate = document.forms.add.due_date.value;
       if(desc.length > 0 && dueDate.length > 0) {
+        //构建一个要存储到数据库中的task对象。这里的关键内容是用于表示当前时间的id属性,另外,为了实现不区分大小写地进行索引,
+        //还存储了任务描述的大写版本。
         var task = {
           id: new Date().getTime(),
           desc: desc,
           descUpper: desc.toUpperCase(),
           due: dueDate,
           complete: false
-        }
+        };
         if(indexedDB) {
           var tx = db.transaction(['tasks'], 'readwrite');
           var objectStore = tx.objectStore('tasks');
-          var request = objectStore.add(task);
-          tx.oncomplete = updateView;
+          var request = objectStore.add(task);//使用IndexedDB add方法将任务添加到对象存储中。
+          tx.oncomplete = updateView;//当任务被成功添加后,会调用事件处理器updateView。updateView的定义出现在insertTask后面。
 
-        } else if(webSQLSupport) {
+        } else if(webSQLSupport) { //为支持Web Sql的回退方案,使用insert语句来添加任务。
           db.transaction(function(tx) {
             var sql = 'INSERT INTO tasks(desc, due, complete) '+
                 'VALUES(?, ?, ?)',
@@ -290,7 +297,8 @@
       } else {
         alert('Please fill out all fields', 'Add task error');
       }
-    }
+    };
+    //updateView从数据库中加载任务,清除添加任务表单中的输入字段,并将视图切换到任务列表视图。
     function updateView(){
       loadTasks();
       alert('Task added successfully', 'Task added');
@@ -298,12 +306,15 @@
       document.forms.add.due_date.value = '';
       location.hash = '#list';
     }
+    //将事件处理器insertTask添加到添加任务表单的提交按钮上。
     document.forms.add.addEventListener('submit', insertTask, false);
     // 5.15 更新并删除任务
     var updateTask = function(task) {
       if(indexedDB) {
         var tx = db.transaction(['tasks'], 'readwrite');
         var objectStore = tx.objectStore('tasks');
+        //使用put方法,将task对象作为参数传入,以便在数据库中更新任务。task对象必须有正确的键值,
+        //否则数据库就会创建一个新的对象而不是更新已有对象。
         var request = objectStore.put(task);
       } else if(webSQLSupport) {
         var complete = (task.complete) ? 1 : 0;
@@ -313,12 +324,15 @@
           tx.executeSql(sql, args);
         });
       }
-    }
+    };
     var deleteTask = function(id) {
       if(indexedDB) {
         var tx = db.transaction(['tasks'], 'readwrite');
         var objectStore = tx.objectStore('tasks');
+        //使用delete方法去除一个任务。有些浏览器会检查这里是否使用了点标记法。由于在JavaScript中,delete是个保留字,
+        //所以为了安全起见,使用方括号标记法。
         var request = objectStore['delete'](id);
+        //删除成功后,加载任务列表视图,显示更新后的任务列表。
         tx.oncomplete = loadTasks;
       } else if(webSQLSupport) {
         db.transaction(function(tx) {
@@ -331,20 +345,26 @@
     // 5.16 删除数据库
     var dropDatabase = function() {
       if(indexedDB) {
+        //使用deleteDatabase方法来删除整个任务数据库。
         var delDBRequest = indexedDB.deleteDatabase('tasks');
+        //重新加载页面,初始化一个load事件。这将触发load时机处理器,创建一个数据库的干净拷贝。
         delDBRequest.onsuccess = window.location.reload();
       } else if(webSQLSupport) {
         db.transaction(function(tx) {
           var sql = 'DELETE FROM tasks';
+          //在WebSql回退方案中,是清除任务表,而不是将整个数据库删除。
           tx.executeSql(sql, [], loadTasks);
         });
       }
     }
     // 5.18 侦测与加载自动更新
-    if('applicationCache' in window) {
+    if('applicationCache' in window) { //侦测用户所用的浏览器是否支持ApplicationCacheAPI
       var appCache = window.applicationCache;
       appCache.addEventListener('updateready', function() {
+        //updateready触发时,浏览器已经重新下载了清单文件上的资源,并创建了新缓存。updateready的事件处理器将调用swapCache,
+        //用新的缓存替代既有缓存。
         appCache.swapCache();
+        //询问用户是否现在就更新应用。如果是,页面将使用新缓存来重新加载;否则,新的缓存将在下应用加载时再使用。
         if(confirm('App update is available. Update now?')) {
           w.location.reload();
         }

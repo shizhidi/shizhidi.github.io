@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-06-20T14:36:48.810Z</updated>
+  <updated>2016-06-21T15:09:42.311Z</updated>
   <id>//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2016/06/18/clientStoredAndOffline/"/>
     <id>/2016/06/18/clientStoredAndOffline/</id>
     <published>2016-06-18T03:32:37.000Z</published>
-    <updated>2016-06-20T14:36:48.810Z</updated>
+    <updated>2016-06-21T15:09:42.311Z</updated>
     <content type="html"><![CDATA[<h5 id="主要内容">主要内容</h5><ul>
 <li>利用Web Storage API,将数据存储在客户端</li>
 <li>管理一个完整的位于客户端上的IndexedDB数据库</li>
@@ -36,6 +36,17 @@
 <p>注意将应用运行在服务器上,否则,它将无法在移动设备上运行,其离线功能也无法使用。</p>
 <p>Python服务器模块,node服务器,php都行。</p>
 <p>关于Web Sql:在IndexedDB之前,HTML5有个WebSql的客户端数据库规范,一种定义在浏览器中的关系数据库。现已不再是HTML5规范了,<br>但是许多浏览器厂商已经支持它,特别是移动端浏览器。例:sqllite</p>
+<h5 id="应用缓存清单">应用缓存清单</h5><p> 使用应用缓存清单文件需要用到真实的Web服务器。一共需要3个步骤：</p>
+<ul>
+<li>配置Web服务器。</li>
+<li>创建应用缓存清单文件</li>
+<li>侦测清单文件中的变化</li>
+</ul>
+<p>apache服务器,可以在httpd.conf配置文件中添加<code>addType text/cache-manifest .appcache</code>。<br>nginx服务器,在nginx conf目录下,为mime.types文件添加一行代码,<code>text/cache-manifest appcache</code>。</p>
+<p>缓存清单文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST&#10;# Rev 3&#10;&#10;CACHE:&#10;index.html&#10;pics/logo.png&#10;stylesheet.css&#10;&#10;FALLBACK:&#10;*.html     /offline.html&#10;&#10;NETWORK:&#10;http://api.stockwebsite.com</span><br></pre></td></tr></table></figure></p>
+<p>CACHE段是项目默认的分段,其中的URI在随后首次下载时将被缓存。 <code>也可以不知道CACHE标题,直接把URI放在标题CACHE MANIFEST下面</code><br>FALLBACK段是可选的,指定了在某资源处于离线时,转而使用的其他URI。结对中的第一个URI是在线资源,第二个是本地的回退资源。可以使用通配符<em><br><code>两种URL都必须有相对路径名称,这里的URI域缓存清单文件中其他部分中的URL,都必须有和清单文件一样的方案、主机和端口</code><br>NETWORK部分是在线访问的白名单。所有列在此标题头下的URI都必须绕过缓存访问在线资源。可以使用通配符</em></p>
+<p>修改html元素：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span> <span class="attribute">class</span>=<span class="value">"blue"</span> <span class="attribute">manifest</span>=<span class="value">"tasks.appcache"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>可以更改.appcache文件中更新修订号,测试应用是否能够加载新版本。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[本文主要讲解-客户的存储方式有哪些,以及离线执行应用。]]>
