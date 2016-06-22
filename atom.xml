@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-06-21T15:15:22.437Z</updated>
+  <updated>2016-06-22T00:00:52.167Z</updated>
   <id>//</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[2DCanvas：底层2D图像渲染(六)]]></title>
+    <link href="/2016/06/22/2DCanvas/"/>
+    <id>/2016/06/22/2DCanvas/</id>
+    <published>2016-06-21T23:22:36.000Z</published>
+    <updated>2016-06-22T00:00:52.167Z</updated>
+    <content type="html"><![CDATA[<h5 id="基础知识">基础知识</h5><p> HTML5的Canvas API终结了Flash独霸的地位,Canvas能在一个DOM元素中创建2D形状,无需任何插件的支持。Canvas可实现真正的跨平台应用,并且结合各种框架(PhoneGap)进行开发。</p>
+<p>Canvas更擅长构建复杂动画及交互效果。如果想实现简单的可视化或动画,可以用SVG技术来实现,利用SVG,可以创建Logo图标、图表以及信息图,另外它还有很多Canvas所缺乏的内建功能,比如动画、可缩放性,以及支持CSS。</p>
+<p>本文利用canvas创建一个打砖块游戏,来更好的理解canvas并能利用这些知识来开发自己的Canvas应用。</p>
+<hr>
+<p>canvas的坐标系与平常的笛卡尔坐标系有一点差别,该坐标系的原点位于左上角,y轴方向向下。</p>
+<p>生成Cancas绘图环境:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"408"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span></span><br><span class="line">  你的浏览器不支持canvas。 //不支持canvas的浏览器会显示内容。</span><br><span class="line"><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></span><br><span class="line"></span><br><span class="line">var canvas = document.getElementById('canvas');</span><br><span class="line">var context = canvas.getContext('2d'); //获取2d绘图环境</span><br></pre></td></tr></table></figure></p>
+<p>验证浏览器是否支持canvas:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">if</span> (canvas.getContext &amp;&amp; canvas.getContext(<span class="string">'2d'</span>))&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="打砖块游戏">打砖块游戏</h5><p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch6/index.html" target="_blank" rel="external">打开游戏</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[本文主要讲解-canvas的相关应用。]]>
+    
+    </summary>
+    
+      <category term="html5" scheme="/tags/html5/"/>
+    
+      <category term="web" scheme="/categories/web/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[移动应用：客户端存储与离线执行(五)]]></title>

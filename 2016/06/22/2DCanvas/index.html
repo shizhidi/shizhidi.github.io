@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="shizhidi&#39;s blog">
-    <title>移动应用：客户端存储与离线执行(五) - shizhidi&#39;s blog</title>
+    <title>2DCanvas：底层2D图像渲染(六) - shizhidi&#39;s blog</title>
     <meta name="author" content="Edison">
     <meta name="description" content="shizhidi&#39;s blog">
     <link rel="icon" href="/assets/images/null">
@@ -137,11 +137,11 @@
     
         <div class="post-header main-content-wrap">
     
-        <h1 class="post-title" itemprop="headline">移动应用：客户端存储与离线执行(五)</h1>
+        <h1 class="post-title" itemprop="headline">2DCanvas：底层2D图像渲染(六)</h1>
     
     <div class="post-meta">
-    <time  itemprop="datePublished" content="Sat Jun 18 2016 11:32:37 GMT+0800">
-        Jun 18, 2016
+    <time  itemprop="datePublished" content="Wed Jun 22 2016 07:22:36 GMT+0800">
+        Jun 22, 2016
     </time>
     
         <span>in </span>
@@ -154,32 +154,14 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        <h5 id="主要内容">主要内容</h5><ul>
-<li>利用Web Storage API,将数据存储在客户端</li>
-<li>管理一个完整的位于客户端上的IndexedDB数据库</li>
-<li>利用Application Cache API来实现应用离线执行</li>
-</ul>
-<h5 id="移动应用My_Tasks">移动应用My Tasks</h5><p> 通过这个应用,你将主要学会以下几个关键技能:</p>
-<ul>
-<li>利用WebStorage API将数据存储在客户端</li>
-<li>利用IndexedDB数据库将数据储存在客户端</li>
-<li>利用应用缓存清单文件构建能够支持离线使用的Web应用</li>
-</ul>
-<p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch5/index.html" target="_blank" rel="external">打开应用</a></p>
-<p>注意将应用运行在服务器上,否则,它将无法在移动设备上运行,其离线功能也无法使用。</p>
-<p>Python服务器模块,node服务器,php都行。</p>
-<p>关于Web Sql:在IndexedDB之前,HTML5有个WebSql的客户端数据库规范,一种定义在浏览器中的关系数据库。现已不再是HTML5规范了,<br>但是许多浏览器厂商已经支持它,特别是移动端浏览器。例:sqllite</p>
-<h5 id="应用缓存清单">应用缓存清单</h5><p> 使用应用缓存清单文件需要用到真实的Web服务器。一共需要3个步骤：</p>
-<ul>
-<li>配置Web服务器。</li>
-<li>创建应用缓存清单文件</li>
-<li>侦测清单文件中的变化</li>
-</ul>
-<p>apache服务器,可以在httpd.conf配置文件中添加<code>addType text/cache-manifest .appcache</code>。<br>nginx服务器,在nginx conf目录下,为mime.types文件添加一行代码,<code>text/cache-manifest appcache</code>。</p>
-<p>缓存清单文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST&#10;# Rev 3&#10;&#10;CACHE:&#10;index.html&#10;pics/logo.png&#10;stylesheet.css&#10;&#10;FALLBACK:&#10;*.html     /offline.html&#10;&#10;NETWORK:&#10;http://api.stockwebsite.com</span><br></pre></td></tr></table></figure></p>
-<p>CACHE段是项目默认的分段,其中的URI在随后首次下载时将被缓存。 <code>也可以不知道CACHE标题,直接把URI放在标题CACHE MANIFEST下面</code><br>FALLBACK段是可选的,指定了在某资源处于离线时,转而使用的其他URI。结对中的第一个URI是在线资源,第二个是本地的回退资源。可以使用通配符<em><br><code>两种URL都必须有相对路径名称,这里的URI域缓存清单文件中其他部分中的URL,都必须有和清单文件一样的方案、主机和端口</code><br>NETWORK部分是在线访问的白名单。所有列在此标题头下的URI都必须绕过缓存访问在线资源。可以使用通配符</em></p>
-<p>修改html元素：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span> <span class="attribute">class</span>=<span class="value">"blue"</span> <span class="attribute">manifest</span>=<span class="value">"tasks.appcache"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>可以更改.appcache文件中更新修订号,测试应用是否能够加载新版本。</p>
+        <h5 id="基础知识">基础知识</h5><p> HTML5的Canvas API终结了Flash独霸的地位,Canvas能在一个DOM元素中创建2D形状,无需任何插件的支持。Canvas可实现真正的跨平台应用,并且结合各种框架(PhoneGap)进行开发。</p>
+<p>Canvas更擅长构建复杂动画及交互效果。如果想实现简单的可视化或动画,可以用SVG技术来实现,利用SVG,可以创建Logo图标、图表以及信息图,另外它还有很多Canvas所缺乏的内建功能,比如动画、可缩放性,以及支持CSS。</p>
+<p>本文利用canvas创建一个打砖块游戏,来更好的理解canvas并能利用这些知识来开发自己的Canvas应用。</p>
+<hr>
+<p>canvas的坐标系与平常的笛卡尔坐标系有一点差别,该坐标系的原点位于左上角,y轴方向向下。</p>
+<p>生成Cancas绘图环境:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"408"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span></span><br><span class="line">  你的浏览器不支持canvas。 //不支持canvas的浏览器会显示内容。</span><br><span class="line"><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></span><br><span class="line"></span><br><span class="line">var canvas = document.getElementById('canvas');</span><br><span class="line">var context = canvas.getContext('2d'); //获取2d绘图环境</span><br></pre></td></tr></table></figure></p>
+<p>验证浏览器是否支持canvas:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">if</span> (canvas.getContext &amp;&amp; canvas.getContext(<span class="string">'2d'</span>))&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="打砖块游戏">打砖块游戏</h5><p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch6/index.html" target="_blank" rel="external">打开游戏</a></p>
 
         
             
@@ -199,7 +181,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/2DCanvas/"  data-tooltip="2DCanvas：底层2D图像渲染(六)">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -207,7 +189,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/12/shape/" data-tooltip="形状(三)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/18/clientStoredAndOffline/" data-tooltip="移动应用：客户端存储与离线执行(五)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -217,17 +199,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/18/clientStoredAndOffline/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/22/2DCanvas/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/18/clientStoredAndOffline/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/22/2DCanvas/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/18/clientStoredAndOffline/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/22/2DCanvas/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -237,7 +219,7 @@
 
         
             <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-clientStoredAndOffline" data-title="移动应用：客户端存储与离线执行(五)" data-url="/2016/06/18/clientStoredAndOffline/"></div>
+    <div class="ds-thread" data-thread-key="post-2DCanvas" data-title="2DCanvas：底层2D图像渲染(六)" data-url="/2016/06/22/2DCanvas/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -271,7 +253,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/2DCanvas/"  data-tooltip="2DCanvas：底层2D图像渲染(六)">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -279,7 +261,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/12/shape/" data-tooltip="形状(三)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/18/clientStoredAndOffline/" data-tooltip="移动应用：客户端存储与离线执行(五)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -289,17 +271,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/18/clientStoredAndOffline/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/22/2DCanvas/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/18/clientStoredAndOffline/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/22/2DCanvas/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/18/clientStoredAndOffline/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/22/2DCanvas/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
