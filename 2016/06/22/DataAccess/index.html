@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title>数据存取(二) - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">数据存取(二)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Wed Jun 22 2016 22:44:32 GMT+0800">
+        Jun 22, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/javascript/">javascript</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h5 id="JavaScript中的数据存储位置">JavaScript中的数据存储位置</h5><p>数据存储在数组和对象中,访问速度慢于字面量和局部变量。跟浏览器也有很大关系。</p>
+<p><strong>标示符解析的性能</strong><br> 在执行环境中,标示符所在的位置越深,它的读写速度也就最慢。因此,函数中读写局部变量比全局变量总是快。全局变量总是存在于执行环境作用域链的最末端。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> bd = <span class="built_in">document</span>.body,</span><br><span class="line">  links = <span class="built_in">document</span>.getElementsByTagNamme(<span class="string">"a"</span>),</span><br><span class="line">  i = <span class="number">0</span>,</span><br><span class="line">  len = links.length;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">    update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    start();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  bd.className = <span class="string">"active"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>document是全局对象,每次都有遍历整个作用域链。<br>优化后代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> doc = <span class="built_in">document</span>,</span><br><span class="line">  bd = doc.body,</span><br><span class="line">  links = doc.getElementsByTagNamme(<span class="string">"a"</span>),</span><br><span class="line">  i = <span class="number">0</span>,</span><br><span class="line">  len = links.length;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">    update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  doc.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    start();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  bd.className = <span class="string">"active"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>错误处理：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  methodThatMightCauseAnError();</span><br><span class="line">&#125;cache(ex)&#123;</span><br><span class="line">  handleError(ex);<span class="comment">//委托给错误处理器函数,由于只执行一条语句,没有局部变量的访问。</span></span><br><span class="line">                  <span class="comment">//作用域链的临时改变不会影响代码性能。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>避免使用动态作用域,包括with、try-cache和eval。</p>
+<p><strong>闭包、作用域和内存</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assignEvents</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> id = <span class="string">"xdi9592"</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"save-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    saveDocument(id);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>assignEvents函数执行时,会创建一个包含id的活动对象,成为作用域链中的第一个对象,全局对象紧随其后。<br>因为id引用了外部作用域的变量,闭包[scope]属性包含了与assignEvents函数执行作用域链相同的对象引用。<br>通常来说,活动对象会随着执行环境一同销毁,但是由于引用一直存在,所以活动对象无法销毁。会导致性能问题。<br><code>尤其在IE浏览器中需要关注,闭包会导致内存泄露。</code></p>
+<p><strong>原型</strong><br>在浏览器中这个属性是<strong>proto</strong>对象,对象有两种成员类型:实例成员和原型成员。实例成员直接存在于对象实例中,原型成员则从对象原型继承而来。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title:<span class="string">"high"</span>,</span><br><span class="line">  publisher:<span class="string">"yahoo!"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(book.toString()); <span class="comment">//"[object object]"</span></span><br></pre></td></tr></table></figure>
+<p>对象boot并没有toString方法,却顺利执行了,方法toString()是由对象book继承而来的原型成员。<br>可以使用hasOwnProperty()方法来判断对象是否包含特定的实例成员,是否包含特定属性,使用in操作符：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alert(book.hasOwnProperty(<span class="string">"title"</span>)); <span class="comment">//true</span></span><br><span class="line">alert(book.hasOwnProperty(<span class="string">"toString"</span>)); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">alert(<span class="string">"title"</span> <span class="keyword">in</span> book); <span class="comment">//true</span></span><br><span class="line">alert(<span class="string">"toString"</span> <span class="keyword">in</span> book); <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>原型链</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title,publisher</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.title = title;</span><br><span class="line">  <span class="keyword">this</span>.publisher = publisher;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Book.prototype.sayTitle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span>.title);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> book1 = <span class="keyword">new</span> Book(<span class="string">"High Per Java"</span>,<span class="string">"Yahoo! Press"</span>);</span><br><span class="line"><span class="keyword">var</span> book2 = <span class="keyword">new</span> Book(<span class="string">"javaScript: The Good Parts"</span>,<span class="string">"Yahoo! Press"</span>);</span><br><span class="line"></span><br><span class="line">alert(book1 <span class="keyword">instanceof</span> Book); <span class="comment">//true</span></span><br><span class="line">alert(book1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">book1.sayTitle(); <span class="comment">//"High Per Java"</span></span><br><span class="line">alert(book1.toString()); <span class="comment">//"[object object]"</span></span><br></pre></td></tr></table></figure></p>
+<p>使用Book构造函数创建新的Book实例。book1的原型(<strong>proto</strong>)是Book.prototype,而Book.prototype的原型是Object。book1和book2继承原型链中的所有成员,它们有着各自的title和publisher属性,其他部分都继承自原型。<br>对象在原型链中存在的位置越深,找到它就越慢。</p>
+<p><strong>嵌套成员</strong>会导致JavaScript引擎搜索所有对象成员。例：window.location.href。嵌套越深读取时间越长。<br>location.href总是比window.location.href要快,后者比window.location.href.toString()要快。</p>
+<p><strong>缓存对象成员值</strong><br>在函数中如果要多次读取一个对象属性,最佳做法是将属性值保存到局部变量中。局部变量能用来替代属性以避免多次查找带来的性能开销,特别是处理嵌套对象成员,这样做会明显提升执行速度。</p>
+<p><strong>提示</strong>：这种优化并不推荐用于对象的成员方法。因为对象方法使用this来判断执行环境,把一个对象方法保存在局部变量会导致this绑定到window,<br>而this值的改变会使得JavaScript引擎无法正确解析它的对象成员,进而导致程序出错。</p>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/性能优化/">性能优化</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/2DCanvas/" data-tooltip="2DCanvas：底层2D图像渲染(六)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/22/DataAccess/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/22/DataAccess/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/22/DataAccess/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-DataAccess" data-title="数据存取(二)" data-url="/2016/06/22/DataAccess/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/22/2DCanvas/" data-tooltip="2DCanvas：底层2D图像渲染(六)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/22/DataAccess/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/22/DataAccess/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/22/DataAccess/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>
