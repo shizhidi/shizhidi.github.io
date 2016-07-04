@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title>javascript单例模式(一) - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">javascript单例模式(一)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Thu Jun 30 2016 22:22:45 GMT+0800">
+        Jun 30, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/javascript/">javascript</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h5 id="单例模式">单例模式</h5><p>单例模式的定义是：保证一个类仅有一个实例,并提供一个访问它的全局访问点。</p>
+<p>以下几种方式可以相对降低全局变量带来的命名污染：</p>
+<ol>
+<li>使用命名空间<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> namespace1 = &#123;</span><br><span class="line">	a: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="number">1</span>);</span><br><span class="line">	&#125;,</span><br><span class="line">	b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.使用闭包封装私有变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> user = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> _name = <span class="string">'sven'</span>,</span><br><span class="line">		_age = <span class="number">28</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		getUserInfo: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> _name + <span class="string">'-'</span> + _age;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<h4 id="惰性单例">惰性单例</h4><p>以WebQQ登录浮窗为例,与全局变量结合实现惰性单例。<br>假设我们是WebQQ的开发人员,当点击左边导航QQ头像时，会弹出一个登录浮窗,很明显这个浮窗在页面里总是唯一的，不可能出现同时存在两个登录窗口的情况。</p>
+<p>第一种方案是在页面加载完成的时候创建好这个div浮窗，这个浮窗一开始隐藏状态，当用户点击登录按钮的时候，开始显示。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loginLayer = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</span><br><span class="line">	div.innerHTML = <span class="string">'我是登录浮窗'</span>;</span><br><span class="line">	div.style.display = <span class="string">'none'</span>;</span><br><span class="line">	<span class="built_in">document</span>.body.appendChild( div );</span><br><span class="line">	<span class="keyword">return</span> div;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="built_in">document</span>.getElementById( <span class="string">'loginBtn'</span> ).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	loginLayer.style.display = <span class="string">'block'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>但这种方式有个问题，也许我们进入WebQQ不需要登录操作,如果浮窗一开始就创建,就白白浪费一些DOM节点。以下改写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> createLoginLayer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</span><br><span class="line">	div.innerHTML = <span class="string">'我是登录浮窗'</span>;</span><br><span class="line">	div.style.display = <span class="string">'none'</span>;</span><br><span class="line">	<span class="built_in">document</span>.body.appendChild( div );</span><br><span class="line">	<span class="keyword">return</span> div;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.getElementById( <span class="string">'loginBtn'</span> ).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> loginLayer = createLoginLayer();</span><br><span class="line">	loginLayer.style.display = <span class="string">'block'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>虽然达到了惰性目的，但失去单例的效果.每次点击都要创建一个新的的登录浮窗。<br>也许我们已经想到用变量来判断是否已经创建过登录浮窗。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> createLoginLayer = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> div;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ( !div )&#123;</span><br><span class="line">			div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</span><br><span class="line">			div.innerHTML = <span class="string">'我是登录浮窗'</span>;</span><br><span class="line">			div.style.display = <span class="string">'none'</span>;</span><br><span class="line">			<span class="built_in">document</span>.body.appendChild( div );</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> div;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.getElementById( <span class="string">'loginBtn'</span> ).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> loginLayer = createLoginLayer();</span><br><span class="line">	loginLayer.style.display = <span class="string">'block'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="通用惰性单例">通用惰性单例</h4><p>上面完成一个可用的惰性单例，但是发现还有如下问题：</p>
+<ul>
+<li>这段代码仍然是违反单一职责原则的，创建对象和管理单例的逻辑都放在createLoginLayer对象内部。</li>
+<li>如果我们下次需要创建页面中唯一的iframe，或者script标签，用来跨域请求数据，就必须得如法炮制，把createLoginLayer函数几乎照抄一遍：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> createIframe= (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> iframe;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ( !iframe)&#123;</span><br><span class="line">			iframe= <span class="built_in">document</span>.createElement( <span class="string">'iframe'</span> );</span><br><span class="line">			iframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">			<span class="built_in">document</span>.body.appendChild( iframe);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> iframe;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>把不变的部分隔离出来：用一个变量来标志是否创建过对象，如果是，则下次直接返回已经创建好的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> getSingle = <span class="function"><span class="keyword">function</span>(<span class="params"> fn </span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> result;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> result || ( result = fn .apply(<span class="keyword">this</span>, <span class="built_in">arguments</span> ) );</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>创建对象的方法fn被当成参数动态传入getSingle函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> createLoginLayer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</span><br><span class="line">	div.innerHTML = <span class="string">'我是登录浮窗'</span>;</span><br><span class="line">	div.style.display = <span class="string">'none'</span>;</span><br><span class="line">	<span class="built_in">document</span>.body.appendChild( div );</span><br><span class="line">	<span class="keyword">return</span> div;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> createSingleLoginLayer = getSingle( createLoginLayer );</span><br><span class="line"><span class="built_in">document</span>.getElementById( <span class="string">'loginBtn'</span> ).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> loginLayer = createSingleLoginLayer();</span><br><span class="line">	loginLayer.style.display = <span class="string">'block'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面我们再试试创建唯一的iframe 用于动态加载第三方页面：</span></span><br><span class="line"><span class="keyword">var</span> createSingleIframe = getSingle( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement ( <span class="string">'iframe'</span> );</span><br><span class="line">	<span class="built_in">document</span>.body.appendChild( iframe );</span><br><span class="line">	<span class="keyword">return</span> iframe;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">document</span>.getElementById( <span class="string">'loginBtn'</span> ).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> loginLayer = createSingleIframe();</span><br><span class="line">	loginLayer.src = <span class="string">'http://baidu.com'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这种单例模式还可以用于其他用途，比如渲染页面后通过ajax动态给列表绑定click事件，click事件实际上只需要在第一次渲染列表的时候被绑定一次。</p>
+<p><strong>jquery的做法</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bindEvent = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$( <span class="string">'div'</span> ).one( <span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert ( <span class="string">'click'</span> );</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> render = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log( <span class="string">'开始渲染列表'</span> );</span><br><span class="line">	bindEvent();</span><br><span class="line">&#125;;</span><br><span class="line">render();</span><br><span class="line"></span><br><span class="line">render();</span><br><span class="line">render();</span><br></pre></td></tr></table></figure></p>
+<p><strong>getSingle函数做法</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">var</span> bindEvent = getSingle(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">document</span>.getElementById( <span class="string">'div1'</span> ).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert ( <span class="string">'click'</span> );</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> render = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log( <span class="string">'开始渲染列表'</span> );</span><br><span class="line">	bindEvent();</span><br><span class="line">&#125;;</span><br><span class="line">render();</span><br><span class="line">render();</span><br><span class="line">render();</span><br></pre></td></tr></table></figure></p>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/js设计模式/">js设计模式</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/04/strategyPattern/"  data-tooltip="strategyPattern">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/27/dataStructureOfGather/" data-tooltip="javascript数据结构：集合">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/30/singletonPattern/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/30/singletonPattern/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/30/singletonPattern/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-singletonPattern" data-title="javascript单例模式(一)" data-url="/2016/06/30/singletonPattern/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/04/strategyPattern/"  data-tooltip="strategyPattern">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/06/27/dataStructureOfGather/" data-tooltip="javascript数据结构：集合">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/06/30/singletonPattern/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/06/30/singletonPattern/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/06/30/singletonPattern/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>

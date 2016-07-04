@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2016/06/30/singletonPattern/</loc>
+    <lastmod>2016-07-04T13:47:32.552Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/07/04/strategyPattern/</loc>
+    <lastmod>2016-07-04T13:47:27.449Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/05/28/threejsChart/</loc>
-    <lastmod>2016-06-29T15:30:31.190Z</lastmod>
+    <lastmod>2016-06-30T13:39:26.557Z</lastmod>
   </url>
   
   <url>
