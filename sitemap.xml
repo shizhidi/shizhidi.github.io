@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2016/07/06/proxyPattern/</loc>
+    <lastmod>2016-07-06T14:32:24.575Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/07/04/strategyPattern/</loc>
     <lastmod>2016-07-04T14:47:40.438Z</lastmod>
   </url>
