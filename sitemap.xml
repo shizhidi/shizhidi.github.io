@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2016/07/09/publishSubscribePattern/</loc>
+    <lastmod>2016-07-09T03:37:03.699Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/07/06/proxyPattern/</loc>
-    <lastmod>2016-07-06T14:32:24.575Z</lastmod>
+    <lastmod>2016-07-09T02:19:15.157Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/07/09/iteratorPattern/</loc>
+    <lastmod>2016-07-09T02:19:15.151Z</lastmod>
   </url>
   
   <url>
