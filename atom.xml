@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-07-15T14:38:43.388Z</updated>
+  <updated>2016-07-15T14:57:22.023Z</updated>
   <id>//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2016/07/15/Testautomation/"/>
     <id>/2016/07/15/Testautomation/</id>
     <published>2016-07-14T23:47:38.000Z</published>
-    <updated>2016-07-15T14:38:43.388Z</updated>
+    <updated>2016-07-15T14:57:22.023Z</updated>
     <content type="html"><![CDATA[<h4 id="GUI自动化测试环境搭建(包含范例)">GUI自动化测试环境搭建(包含范例)</h4><p><strong>环境搭建</strong><br><a href="http://ftopia.cn/2016/06/20/Selenium%20+%20Python%20%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html" target="_blank" rel="external">网上教程</a></p>
 <p><strong>注意几点：</strong></p>
 <p>1.下载Python 2.x版本。<br>2.下载chrome的测试驱动，并放到chrome的安装目录中。<br>3.在Path中配置chrome的path路径<br>4.<a href="http://pan.baidu.com/s/1mh9ocsw" target="_blank" rel="external">selenium2 python自动化测试pdf</a><br>5.看下第三章pythonwebdriverAPI 快速上手、网上看下Python基础。</p>
