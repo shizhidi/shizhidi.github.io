@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title>DOM编程(三) - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">DOM编程(三)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Mon Jul 18 2016 22:22:13 GMT+0800">
+        Jul 18, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/javascript/">javascript</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h4 id="DOM编程">DOM编程</h4><p>文档对象模型(DOM)是一个独立于语言的，用于操作XML和HTML文档的程序接口(API)。在浏览器中，主要用来与HTML打交道，同样也用在web程序中获取XML文档，并使用DOM API用来访问文档中的数据。</p>
+<p><strong>DOM访问与修改</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//每次循环都要操作DOM，带来性能消耗</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">innerHTMLLoop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> count = <span class="number">0</span>; count &lt; <span class="number">15000</span>; count++)&#123;</span><br><span class="line">		<span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML += <span class="string">'a'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//修改后，循环完，一次dom操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">innerHTMLLoop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> content = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> count = <span class="number">0</span>; count &lt; <span class="number">15000</span>; count++)&#123;</span><br><span class="line">		content += <span class="string">'a'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML += content;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="节点克隆">节点克隆</h4><p>使用DOM方法更新页面内容的另一个途径克隆已有元素,不是创建新元素，就是使用element.cloneNode()替代document.createElement()。</p>
+<h4 id="HTML集合">HTML集合</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一个意外的死循环，每次创建一个新的div添加到body中，alldivs.length在每次迭代时都会增加</span></span><br><span class="line"><span class="keyword">var</span> alldivs = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; alldivs.length; i++)&#123;</span><br><span class="line">	<span class="built_in">document</span>.body.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'div'</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//优化，把length长度缓存到一个局部变量中</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loopCacheLengthCollection</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> coll = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>),</span><br><span class="line">		len = coll.length;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> count = <span class="number">0</span>; count &lt; len; count++) &#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="访问集合元素使用局部变量">访问集合元素使用局部变量</h4><p>多次重复获取一个元素会导致性能消耗<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//较慢</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">collectionGlobal</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> coll = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>),</span><br><span class="line">		len = coll.length,</span><br><span class="line">		name = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> count = <span class="number">0</span>; count &lt; len; count++) &#123;</span><br><span class="line">		name = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)[count].nodeName;</span><br><span class="line">		name = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)[count].nodeType;</span><br><span class="line">		name = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)[count].tagName;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//较快</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">collectionGlobal</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> coll = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>),</span><br><span class="line">		len = coll.length,</span><br><span class="line">		name = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> count = <span class="number">0</span>; count &lt; len; count++) &#123;</span><br><span class="line">		name = coll[count].nodeName;</span><br><span class="line">		name = coll[count].nodeType;</span><br><span class="line">		name = coll[count].tagName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最快</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">collectionGlobal</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> coll = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>),</span><br><span class="line">		len = coll.length,</span><br><span class="line">		name = <span class="string">''</span>,</span><br><span class="line">		el = <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> count = <span class="number">0</span>; count &lt; len; count++) &#123;</span><br><span class="line">		el = coll[count];</span><br><span class="line">		name = el.nodeName;</span><br><span class="line">		name = el.nodeType;</span><br><span class="line">		name = el.tagName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="遍历DOM">遍历DOM</h4><p><strong>获取DOM</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//两个例子：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">textNextSibling</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'mydiv'</span>),</span><br><span class="line">		ch = el.firstChild,</span><br><span class="line">		name = <span class="string">''</span>;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		name = ch.nodeName;</span><br><span class="line">	&#125; <span class="keyword">while</span> (ch = ch.nextSibling);</span><br><span class="line">	<span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">textChildNodes</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'mydiv'</span>),</span><br><span class="line">		ch = el.ChildNodes,</span><br><span class="line">		len = ch.length;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> count = <span class="number">0</span>; count &lt; len; count ++)&#123;</span><br><span class="line">		name = ch[count].nodeName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在IE中，nextSibling比childNode表现优异。在IE6中，nextSibling要快16倍，IE7中是105倍。其他浏览器取决于个人或团队偏好。</p>
+<p><strong>元素节点</strong><br>DOM元素属性childNodes,firstChild并不区分元素节点和其他类型节点，注释和文本节点所以需要过滤，大部分现代浏览器提供的API返回元素节点，可以使用这些API它们的执行效率更高。比如：children代替childnodes， childElementCount代替childNodes.length，firstElementChild 代替 firstChild，lastElementChild代替lastChild，nextElementSibing代替nextSibling，proviousElementSibling 代替 previousSibling</p>
+<p><em>**选择API</em><br>使用最新浏览器提供的一个名为querySelectorAll()的原生DOM方法，比使用JavaScript和DOM来遍历查找元素要快很多。还有另一个遍历方式—querySelector()来获取第一个匹配的节点。</p>
+<h4 id="重绘和重排">重绘和重排</h4><p>浏览器下载完页面中的所有组件-HTML标记、JavaScript、CSS、图片——之后会解析并生产两个内部数据结构：<br>DOM树：表示页面结构<br>渲染树：表示DOM节点如何显示<br>一旦DOM树和渲染树构建完成，浏览器就开始显示(绘制)页面元素。</p>
+<p>当DOM的变化影响了元素的几何属性(宽和高),会重新构造渲染树，这个过程称为“重排”。完成重排后，浏览器会重新绘制受影响的部分，这个过程称为“重绘”。所以应当尽可能减少这类过程的发生。</p>
+<h4 id="重排何时发生">重排何时发生</h4><ul>
+<li>添加或删除可见的DOM元素。</li>
+<li>元素位置改变。</li>
+<li>元素尺寸改变(包括：外边距、内边距、边框厚度、宽度、高度等属性改变)。</li>
+<li>内容改变，例如：文本改变或图片被另一个不同尺寸的图片替代。</li>
+<li>页面渲染器初始化。</li>
+<li>浏览器窗口尺寸变化。<br>滚动条出现时，整个页面都会重排。</li>
+</ul>
+<h4 id="渲染树变化的排队与刷新">渲染树变化的排队与刷新</h4><p>获取布局信息的操作会导致列队刷新，比如：</p>
+<ul>
+<li>offsetTop，offsetLeft，offsetWidth，offsetHeight</li>
+<li>scrollTop，scrollLeft，scrollWidth，scrollHeight</li>
+<li>clientTop，clientLeft，clientWidth，clientHeight</li>
+<li>getComputedStyle() (currentStyle in IE)<br>在修改样式的过程中，最好避免使用上列出的属性。</li>
+</ul>
+<h4 id="最小化重绘和重排">最小化重绘和重排</h4><p>重绘和重排代价昂贵，因此减少此类操作的发送，为了减少发送次数，应该合并多次对DOM和样式的修改，然后一次处理掉。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//差的</span></span><br><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'mydiv'</span>);</span><br><span class="line">el.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">el.style.borderRight = <span class="string">'2px'</span>;</span><br><span class="line">el.style.padding = <span class="string">'5px'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//好的</span></span><br><span class="line">el.style.cssText = <span class="string">'border-left:1px; border-right:2px; padding: 5px;'</span>;</span><br><span class="line">或</span><br><span class="line">el.className = <span class="string">'active'</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="批量修改DOM">批量修改DOM</h4><p>当需要对DOM元素进行一系列操作时，可以通过以下步骤来减少重绘和重排的次数：</p>
+<ol>
+<li>使元素脱离文档流。</li>
+<li>对其应用多重改变。</li>
+<li>把元素带回文档中。</li>
+</ol>
+<p>有三种方法使DOM脱离文档：</p>
+<ul>
+<li>隐藏元素，应用修改，重新显示。</li>
+<li>使用文档片段(docuement fragment)在当前DOM之外构建一个子树，再把它拷贝回文档。</li>
+<li>将原始元素拷贝到一个脱离文档的节点中，修改副本，完成后再替换原始元素。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"mylist"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://phpied.com"</span>&gt;</span>Stoyan<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>第一种方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">'mylist'</span>);</span><br><span class="line">ul.style.display = <span class="string">'none'</span>;</span><br><span class="line"><span class="comment">//这个方法是创建新的链接 插入到mylist中。</span></span><br><span class="line">appendDataToElement(ul,data);</span><br><span class="line">ul.style.display = <span class="string">'block'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>第二种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fragment = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">appendDataToElement(fragment,data);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'mylist'</span>).appendChild(fragment);</span><br></pre></td></tr></table></figure></p>
+<p>第三种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> old = <span class="built_in">document</span>.getElementById(<span class="string">'mylist'</span>);</span><br><span class="line"><span class="keyword">var</span> clone = old.cloneNode(<span class="literal">true</span>);</span><br><span class="line">appendDataToElement(clone,data);</span><br><span class="line">old.parentNode.replaceChild(clone,old);</span><br></pre></td></tr></table></figure></p>
+<p><strong>推荐第二种方案，所产生的DOM遍历和重排最少</strong></p>
+<h4 id="缓存布局信息">缓存布局信息</h4><p>前面说过当查询布局信息，比如offsets、scroll、计算出样式。为返回最新值，会刷新队列并应用所有变更。所以把获取后的值赋给一个局部变量，然后操作局部变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//低效</span></span><br><span class="line">myElement.style.left = <span class="number">1</span> + myElement.offsetLeft + <span class="string">'px'</span>;</span><br><span class="line">myElement.style.top = <span class="number">1</span> + myElement.offsetTop + <span class="string">'px'</span>;</span><br><span class="line"><span class="keyword">if</span> (myElement.offsetLeft &gt;= <span class="number">500</span>) &#123;</span><br><span class="line">	stopAnimation();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//高效</span></span><br><span class="line"><span class="keyword">var</span> current = myElement.offsetLeft;</span><br><span class="line">current++;</span><br><span class="line">myElement.style.left = <span class="number">1</span> + current + <span class="string">'px'</span>;</span><br><span class="line">myElement.style.top = <span class="number">1</span> + current + <span class="string">'px'</span>;</span><br><span class="line"><span class="keyword">if</span> (current &gt;= <span class="number">500</span>) &#123;</span><br><span class="line">	stopAnimation();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="让元素脱离动画流">让元素脱离动画流</h4><p>一般来说，重排只影响渲染树中的一小部分，但也可能影响很大的部分，甚至整个渲染树。比如页面顶部的一个动画推移页面整个余下的部分时，会导致一次大规模的重排。<br>使用以下步骤避免页面大部分重排：</p>
+<ol>
+<li>使用绝对位置定位页面上的动画元素，将其脱离文档流。</li>
+<li>让元素动起来。当它扩大时，会临时覆盖部分页面。但这只是页面一个小区域的重绘过程，不会产生重排并重绘页面的大部分内容。</li>
+<li>当动画结束时恢复定位，从而只会下移一次文档的其他元素。</li>
+</ol>
+<h4 id="IE和:hover">IE和:hover</h4><p>在元素很多时避免使用这样效果，比如很大的表格和很长的列表。在IE中会大大降低性功能。</p>
+<h4 id="事件委托">事件委托</h4><p>页面中大量交互元素，都需要绑定事件处理器，通常发生在onload时。此时对于富交互网页会非常拥堵。但是并不是所有的按钮或链接事件会被用户点击用到，因此很多工作没必要。</p>
+<p>用事件委托可以处理，事件逐层冒泡并能被父级元素捕获。只需给外层元素绑定一个处理器，就可以处理在其子元素上触发的所有事件。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//一个dom树的例子</span><br><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span> = "<span class="attribute">menu</span>"&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"menu1.html"</span>&gt;</span>menu #1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>给UL menu添加事件监听器,判断它是否来自链接，是链接阻止默认行为。如果用户禁用了javascript，默认跳转至menu1.html<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'menu'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//浏览器target</span></span><br><span class="line">	e = e || <span class="built_in">window</span>.event;</span><br><span class="line">	<span class="keyword">var</span> target = e.target || e.srcElement;</span><br><span class="line">	<span class="keyword">var</span> pageid,hrefparts;</span><br><span class="line">	<span class="comment">//只关心hrefs,非链接点击退出</span></span><br><span class="line">	<span class="keyword">if</span> (target.nodeName !== <span class="string">'A'</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//从链接中找出页面ID</span></span><br><span class="line">	hrefparts = target.href.split(<span class="string">'/'</span>);</span><br><span class="line">	pageid = hrefparts[hrefparts.length - <span class="number">1</span>];</span><br><span class="line">	pageid = pageid.replace(<span class="string">'.html'</span>,<span class="string">''</span>);</span><br><span class="line">	<span class="comment">//更新页面</span></span><br><span class="line">	ajaxRequest(<span class="string">'xht.php?page='</span> + id,updatePageContents);</span><br><span class="line">	<span class="comment">//阻止默认行为</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> e.pareventDefault === <span class="string">'function'</span>) &#123;</span><br><span class="line">		e.pareventDefault();</span><br><span class="line">		e.stopPropagation();</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		e.returnValue = <span class="literal">false</span>;</span><br><span class="line">		e.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/性能优化/">性能优化</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/15/Testautomation/" data-tooltip="GUI自动化测试">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/07/18/DomProgramming/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/07/18/DomProgramming/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/07/18/DomProgramming/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-DomProgramming" data-title="DOM编程(三)" data-url="/2016/07/18/DomProgramming/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/15/Testautomation/" data-tooltip="GUI自动化测试">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/07/18/DomProgramming/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/07/18/DomProgramming/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/07/18/DomProgramming/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>

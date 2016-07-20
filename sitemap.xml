@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2016/05/28/threejsChart/</loc>
+    <lastmod>2016-07-20T12:28:58.204Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/07/18/DomProgramming/</loc>
+    <lastmod>2016-07-20T12:15:15.855Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/07/15/Testautomation/</loc>
     <lastmod>2016-07-15T15:25:37.709Z</lastmod>
   </url>
@@ -44,11 +54,6 @@
   <url>
     <loc>/2016/06/30/singletonPattern/</loc>
     <lastmod>2016-07-04T14:01:24.005Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/05/28/threejsChart/</loc>
-    <lastmod>2016-06-30T13:39:26.557Z</lastmod>
   </url>
   
   <url>
