@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title>算法和流程控制(四) - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">算法和流程控制(四)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Mon Jul 25 2016 22:39:09 GMT+0800">
+        Jul 25, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/javascript/">javascript</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h4 id="算法和流程控制">算法和流程控制</h4><h4 id="循环类型">循环类型</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">	<span class="comment">//循环体</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种</span></span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i &lt; <span class="number">10</span>)&#123;</span><br><span class="line">	<span class="comment">//循环主体</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第三种</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">	<span class="comment">//循环</span></span><br><span class="line">&#125;<span class="keyword">while</span> (i++ <span class="xml"><span class="tag">&lt; <span class="attribute">10</span>);</span><br><span class="line"></span><br><span class="line">//第四种</span><br><span class="line"><span class="attribute">for</span> (<span class="attribute">var</span> <span class="attribute">prop</span> <span class="attribute">in</span> <span class="attribute">object</span>)&#123;</span><br><span class="line">	//循环体</span><br><span class="line">&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>for in 循环比其他几种明显要慢,由于每次迭代操作会搜索实例或原型属性,每次迭代要产生很多开销，当要迭代一个属性数量未知的对象时，才考虑使用for-in循环。<br><code>不要使用for-in来遍历数组成员</code></p>
+<p>选择哪个循环，如果循环类型与性能无关，只有两个可选因素：</p>
+<ul>
+<li>每次迭代处理的事务。</li>
+<li>迭代的次数。</li>
+</ul>
+<p>通过减少这两者中的一个或全部的时间开销，你就提升循环的整体性能。</p>
+<p><strong>减少迭代工作量</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般的循环</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; items.length; i++)&#123;</span><br><span class="line">	process(items[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(j &lt; items.length)&#123;</span><br><span class="line">	process(items[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> k = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">	process(items[k++]);</span><br><span class="line">&#125; <span class="keyword">while</span> (k &lt; items.length);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//减少了属性,把items.length保存到一个变量,避免每次查找。</span></span><br><span class="line"><span class="comment">//通过倒序循环,控制条件减少了一次比较</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=items.length; i--)&#123;</span><br><span class="line">	process(items[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> j = items.length;</span><br><span class="line"><span class="keyword">while</span> (j--)&#123;</span><br><span class="line">	process(items[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> k = items.length-<span class="number">1</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">	process(items[k]);</span><br><span class="line">&#125; <span class="keyword">while</span> (k--);</span><br></pre></td></tr></table></figure></p>
+<h4 id="减少迭代次数">减少迭代次数</h4><p>一种限制循环迭代次数的模式“达夫设备(Duff’s Device)”。是一种循环体展开技术，它使得一次迭代中实际上执行了多次迭代的操作。典型的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = items.length % <span class="number">8</span>;</span><br><span class="line"><span class="keyword">while</span>(i)&#123;</span><br><span class="line">	process(items[i--]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">i = <span class="built_in">Math</span>.floor(items.length / <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(i)&#123;</span><br><span class="line">	process(items[i--]);</span><br><span class="line">	process(items[i--]);</span><br><span class="line">	process(items[i--]);</span><br><span class="line">	process(items[i--]);</span><br><span class="line">	process(items[i--]);</span><br><span class="line">	process(items[i--]);</span><br><span class="line">	process(items[i--]);</span><br><span class="line">	process(items[i--]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>每次循环最多可调用8次process()，循环的迭代次数为总数除于8，第一调用为总数对8取余。当迭代次数小于1000，看不到明显的差异。如果超过1000，执行效率明显提升。</p>
+<h4 id="基于函数的迭代">基于函数的迭代</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">items.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">varlue, index, array</span>)</span>&#123;</span><br><span class="line">	process(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>类似上的迭代函数，其他类库也有很多,jquery的each等<br><code>基于循环的迭代比基于函数的迭代快8倍，如果对运行速度要求严格，不使用基于函数迭代</code></p>
+<h4 id="条件语句">条件语句</h4><p>当判断条件多时，应当使用switch，两种判断使用if else。</p>
+<h4 id="查找表">查找表</h4><p>当有多个条件用于switch时，可以使用一个数组作为查找表来替换：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(value)&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">	....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//将返回值集合存入数组</span></span><br><span class="line"><span class="keyword">var</span> results = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回当前结果</span></span><br><span class="line"><span class="keyword">return</span> results[value];</span><br></pre></td></tr></table></figure></p>
+<h4 id="调用栈限制">调用栈限制</h4><p>当你使用递归的时候，每种浏览器都对身体有一个最大调用栈数量限制，我们应该捕获这些错误。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	recurse();</span><br><span class="line">&#125; <span class="keyword">catch</span> (ex)&#123;</span><br><span class="line">	alert(<span class="string">"Too much recursion!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>尽管在JavaScript中捕获这些错误是有可能的，但并不推荐这样做。那些有潜在调用栈问题的脚本就不应该发布上线。</code></p>
+<h4 id="递归模式">递归模式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种，即函数调用自身</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recurse</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	recurse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种，“隐伏模式”，包含两个函数,这个递归模式错误将很难查找</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">first</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	second();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">second</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	first();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="迭代">迭代</h4><p>用迭代去实现递归的算法，是避免栈溢出错误的方法之一。</p>
+<h4 id="Memoization">Memoization</h4><p>Memoization是一种避免重复工作的方法，它缓存前一个计算结果供后续计算使用，避免了重复工作。使得它成为递归算法中有用的技术。</p>
+<p>比如前面的阶乘算法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">memfactorial</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!memfactorial.cache)&#123;</span><br><span class="line">		memfactorial.cache = &#123;</span><br><span class="line">			<span class="string">"0"</span>:<span class="number">1</span>,</span><br><span class="line">			<span class="string">"1"</span>:<span class="number">1</span></span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!memfactorial.cache.hasOwnProperty(n))&#123;</span><br><span class="line">		memfactorial.cache[n] = n * memfactorial (n-<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> memfactorial.cache[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fact6 = memfactorial(<span class="number">6</span>);</span><br><span class="line"><span class="keyword">var</span> fact5 = memfactorial(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> fact4 = memfactorial(<span class="number">4</span>);</span><br><span class="line"><span class="comment">//总调用8次，必要的计算都在第一次都缓存了</span></span><br></pre></td></tr></table></figure></p>
+<p>可以封装一个基础功能的memoize()函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">memoize</span>(<span class="params">fundamental,cache</span>)</span>&#123;</span><br><span class="line">	cache = cache || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> shell = <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!cache.hasOwnProperty(art))&#123;</span><br><span class="line">			cache[arg] = fundamental(arg);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> cache[arg];</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> shell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//缓存该阶乘函数</span></span><br><span class="line"><span class="keyword">var</span> memfactorial = memoize(factorial,&#123;<span class="string">"0"</span>:<span class="number">1</span>, <span class="string">"1"</span>:<span class="number">1</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用新函数</span></span><br><span class="line"><span class="keyword">var</span> fact6 = memfactorial(<span class="number">6</span>);</span><br><span class="line"><span class="keyword">var</span> fact5 = memfactorial(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> fact4 = memfactorial(<span class="number">4</span>);</span><br></pre></td></tr></table></figure></p>
+<p>通用的memoization比手工更新给定函数算法优化效果差一些，因为momoize()函数缓存特定参数的函数调用。如果有显著性能问题，最好还是手工实现它。不是采用通用方案。</p>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/性能优化/">性能优化</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/18/DomProgramming/" data-tooltip="DOM编程(三)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/07/25/AlgorithmControlProcess/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/07/25/AlgorithmControlProcess/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/07/25/AlgorithmControlProcess/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-AlgorithmControlProcess" data-title="算法和流程控制(四)" data-url="/2016/07/25/AlgorithmControlProcess/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/18/DomProgramming/" data-tooltip="DOM编程(三)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/07/25/AlgorithmControlProcess/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/07/25/AlgorithmControlProcess/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/07/25/AlgorithmControlProcess/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>
