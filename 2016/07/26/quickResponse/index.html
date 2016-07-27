@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title>快速响应用户界面(五) - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">快速响应用户界面(五)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Tue Jul 26 2016 23:28:20 GMT+0800">
+        Jul 26, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/javascript/">javascript</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h4 id="快速响应的用户界面">快速响应的用户界面</h4><p>快速响应是指快速响应用户的操作。以确保用户认为是在控制页面，而不是与页面失去联系。<br>对于javascript来说，是单线程的，既要执行javascript又要更新用户界面。所以管理好javascript的运行时间对Web应用的性能非常重要。</p>
+<h5 id="浏览器UI线程">浏览器UI线程</h5><p>用于执行JavaScript和更新用户界面的进程通常被称为“浏览器UI线程”(尽管对所以浏览器来说，称为“线程”不一定正确)。UI线程工作基于一个队列系统。任务保存到队列中直到进程空闲。一旦空闲，队列中的下一个任务就会运行。运行javascript代码或者执行UI更新。两者不能同时进行。而且会等待更多任务加入队列中，如果在任务运行期间与页面交互，可能新的UI更新不会加入到队列中。</p>
+<h5 id="浏览器限制">浏览器限制</h5><p>浏览器限制了JavaScript任务的运行时间。限制分两种：</p>
+<ul>
+<li>调用栈大小限制。</li>
+<li>长时间运行脚本限制。</li>
+</ul>
+<p>如果长时间运行一个脚本，当到达此限制时，浏览器会向用户显示一个对话框。对于用户来说，也不知道是继续运行脚本，还是停止脚本，很不友好。显然，处理长时间运行脚本的最佳方式是从一开始就避免它们。</p>
+<h4 id="最佳运行时间">最佳运行时间</h4><p>界面在100毫秒内响应用户输入，用户会认为自己在“直接操纵界面中的对象”。超过100毫秒意味着用户会感到自己与界面失去联系。</p>
+<h4 id="定时器">定时器</h4><p>定时器与UI线程的交互方式有助于把运行耗时较长的脚本拆分为较短的片段。定时器会先等待一段时间，再添加一个JavaScript执行，这时候UI线程就可以更新。</p>
+<h4 id="定时器的精度">定时器的精度</h4><p>JavaScript定时器通常不太精准，相差大约几毫米。延时的最小值建议25毫秒，以确保至少有15毫秒延迟。小于15将导致IE锁定，大多数浏览器在定时器延时等于小于10毫秒表现不太一致。</p>
+<h4 id="使用定时器处理数组">使用定时器处理数组</h4><p>如果有长时间运行的循环，可以用定时器解决，有两个决定性因素：</p>
+<ul>
+<li>处理过程是否必须同步?</li>
+<li>数据是否必须按顺序处理?</li>
+</ul>
+<p>典型的简单循环模式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, len=items.length; i &lt; len; i++)&#123;</span><br><span class="line">	process(items[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果两者都是否，将适用于定时器分解任务。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> todo = items.concat(); <span class="comment">//克隆原数组</span></span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//取得数组的下一个元素进行处理</span></span><br><span class="line">	process(todo.shift());</span><br><span class="line">    <span class="comment">//如果还有需要处理的元素，创建另一个定时器</span></span><br><span class="line">    <span class="keyword">if</span>(todo.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		setTimeout(<span class="built_in">arguments</span>.callee,<span class="number">25</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		callback(items);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,<span class="number">25</span>);</span><br></pre></td></tr></table></figure></p>
+<p>arguments.callee 该值指向当前正在运行的匿名函数。<br>将该功能封装起来。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">processArray</span>(<span class="params">items, process, callback</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> todo = items.concat();</span><br><span class="line">	</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">//取得数组的下一个元素进行处理</span></span><br><span class="line">		process(todo.shift());</span><br><span class="line">	    <span class="comment">//如果还有需要处理的元素，创建另一个定时器</span></span><br><span class="line">	    <span class="keyword">if</span>(todo.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			setTimeout(<span class="built_in">arguments</span>.callee,<span class="number">25</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			callback(items);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,<span class="number">25</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> items = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">couputValue</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">processArray(items, outputValue, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"Done!"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>定时器处理数组的副作用是总时长增加了。没处理一个条目完成后UI线程会空闲处理，并且在下一条目开始处理之前有一段延时。为避免锁定浏览器给用户带来的糟糕体验，取舍时有必要的。</code></p>
+<h4 id="分割任务">分割任务</h4><p>通常可以把一个任务分解成一系列子任务。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveDocument</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//保存文档</span></span><br><span class="line">	openDocument(id);</span><br><span class="line">	writeText(id);</span><br><span class="line">	closeDocument(id);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//将成功信息更新至界面</span></span><br><span class="line">	updateUI(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>数组处理模式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveDocument</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> tasks = [openDocument, writeText, closeDocument, updateUI];</span><br><span class="line">	</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="comment">//执行下一个任务</span></span><br><span class="line">		<span class="keyword">var</span> task = tasks.shift();</span><br><span class="line">		task(id);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//检查是否还有其他任务</span></span><br><span class="line">		<span class="keyword">if</span> (tasks.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			setTimeout(<span class="built_in">arguments</span>.callee, <span class="number">25</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,<span class="number">25</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以封装以备复用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multistep</span>(<span class="params">steps, args, callback</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> tasks = steps.concat();</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> task = tasks.shift();</span><br><span class="line">		task.apply(<span class="literal">null</span>, args || []);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (tasks.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			setTimeout(<span class="built_in">arguments</span>.callee, <span class="number">25</span>);	</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			callback();	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="记录代码运行时间">记录代码运行时间</h4><p>通常可以用 new Date()来记录时间戳，可以优化之前的定时器模式。添加一个事件检测机制改进processArray()方法，使得每个定时器能处理多个数组。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timedProcessArray</span>(<span class="params">items,process,callback</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> todo = items.concat();</span><br><span class="line"></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> start = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">do</span> &#123;</span><br><span class="line">			process(todo.shift());</span><br><span class="line">		&#125;<span class="keyword">while</span>(todo.length &gt; <span class="number">0</span> &amp;&amp;(+<span class="keyword">new</span> <span class="built_in">Date</span>() - start &lt; <span class="number">50</span>));</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (todo.length &gt; <span class="number">0</span> )&#123;</span><br><span class="line">			setTimeout(<span class="built_in">arguments</span>.callee,<span class="number">25</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			callback(items);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, <span class="number">25</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Web_Workers">Web Workers</h4><p>Web workers 给Web应用带来潜在的巨大性能提升，因为每个新的Worker都在自己的线程中运行代码。这意味着Worker运行代码不仅不会影响浏览器UI，也不会影响其他Worker中运行的代码。 </p>
+<p>Worker运行环境由如下部分组成：</p>
+<ul>
+<li>一个navigator对象，只包括四个属性：appName、appVersion、userAgent和platform。</li>
+<li>一个location对象 (与 window.location相同，不过所有属性都是只读的)。</li>
+<li>一个self对象，指向全局worker对象。</li>
+<li>一个importScripts()，用来加载Worker所用到的外部JavaScript文件。</li>
+<li>所有的ECMAScript对象，诸如：Object、Array、Date等。</li>
+<li>XMLHttpRequest构造器。</li>
+<li>setTimeout()和setInterval()方法。</li>
+<li>一个close()方法，它能立刻停止Worker运行。</li>
+</ul>
+<p>由于Web worker有着不同的全局环境，因此你无法从JavaScript代码中创建它。需要创建一个完全独立的JavaScript文件，其中包含了需要在Worker中运行的代码。必须传入这个文件的url：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"code.js"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>代码一旦执行，将为这个文件创建一个新的线程和一个新的Worker运行环境。异步下载，直到文件下载并执行完成后启动此Worker。</p>
+<h4 id="与Worker通信">与Worker通信</h4><p>Worker与网页代码通过事件接口进行通信。网页通过postMessage()方法给Worker传递数据，此外，Worker还有一个用来接收信息的onmessage事件处理器。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"code.js"</span>);</span><br><span class="line">worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	alert(event.data);</span><br><span class="line">&#125;</span><br><span class="line">worker.postMessage(<span class="string">"Nicholas"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//code.js内部代码</span></span><br><span class="line">self.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	self.postMessage(<span class="string">"Hello,"</span> + event.data + <span class="string">"!"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>消息系统是网页和Worker通信的唯一途径</p>
+<h4 id="加载外部文件">加载外部文件</h4><p>由于Worker在UI线程之外运行，所以这种阻塞并不会影响UI响应。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//code.js</span></span><br><span class="line">importScripts(<span class="string">"file1.js"</span>,<span class="string">"file2.js"</span>);</span><br><span class="line"></span><br><span class="line">self.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	self.postMessage(<span class="string">"Hello,"</span>+event.data+<span class="string">"!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="实际应用">实际应用</h4><p>Worker适用于那些处理纯数据，或者与浏览器UI无关的长时间运行的脚本。有一个例子：解析一个很大的JSON字符串，需要500毫秒完成解析，超出了客户端允许的运行时间。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"jsonparser.js"</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//数据就位时，调用事件处理器</span></span><br><span class="line">worker.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//JSON结构被回传回来</span></span><br><span class="line">	<span class="keyword">var</span> jsonData = event.data;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//使用JSON结构</span></span><br><span class="line">	evaluateData(jsonData);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//传入要解析的大段JSON字符串</span></span><br><span class="line">worker.postMessage(jsonText);</span><br><span class="line"></span><br><span class="line"><span class="comment">//jsonparser.js内部代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//当JSON数据存在时，该事件处理器会被调用</span></span><br><span class="line">self.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//JSON字符串由event.data传入</span></span><br><span class="line">	<span class="keyword">var</span> jsonText = event.data;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//解析</span></span><br><span class="line">	<span class="keyword">var</span> jsonData = <span class="built_in">JSON</span>.parse(jsonText);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//回传结构</span></span><br><span class="line">	self.postMessage(jsonData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其他应用方面：</p>
+<ul>
+<li>编码/解码大字符串。</li>
+<li>复杂数学运算(包括图像或视频处理)。</li>
+<li>大数组排序。</li>
+</ul>
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/性能优化/">性能优化</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/25/AlgorithmControlProcess/" data-tooltip="算法和流程控制(四)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/07/26/quickResponse/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/07/26/quickResponse/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/07/26/quickResponse/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-quickResponse" data-title="快速响应用户界面(五)" data-url="/2016/07/26/quickResponse/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/25/AlgorithmControlProcess/" data-tooltip="算法和流程控制(四)">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2016/07/26/quickResponse/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2016/07/26/quickResponse/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2016/07/26/quickResponse/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>
