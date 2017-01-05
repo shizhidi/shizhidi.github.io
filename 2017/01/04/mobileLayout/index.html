@@ -161,7 +161,7 @@
 <p>添加到IOS主屏后的标题。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-mobile-web-app-title"</span> <span class="attribute">content</span>=<span class="value">"标题名称"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="动态设置像素比">动态设置像素比</h3><p>让1px做1px的事，防止像素比高的显示不正确。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取像素比</span></span><br><span class="line"><span class="keyword">var</span> pixelRatio = <span class="number">1</span> / <span class="built_in">window</span>.devicePixelRatio;</span><br><span class="line"><span class="comment">//通过js动态设置视口(viewport)</span></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;meta name="viewport" content="width=device-width,initial-scale='</span>+pixelRatio+<span class="string">',minimum-scale='</span>+pixelRatio+<span class="string">',maximum-scale='</span>+pixelRatio+<span class="string">'" /&gt;'</span>);</span><br></pre></td></tr></table></figure></p>
 <h3 id="动态设置字体大小">动态设置字体大小</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 条件：尺寸越大，则字体大小越大。尺寸越小，则字体大小越小。</span></span><br><span class="line"><span class="comment">// 获取html节点</span></span><br><span class="line"><span class="keyword">var</span> html = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// 获取屏幕宽度</span></span><br><span class="line"><span class="keyword">var</span> pageWidth = html.getBoundingClientRect().width;</span><br><span class="line"><span class="comment">// 屏幕宽度 / 固定数值 = 基准值</span></span><br><span class="line">html.style.fontSize = pageWidth / <span class="number">16</span> + <span class="string">"px"</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="案例">案例</h3><p> 移动端例子：<a href="./mobileLayout/index.html">苏宁移动首页</a></p>
+<h3 id="案例">案例</h3><p> 移动端例子：<a href="https://shizhidi.github.io/assets/examples/mobilSuNing/index.html" target="_blank" rel="external">苏宁移动首页</a></p>
 
         
             
@@ -181,7 +181,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/"  data-tooltip="mobileCssReset">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/"  data-tooltip="移动端样式">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -253,7 +253,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/"  data-tooltip="mobileCssReset">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/"  data-tooltip="移动端样式">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
