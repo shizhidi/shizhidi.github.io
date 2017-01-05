@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="shizhidi&#39;s blog">
+    <title> - shizhidi&#39;s blog</title>
+    <meta name="author" content="Edison">
+    <meta name="description" content="shizhidi&#39;s blog">
+    <link rel="icon" href="/assets/images/null">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css" type="text/css">
+    <!--STYLES END-->
+    <script>
+    var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?0b4a9ea93dd4c467f672c3430a9e00d5";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="">shizhidi&#39;s blog</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/ren.png"/>
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/ren.png"/>
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Edison</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">Home</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">Categories</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">Tags</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">Archives</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">About me</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="https://github.com/shizhidi">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a  class="sidebar-button-link" href="/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">(no title)</h1>
+    
+    <div class="post-meta">
+    <time  itemprop="datePublished" content="Thu Jan 05 2017 22:00:22 GMT+0800">
+        Jan 05, 2017
+    </time>
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        /* reset */
+body,
+h3 {
+  margin: 0;
+}
+input {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+img {
+  border: none;
+  vertical-align: top;
+}
+a {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: #818788;
+}
+input {
+  -webkit-appearance: none;
+}
+/* LESS */
+/* 框架搭建 */
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  font-size: 0.5rem;
+  font-family: Arial, Helvetica, STHeiTi, sans-serif;
+}
+/* 工具样式 */
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+/* 主体部分 */
+.head_box {
+  width: 100%;
+  height: 1.85rem;
+  background-color: #fabc09;
+  position: fixed;
+}
+.head_box .btn_type {
+  float: left;
+  width: 1.95rem;
+  height: 1.85rem;
+  background: url(../img/ico-type.jpg) no-repeat 0.55rem 0.25rem;
+  background-size: 0.825rem 1.375rem;
+}
+.head_box .search_box {
+  float: left;
+  width: 12rem;
+  height: 1.85rem;
+  position: relative;
+}
+.head_box .search_box:before {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  top: 0.625rem;
+  width: 0.55rem;
+  height: 0.575rem;
+  background: url(../img/ico-search.jpg) no-repeat;
+  background-size: 0.55rem 0.575rem;
+}
+.head_box .search_box .search_form {
+  padding-top: 0.35rem;
+  height: 1.25rem;
+}
+.head_box .search_box .search_form .search_input {
+  float: left;
+  width: 12rem;
+  height: 1.25rem;
+  background-color: #d5dba9;
+  border-radius: 0.15rem;
+  padding-left: 1.275rem;
+  box-sizing: border-box;
+  font-size: 0.5rem;
+}
+.head_box .shop_car {
+  float: left;
+  width: 2.05rem;
+  height: 1.85rem;
+  background: url(../img/ico-shopCar.jpg) no-repeat 0.425rem 0.2rem;
+  background-size: 1.25rem 1.4rem;
+}
+.wrap {
+  width: 100%;
+  padding-top: 1.85rem;
+}
+.banner {
+  width: 100%;
+  height: 6.8rem;
+}
+.banner img {
+  width: 100%;
+}
+.nav {
+  width: 100%;
+  padding: 0.45rem 0 0.05rem 0;
+  box-sizing: border-box;
+  background-color: #cce3d1;
+  border-top: 1px solid #acd3b3;
+}
+.nav .nav_item {
+  float: left;
+  width: 20%;
+  height: 1.875rem;
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+.nav .nav_item img {
+  width: 1.7rem;
+  height: 1.75rem;
+}
+.nav .nav_item .nav_title {
+  display: block;
+  font-weight: normal;
+  line-height: 1.1rem;
+}
+.suning_tt {
+  width: 100%;
+  height: 2.175rem;
+  background-color: #cce3d1;
+  margin-top: 2px;
+}
+.suning_tt .tt_title {
+  float: left;
+  width: 3.475rem;
+  height: 2.175rem;
+  background: url(../img/ico-tt.jpg) no-repeat 0 0.55rem;
+  background-size: 3.1rem 1.025rem;
+}
+.suning_tt .tt_line {
+  float: left;
+  width: 1px;
+  height: 0.825rem;
+  background-color: #97c1a0;
+  margin-top: 0.675rem;
+}
+.suning_tt .tt_list {
+  float: left;
+  width: 10.75rem;
+  height: 2.175rem;
+  padding-top: 0.35rem;
+  box-sizing: border-box;
+  margin-left: 0.8rem;
+}
+.suning_tt .tt_list .item {
+  display: block;
+  line-height: 0.7rem;
+  background: url(../img/ico-list.jpg) no-repeat 0 0.25rem;
+  background-size: 0.15rem 0.15rem;
+  text-indent: 0.425rem;
+}
+.shoping_type {
+  margin-top: 0.475rem;
+}
+.shoping_type .type_top {
+  height: 6.2rem;
+  overflow: hidden;
+}
+.shoping_type .type_top a {
+  float: left;
+}
+.shoping_type .type_top .big_img {
+  width: 7.975rem;
+  height: 6.2rem;
+  margin-right: 1px;
+}
+.shoping_type .type_top .big_img img {
+  width: 7.975rem;
+  height: 6.2rem;
+}
+.shoping_type .type_top .sub_img {
+  width: 7.975rem;
+  height: 3.075rem;
+  margin-bottom: 1px;
+}
+.shoping_type .type_top .sub_img img {
+  width: 7.975rem;
+  height: 3.075rem;
+}
+.shoping_type .bottom_item {
+  float: left;
+  margin: 0 1px 1px 0;
+}
+.shoping_type .bottom_item img {
+  width: 3.975rem;
+  height: 6.425rem;
+}
+.suning_qg {
+  width: 100%;
+  height: 6.425rem;
+  background-color: #cce3d1;
+  margin-top: 33px;
+  padding-left: 0.4rem;
+  box-sizing: border-box;
+}
+.suning_qg .head {
+  width: 100%;
+  height: 1.35rem;
+}
+.suning_qg .head .head_left {
+  float: left;
+}
+.suning_qg .head .head_left .title {
+  float: left;
+  width: 2.9rem;
+  height: 1rem;
+  margin-right: 0.4rem;
+  background: url(../img/title-qg.jpg) no-repeat;
+  background-size: 2.9rem 1rem;
+}
+.suning_qg .head .head_left .time_box {
+  float: left;
+  padding-top: 0.35rem;
+}
+.suning_qg .head .head_left .time_box .time_name {
+  float: left;
+  font-size: 0.45rem;
+  color: #f94f4e;
+}
+.suning_qg .head .head_left .time_box .updeta_time {
+  float: left;
+}
+.suning_qg .head .head_left .time_box .updeta_time .time_item {
+  float: left;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid #809474;
+  border-radius: 0.1rem;
+  text-align: center;
+  line-height: 0.5rem;
+  color: #383938;
+  margin: 0 0.2rem;
+}
+.suning_qg .head .head_left .time_box .updeta_time .time_ico {
+  float: left;
+}
+.suning_qg .head .head_left .time_box .updeta_time .tips {
+  color: #ff3739;
+  border-color: #ff3739;
+}
+.suning_qg .head .head_right {
+  float: right;
+  padding: 0.275rem 0.5rem 0 0;
+}
+.suning_qg .head .head_right .more {
+  float: left;
+  width: 2.6rem;
+  height: 0.725rem;
+  line-height: 0.725rem;
+  font-size: 0.45rem;
+  text-align: center;
+  background-color: #ffc001;
+  border-radius: 0.3rem;
+  color: #456c24;
+  margin-right: 0.05rem;
+}
+.suning_qg .head .head_right .ico_more {
+  float: left;
+  width: 0.375rem;
+  height: 0.625rem;
+  background: url(../img/ico-sj.jpg) no-repeat;
+  background-size: 100%;
+}
+.suning_qg .shoping_list {
+  width: 200%;
+}
+.suning_qg .shoping_list .list_item {
+  width: 4.75rem;
+  float: left;
+  margin-right: 0.2rem;
+}
+.suning_qg .shoping_list .list_item .item_img {
+  display: block;
+  width: 4.7rem;
+  border: 1px solid #b2cdb1;
+}
+.suning_qg .shoping_list .list_item .item_img img {
+  width: 100%;
+}
+.suning_qg .shoping_list .list_item .item_bottom {
+  box-sizing: border-box;
+  width: 100%;
+  height: 1.425rem;
+  padding-left: 0.4rem;
+  background-color: #ddd;
+  position: relative;
+}
+.suning_qg .shoping_list .list_item .item_bottom .jiage {
+  display: block;
+  color: #dc0000;
+  line-height: 0.7rem;
+}
+.suning_qg .shoping_list .list_item .item_bottom .yuanjia {
+  display: block;
+  font-size: 0.4rem;
+  line-height: 0.6rem;
+  color: #999;
+}
+.suning_qg .shoping_list .list_item .item_bottom .zhekou {
+  box-sizing: border-box;
+  position: absolute;
+  right: 0.15rem;
+  top: -0.15rem;
+  width: 1.525rem;
+  height: 1.525rem;
+  padding-top: 0.25rem;
+  background: url(../img/ico-zhekou.jpg) no-repeat;
+  background-size: 100%;
+  color: #fff;
+  text-align: center;
+}
+.suning_qg .shoping_list .list_item .item_bottom .zhekou .big_font {
+  font-size: 0.55rem;
+}
+.suning_qg .shoping_list .list_item .item_bottom .zhekou .big_font span {
+  font-size: 0.45rem;
+}
+.shoping_box {
+  width: 100%;
+  overflow: hidden;
+}
+
+        
+            
+        
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileLayout/index/"  data-tooltip="(no title)">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/" data-tooltip="mobileCssReset">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/01/05/mobileLayout/css/index/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/01/05/mobileLayout/css/index/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/01/05/mobileLayout/css/index/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-mobileLayout/css/index" data-title="" data-url="/2017/01/05/mobileLayout/css/index/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'shizhidi'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+<!-- 多说公共JS代码 end -->
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2017 Edison. All Rights Reserved.
+    </span>
+</footer>
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileLayout/index/"  data-tooltip="(no title)">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/" data-tooltip="mobileCssReset">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/01/05/mobileLayout/css/index/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/01/05/mobileLayout/css/index/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/01/05/mobileLayout/css/index/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/ren.png"/>
+        
+            <h4 id="about-card-name">Edison</h4>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                web开发工程师
+            </h5>
+        
+        
+    </div>
+</div>
+        <div id="cover" style="background-image:url('/assets/images/bg.png');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js" type="text/javascript"></script>
+<script src="/assets/js/tranquilpeak.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+
+</html>

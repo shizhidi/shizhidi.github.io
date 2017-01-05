@@ -2,6 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/2017/01/04/mobileLayout/</loc>
+    <lastmod>2017-01-05T14:05:20.489Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/01/05/mobileCssReset/</loc>
+    <lastmod>2017-01-05T13:50:28.886Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/01/05/mobileLayout/css/index/</loc>
+    <lastmod>2016-12-03T14:31:06.363Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/01/05/mobileLayout/index/</loc>
+    <lastmod>2016-12-03T14:28:20.405Z</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/07/26/quickResponse/</loc>
     <lastmod>2016-07-27T23:50:26.954Z</lastmod>
   </url>

@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2016-07-27T23:50:26.954Z</updated>
+  <updated>2016-12-03T14:28:20.405Z</updated>
   <id>//</id>
   
   <author>
@@ -14,6 +14,648 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="/2017/01/05/mobileLayout/index/"/>
+    <id>/2017/01/05/mobileLayout/index/</id>
+    <published>2017-01-05T14:00:23.374Z</published>
+    <updated>2016-12-03T14:28:20.405Z</updated>
+    <content type="html"><![CDATA[<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css">
+		<script>
+			var pixclPatio = 1 / window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+pixclPatio+',minimum-scale='+pixclPatio+',maximum-scale='+pixclPatio+',user-scalable=no" />');
+			
+			var html = document.getElementsByTagName('html')[0];
+			var pageWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = pageWidth / 16 + 'px';
+		</script>
+		<!--
+			1、[固定定位]元素内容中有[input]的话，会导致触发键盘之后导致固定定位错位。
+			2、不管使用背景图还是img，一定要调整对应的size（大小）
+				如果图片大小和容器大小一致，那么可以使用100%
+				如果图片大小和容器带下不一样，那么需针对图片分别设置宽/高、x/y
+			3、碰到文字，一定要测量行高，不然高度会不准确
+			4、标签的特性需要熟记于心
+		-->
+	</head>
+	<body>
+		<header class="head_box">
+			<a href="" class="btn_type"></a>
+			<div class="search_box">
+				<form action="" class="search_form">
+					<!--<i class="ico-search"></i>-->
+					<input type="text" class="search_input" placeholder="荣耀4X最后">
+				</form>
+			</div>
+			<a href="" class="shop_car"></a>
+		</header>
+		<section class="wrap">
+			<ul class="banner">
+				<li class="item">
+					<img src="img/banner.jpg" alt="">
+				</li>
+			</ul>
+			<nav class="nav clearfix">
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+				<a href="" class="nav_item">
+					<img src="img/ico-nav.jpg" alt="">
+					<strong class="nav_title">大聚惠</strong>
+				</a>
+			</nav>
+			<div class="suning_tt">
+				<div class="tt_title"></div>
+				<div class="tt_line"></div>
+				<div class="tt_list">
+					<a href="" class="item">
+						HTML5移动端布局实战开发课程
+					</a>
+					<a href="" class="item">
+						HTML5移动端布局实战开发课程
+					</a>
+				</div>
+			</div>
+			<div class="shoping_type">
+				<div class="type_top">
+					<a href="" class="big_img">
+						<img src="img/shoping-1.jpg">
+					</a>
+					<a href="" class="sub_img">
+						<img src="img/shoping-2.jpg">
+					</a>
+					<a href="" class="sub_img">
+						<img src="img/shoping-2.jpg">
+					</a>
+				</div>
+				<div class="type_bottom clearfix">
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+					<a href="" class="bottom_item">
+						<img src="img/shoping-3.jpg" alt="">
+					</a>
+				</div>
+			</div>
+			<div class="suning_qg">
+				<header class="head">
+					<div class="head_left">
+						<h3 class="title"></h3>
+						<div class="time_box">
+							<span class="time_name">
+								20点场
+							</span>
+							<div class="updeta_time">
+								<span class="time_item">03</span>
+								<span class="time_ico">:</span>
+								<span class="time_item">54</span>
+								<span class="time_ico">:</span>
+								<span class="time_item tips">20</span>
+							</div>
+						</div>
+					</div>
+					<div class="head_right">
+						<a href="" class="more">
+							吃货上新季
+						</a>
+						<i class="ico_more"></i>
+					</div>
+				</header>
+				<div class="shoping_box">
+					<ul class="shoping_list">
+						<li class="list_item">
+							<a href="" class="item_img">
+								<img src="img/shoping-4.jpg" alt="">
+							</a>
+							<div class="item_bottom">
+								<strong class="jiage">￥15.90</strong>
+								<del class="yuanjia">￥50.90</del>
+								<div class="zhekou">
+									<span class="big_font">5.<span>8折</span></span>
+								</div>
+							</div>
+						</li>
+						<li class="list_item">
+							<a href="" class="item_img">
+								<img src="img/shoping-4.jpg" alt="">
+							</a>
+							<div class="item_bottom">
+								<strong class="jiage">￥15.90</strong>
+								<del class="yuanjia">￥50.90</del>
+								<div class="zhekou">
+									<span class="big_font">5.<span>8折</span></span>
+								</div>
+							</div>
+						</li>
+						<li class="list_item">
+							<a href="" class="item_img">
+								<img src="img/shoping-4.jpg" alt="">
+							</a>
+							<div class="item_bottom">
+								<strong class="jiage">￥15.90</strong>
+								<del class="yuanjia">￥50.90</del>
+								<div class="zhekou">
+									<span class="big_font">5.<span>8折</span></span>
+								</div>
+							</div>
+						</li>
+						<li class="list_item">
+							<a href="" class="item_img">
+								<img src="img/shoping-4.jpg" alt="">
+							</a>
+							<div class="item_bottom">
+								<strong class="jiage">￥15.90</strong>
+								<del class="yuanjia">￥50.90</del>
+								<div class="zhekou">
+									<span class="big_font">5.<span>8折</span></span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</section>
+	</body>
+</html>
+]]></content>
+    <summary type="html">
+    <![CDATA[<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/index.css">
+		<script>
+			var p]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="/2017/01/05/mobileLayout/css/index/"/>
+    <id>/2017/01/05/mobileLayout/css/index/</id>
+    <published>2017-01-05T14:00:22.855Z</published>
+    <updated>2016-12-03T14:31:06.363Z</updated>
+    <content type="html"><![CDATA[/* reset */
+body,
+h3 {
+  margin: 0;
+}
+input {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+img {
+  border: none;
+  vertical-align: top;
+}
+a {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  color: #818788;
+}
+input {
+  -webkit-appearance: none;
+}
+/* LESS */
+/* 框架搭建 */
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  font-size: 0.5rem;
+  font-family: Arial, Helvetica, STHeiTi, sans-serif;
+}
+/* 工具样式 */
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+/* 主体部分 */
+.head_box {
+  width: 100%;
+  height: 1.85rem;
+  background-color: #fabc09;
+  position: fixed;
+}
+.head_box .btn_type {
+  float: left;
+  width: 1.95rem;
+  height: 1.85rem;
+  background: url(../img/ico-type.jpg) no-repeat 0.55rem 0.25rem;
+  background-size: 0.825rem 1.375rem;
+}
+.head_box .search_box {
+  float: left;
+  width: 12rem;
+  height: 1.85rem;
+  position: relative;
+}
+.head_box .search_box:before {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  top: 0.625rem;
+  width: 0.55rem;
+  height: 0.575rem;
+  background: url(../img/ico-search.jpg) no-repeat;
+  background-size: 0.55rem 0.575rem;
+}
+.head_box .search_box .search_form {
+  padding-top: 0.35rem;
+  height: 1.25rem;
+}
+.head_box .search_box .search_form .search_input {
+  float: left;
+  width: 12rem;
+  height: 1.25rem;
+  background-color: #d5dba9;
+  border-radius: 0.15rem;
+  padding-left: 1.275rem;
+  box-sizing: border-box;
+  font-size: 0.5rem;
+}
+.head_box .shop_car {
+  float: left;
+  width: 2.05rem;
+  height: 1.85rem;
+  background: url(../img/ico-shopCar.jpg) no-repeat 0.425rem 0.2rem;
+  background-size: 1.25rem 1.4rem;
+}
+.wrap {
+  width: 100%;
+  padding-top: 1.85rem;
+}
+.banner {
+  width: 100%;
+  height: 6.8rem;
+}
+.banner img {
+  width: 100%;
+}
+.nav {
+  width: 100%;
+  padding: 0.45rem 0 0.05rem 0;
+  box-sizing: border-box;
+  background-color: #cce3d1;
+  border-top: 1px solid #acd3b3;
+}
+.nav .nav_item {
+  float: left;
+  width: 20%;
+  height: 1.875rem;
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+.nav .nav_item img {
+  width: 1.7rem;
+  height: 1.75rem;
+}
+.nav .nav_item .nav_title {
+  display: block;
+  font-weight: normal;
+  line-height: 1.1rem;
+}
+.suning_tt {
+  width: 100%;
+  height: 2.175rem;
+  background-color: #cce3d1;
+  margin-top: 2px;
+}
+.suning_tt .tt_title {
+  float: left;
+  width: 3.475rem;
+  height: 2.175rem;
+  background: url(../img/ico-tt.jpg) no-repeat 0 0.55rem;
+  background-size: 3.1rem 1.025rem;
+}
+.suning_tt .tt_line {
+  float: left;
+  width: 1px;
+  height: 0.825rem;
+  background-color: #97c1a0;
+  margin-top: 0.675rem;
+}
+.suning_tt .tt_list {
+  float: left;
+  width: 10.75rem;
+  height: 2.175rem;
+  padding-top: 0.35rem;
+  box-sizing: border-box;
+  margin-left: 0.8rem;
+}
+.suning_tt .tt_list .item {
+  display: block;
+  line-height: 0.7rem;
+  background: url(../img/ico-list.jpg) no-repeat 0 0.25rem;
+  background-size: 0.15rem 0.15rem;
+  text-indent: 0.425rem;
+}
+.shoping_type {
+  margin-top: 0.475rem;
+}
+.shoping_type .type_top {
+  height: 6.2rem;
+  overflow: hidden;
+}
+.shoping_type .type_top a {
+  float: left;
+}
+.shoping_type .type_top .big_img {
+  width: 7.975rem;
+  height: 6.2rem;
+  margin-right: 1px;
+}
+.shoping_type .type_top .big_img img {
+  width: 7.975rem;
+  height: 6.2rem;
+}
+.shoping_type .type_top .sub_img {
+  width: 7.975rem;
+  height: 3.075rem;
+  margin-bottom: 1px;
+}
+.shoping_type .type_top .sub_img img {
+  width: 7.975rem;
+  height: 3.075rem;
+}
+.shoping_type .bottom_item {
+  float: left;
+  margin: 0 1px 1px 0;
+}
+.shoping_type .bottom_item img {
+  width: 3.975rem;
+  height: 6.425rem;
+}
+.suning_qg {
+  width: 100%;
+  height: 6.425rem;
+  background-color: #cce3d1;
+  margin-top: 33px;
+  padding-left: 0.4rem;
+  box-sizing: border-box;
+}
+.suning_qg .head {
+  width: 100%;
+  height: 1.35rem;
+}
+.suning_qg .head .head_left {
+  float: left;
+}
+.suning_qg .head .head_left .title {
+  float: left;
+  width: 2.9rem;
+  height: 1rem;
+  margin-right: 0.4rem;
+  background: url(../img/title-qg.jpg) no-repeat;
+  background-size: 2.9rem 1rem;
+}
+.suning_qg .head .head_left .time_box {
+  float: left;
+  padding-top: 0.35rem;
+}
+.suning_qg .head .head_left .time_box .time_name {
+  float: left;
+  font-size: 0.45rem;
+  color: #f94f4e;
+}
+.suning_qg .head .head_left .time_box .updeta_time {
+  float: left;
+}
+.suning_qg .head .head_left .time_box .updeta_time .time_item {
+  float: left;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid #809474;
+  border-radius: 0.1rem;
+  text-align: center;
+  line-height: 0.5rem;
+  color: #383938;
+  margin: 0 0.2rem;
+}
+.suning_qg .head .head_left .time_box .updeta_time .time_ico {
+  float: left;
+}
+.suning_qg .head .head_left .time_box .updeta_time .tips {
+  color: #ff3739;
+  border-color: #ff3739;
+}
+.suning_qg .head .head_right {
+  float: right;
+  padding: 0.275rem 0.5rem 0 0;
+}
+.suning_qg .head .head_right .more {
+  float: left;
+  width: 2.6rem;
+  height: 0.725rem;
+  line-height: 0.725rem;
+  font-size: 0.45rem;
+  text-align: center;
+  background-color: #ffc001;
+  border-radius: 0.3rem;
+  color: #456c24;
+  margin-right: 0.05rem;
+}
+.suning_qg .head .head_right .ico_more {
+  float: left;
+  width: 0.375rem;
+  height: 0.625rem;
+  background: url(../img/ico-sj.jpg) no-repeat;
+  background-size: 100%;
+}
+.suning_qg .shoping_list {
+  width: 200%;
+}
+.suning_qg .shoping_list .list_item {
+  width: 4.75rem;
+  float: left;
+  margin-right: 0.2rem;
+}
+.suning_qg .shoping_list .list_item .item_img {
+  display: block;
+  width: 4.7rem;
+  border: 1px solid #b2cdb1;
+}
+.suning_qg .shoping_list .list_item .item_img img {
+  width: 100%;
+}
+.suning_qg .shoping_list .list_item .item_bottom {
+  box-sizing: border-box;
+  width: 100%;
+  height: 1.425rem;
+  padding-left: 0.4rem;
+  background-color: #ddd;
+  position: relative;
+}
+.suning_qg .shoping_list .list_item .item_bottom .jiage {
+  display: block;
+  color: #dc0000;
+  line-height: 0.7rem;
+}
+.suning_qg .shoping_list .list_item .item_bottom .yuanjia {
+  display: block;
+  font-size: 0.4rem;
+  line-height: 0.6rem;
+  color: #999;
+}
+.suning_qg .shoping_list .list_item .item_bottom .zhekou {
+  box-sizing: border-box;
+  position: absolute;
+  right: 0.15rem;
+  top: -0.15rem;
+  width: 1.525rem;
+  height: 1.525rem;
+  padding-top: 0.25rem;
+  background: url(../img/ico-zhekou.jpg) no-repeat;
+  background-size: 100%;
+  color: #fff;
+  text-align: center;
+}
+.suning_qg .shoping_list .list_item .item_bottom .zhekou .big_font {
+  font-size: 0.55rem;
+}
+.suning_qg .shoping_list .list_item .item_bottom .zhekou .big_font span {
+  font-size: 0.45rem;
+}
+.shoping_box {
+  width: 100%;
+  overflow: hidden;
+}
+]]></content>
+    <summary type="html">
+    <![CDATA[/* reset */
+body,
+h3 {
+  margin: 0;
+}
+input {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: non]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[mobileCssReset]]></title>
+    <link href="/2017/01/05/mobileCssReset/"/>
+    <id>/2017/01/05/mobileCssReset/</id>
+    <published>2017-01-05T13:48:34.000Z</published>
+    <updated>2017-01-05T13:50:28.886Z</updated>
+    <content type="html"><![CDATA[<h3 id="重置样式">重置样式</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a&#123;</span><br><span class="line">    // 取消a标签手指按下时出现的黑色遮罩层</span><br><span class="line">    -webkit-tap-highlight-color:transparent;</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    color: #818788;</span><br><span class="line">&#125;</span><br><span class="line">input &#123;</span><br><span class="line">    // 解决IOS下表单元素圆角的问题</span><br><span class="line">    -webkit-appearance:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[对于移动端相关机型样式的重置]]>
+    
+    </summary>
+    
+      <category term="ResetCSS" scheme="/tags/ResetCSS/"/>
+    
+      <category term="移动端" scheme="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[移动端布局归档]]></title>
+    <link href="/2017/01/04/mobileLayout/"/>
+    <id>/2017/01/04/mobileLayout/</id>
+    <published>2017-01-04T15:43:30.000Z</published>
+    <updated>2017-01-05T14:05:20.489Z</updated>
+    <content type="html"><![CDATA[<h3 id="META标记设置">META标记设置</h3><p>强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0, user-scalable=no"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>WebApp全屏模式   隐藏地址栏。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-mobile-web-app-capable"</span> <span class="attribute">content</span>=<span class="value">"yes"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>禁止百度转码显示。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"Cache-Control"</span> <span class="attribute">content</span>=<span class="value">"no-siteapp"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>制定iphone中safari顶端的状态条的样式（default:白色，black:黑色，black-translucent：半透明）<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-mobile-web-app-status-bar-style"</span> <span class="attribute">content</span>=<span class="value">"black-translucent"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>添加到IOS主屏后的标题。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"apple-mobile-web-app-title"</span> <span class="attribute">content</span>=<span class="value">"标题名称"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="动态设置像素比">动态设置像素比</h3><p>让1px做1px的事，防止像素比高的显示不正确。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取像素比</span></span><br><span class="line"><span class="keyword">var</span> pixelRatio = <span class="number">1</span> / <span class="built_in">window</span>.devicePixelRatio;</span><br><span class="line"><span class="comment">//通过js动态设置视口(viewport)</span></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;meta name="viewport" content="width=device-width,initial-scale='</span>+pixelRatio+<span class="string">',minimum-scale='</span>+pixelRatio+<span class="string">',maximum-scale='</span>+pixelRatio+<span class="string">'" /&gt;'</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="动态设置字体大小">动态设置字体大小</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 条件：尺寸越大，则字体大小越大。尺寸越小，则字体大小越小。</span></span><br><span class="line"><span class="comment">// 获取html节点</span></span><br><span class="line"><span class="keyword">var</span> html = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// 获取屏幕宽度</span></span><br><span class="line"><span class="keyword">var</span> pageWidth = html.getBoundingClientRect().width;</span><br><span class="line"><span class="comment">// 屏幕宽度 / 固定数值 = 基准值</span></span><br><span class="line">html.style.fontSize = pageWidth / <span class="number">16</span> + <span class="string">"px"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="案例">案例</h3><p> 移动端例子：<a href="./mobileLayout/index.html">苏宁移动首页</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[对于移动端布局相关知识归纳]]>
+    
+    </summary>
+    
+      <category term="layout,布局" scheme="/tags/layout-%E5%B8%83%E5%B1%80/"/>
+    
+      <category term="移动端" scheme="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[快速响应用户界面(五)]]></title>
@@ -549,128 +1191,6 @@
       <category term="数据结构和算法" scheme="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
     
       <category term="javascript" scheme="/categories/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[数据存取(二)]]></title>
-    <link href="/2016/06/22/DataAccess/"/>
-    <id>/2016/06/22/DataAccess/</id>
-    <published>2016-06-22T14:44:32.000Z</published>
-    <updated>2016-06-23T14:25:53.052Z</updated>
-    <content type="html"><![CDATA[<h5 id="JavaScript中的数据存储位置">JavaScript中的数据存储位置</h5><p>数据存储在数组和对象中,访问速度慢于字面量和局部变量。跟浏览器也有很大关系。</p>
-<p><strong>标示符解析的性能</strong><br> 在执行环境中,标示符所在的位置越深,它的读写速度也就最慢。因此,函数中读写局部变量比全局变量总是快。全局变量总是存在于执行环境作用域链的最末端。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> bd = <span class="built_in">document</span>.body,</span><br><span class="line">  links = <span class="built_in">document</span>.getElementsByTagNamme(<span class="string">"a"</span>),</span><br><span class="line">  i = <span class="number">0</span>,</span><br><span class="line">  len = links.length;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">    update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    start();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  bd.className = <span class="string">"active"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>document是全局对象,每次都有遍历整个作用域链。<br>优化后代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> doc = <span class="built_in">document</span>,</span><br><span class="line">  bd = doc.body,</span><br><span class="line">  links = doc.getElementsByTagNamme(<span class="string">"a"</span>),</span><br><span class="line">  i = <span class="number">0</span>,</span><br><span class="line">  len = links.length;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(i &lt; len)&#123;</span><br><span class="line">    update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  doc.getElementById(<span class="string">"go-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    start();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  bd.className = <span class="string">"active"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>错误处理：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  methodThatMightCauseAnError();</span><br><span class="line">&#125;cache(ex)&#123;</span><br><span class="line">  handleError(ex);<span class="comment">//委托给错误处理器函数,由于只执行一条语句,没有局部变量的访问。</span></span><br><span class="line">                  <span class="comment">//作用域链的临时改变不会影响代码性能。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>避免使用动态作用域,包括with、try-cache和eval。</p>
-<p><strong>闭包、作用域和内存</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">assignEvents</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> id = <span class="string">"xdi9592"</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"save-btn"</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    saveDocument(id);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>assignEvents函数执行时,会创建一个包含id的活动对象,成为作用域链中的第一个对象,全局对象紧随其后。<br>因为id引用了外部作用域的变量,闭包[scope]属性包含了与assignEvents函数执行作用域链相同的对象引用。<br>通常来说,活动对象会随着执行环境一同销毁,但是由于引用一直存在,所以活动对象无法销毁。会导致性能问题。<br><code>尤其在IE浏览器中需要关注,闭包会导致内存泄露。</code></p>
-<p><strong>原型</strong><br>在浏览器中这个属性是<strong>proto</strong>对象,对象有两种成员类型:实例成员和原型成员。实例成员直接存在于对象实例中,原型成员则从对象原型继承而来。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  title:<span class="string">"high"</span>,</span><br><span class="line">  publisher:<span class="string">"yahoo!"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(book.toString()); <span class="comment">//"[object object]"</span></span><br></pre></td></tr></table></figure>
-<p>对象boot并没有toString方法,却顺利执行了,方法toString()是由对象book继承而来的原型成员。<br>可以使用hasOwnProperty()方法来判断对象是否包含特定的实例成员,是否包含特定属性,使用in操作符：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alert(book.hasOwnProperty(<span class="string">"title"</span>)); <span class="comment">//true</span></span><br><span class="line">alert(book.hasOwnProperty(<span class="string">"toString"</span>)); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">alert(<span class="string">"title"</span> <span class="keyword">in</span> book); <span class="comment">//true</span></span><br><span class="line">alert(<span class="string">"toString"</span> <span class="keyword">in</span> book); <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>原型链</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title,publisher</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.title = title;</span><br><span class="line">  <span class="keyword">this</span>.publisher = publisher;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Book.prototype.sayTitle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span>.title);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> book1 = <span class="keyword">new</span> Book(<span class="string">"High Per Java"</span>,<span class="string">"Yahoo! Press"</span>);</span><br><span class="line"><span class="keyword">var</span> book2 = <span class="keyword">new</span> Book(<span class="string">"javaScript: The Good Parts"</span>,<span class="string">"Yahoo! Press"</span>);</span><br><span class="line"></span><br><span class="line">alert(book1 <span class="keyword">instanceof</span> Book); <span class="comment">//true</span></span><br><span class="line">alert(book1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">book1.sayTitle(); <span class="comment">//"High Per Java"</span></span><br><span class="line">alert(book1.toString()); <span class="comment">//"[object object]"</span></span><br></pre></td></tr></table></figure></p>
-<p>使用Book构造函数创建新的Book实例。book1的原型(<strong>proto</strong>)是Book.prototype,而Book.prototype的原型是Object。book1和book2继承原型链中的所有成员,它们有着各自的title和publisher属性,其他部分都继承自原型。<br>对象在原型链中存在的位置越深,找到它就越慢。</p>
-<p><strong>嵌套成员</strong>会导致JavaScript引擎搜索所有对象成员。例：window.location.href。嵌套越深读取时间越长。<br>location.href总是比window.location.href要快,后者比window.location.href.toString()要快。</p>
-<p><strong>缓存对象成员值</strong><br>在函数中如果要多次读取一个对象属性,最佳做法是将属性值保存到局部变量中。局部变量能用来替代属性以避免多次查找带来的性能开销,特别是处理嵌套对象成员,这样做会明显提升执行速度。</p>
-<p><strong>提示</strong>：这种优化并不推荐用于对象的成员方法。因为对象方法使用this来判断执行环境,把一个对象方法保存在局部变量会导致this绑定到window,<br>而this值的改变会使得JavaScript引擎无法正确解析它的对象成员,进而导致程序出错。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要讲解javascript的数据存取优化。]]>
-    
-    </summary>
-    
-      <category term="性能优化" scheme="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    
-      <category term="javascript" scheme="/categories/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2DCanvas：底层2D图像渲染(六)]]></title>
-    <link href="/2016/06/22/2DCanvas/"/>
-    <id>/2016/06/22/2DCanvas/</id>
-    <published>2016-06-21T23:22:36.000Z</published>
-    <updated>2016-06-22T00:00:52.167Z</updated>
-    <content type="html"><![CDATA[<h5 id="基础知识">基础知识</h5><p> HTML5的Canvas API终结了Flash独霸的地位,Canvas能在一个DOM元素中创建2D形状,无需任何插件的支持。Canvas可实现真正的跨平台应用,并且结合各种框架(PhoneGap)进行开发。</p>
-<p>Canvas更擅长构建复杂动画及交互效果。如果想实现简单的可视化或动画,可以用SVG技术来实现,利用SVG,可以创建Logo图标、图表以及信息图,另外它还有很多Canvas所缺乏的内建功能,比如动画、可缩放性,以及支持CSS。</p>
-<p>本文利用canvas创建一个打砖块游戏,来更好的理解canvas并能利用这些知识来开发自己的Canvas应用。</p>
-<hr>
-<p>canvas的坐标系与平常的笛卡尔坐标系有一点差别,该坐标系的原点位于左上角,y轴方向向下。</p>
-<p>生成Cancas绘图环境:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"canvas"</span> <span class="attribute">width</span>=<span class="value">"408"</span> <span class="attribute">height</span>=<span class="value">"250"</span>&gt;</span></span><br><span class="line">  你的浏览器不支持canvas。 //不支持canvas的浏览器会显示内容。</span><br><span class="line"><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span></span><br><span class="line"></span><br><span class="line">var canvas = document.getElementById('canvas');</span><br><span class="line">var context = canvas.getContext('2d'); //获取2d绘图环境</span><br></pre></td></tr></table></figure></p>
-<p>验证浏览器是否支持canvas:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">if</span> (canvas.getContext &amp;&amp; canvas.getContext(<span class="string">'2d'</span>))&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h5 id="打砖块游戏">打砖块游戏</h5><p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch6/index.html" target="_blank" rel="external">打开游戏</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要讲解-canvas的相关应用。]]>
-    
-    </summary>
-    
-      <category term="html5" scheme="/tags/html5/"/>
-    
-      <category term="web" scheme="/categories/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[移动应用：客户端存储与离线执行(五)]]></title>
-    <link href="/2016/06/18/clientStoredAndOffline/"/>
-    <id>/2016/06/18/clientStoredAndOffline/</id>
-    <published>2016-06-18T03:32:37.000Z</published>
-    <updated>2016-06-21T15:15:22.437Z</updated>
-    <content type="html"><![CDATA[<h5 id="主要内容">主要内容</h5><ul>
-<li>利用Web Storage API,将数据存储在客户端</li>
-<li>管理一个完整的位于客户端上的IndexedDB数据库</li>
-<li>利用Application Cache API来实现应用离线执行</li>
-</ul>
-<h5 id="移动应用My_Tasks">移动应用My Tasks</h5><p> 通过这个应用,你将主要学会以下几个关键技能:</p>
-<ul>
-<li>利用WebStorage API将数据存储在客户端</li>
-<li>利用IndexedDB数据库将数据储存在客户端</li>
-<li>利用应用缓存清单文件构建能够支持离线使用的Web应用</li>
-</ul>
-<p><a href="https://shizhidi.github.io/assets/examples/html5-ia/ch5/index.html" target="_blank" rel="external">打开应用</a></p>
-<p>注意将应用运行在服务器上,否则,它将无法在移动设备上运行,其离线功能也无法使用。</p>
-<p>Python服务器模块,node服务器,php都行。</p>
-<p>关于Web Sql:在IndexedDB之前,HTML5有个WebSql的客户端数据库规范,一种定义在浏览器中的关系数据库。现已不再是HTML5规范了,<br>但是许多浏览器厂商已经支持它,特别是移动端浏览器。例:sqllite</p>
-<h5 id="应用缓存清单">应用缓存清单</h5><p> 使用应用缓存清单文件需要用到真实的Web服务器。一共需要3个步骤：</p>
-<ul>
-<li>配置Web服务器。</li>
-<li>创建应用缓存清单文件</li>
-<li>侦测清单文件中的变化</li>
-</ul>
-<p>apache服务器,可以在httpd.conf配置文件中添加<code>addType text/cache-manifest .appcache</code>。<br>nginx服务器,在nginx conf目录下,为mime.types文件添加一行代码,<code>text/cache-manifest appcache</code>。</p>
-<p>缓存清单文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST&#10;# Rev 3&#10;&#10;CACHE:&#10;index.html&#10;pics/logo.png&#10;stylesheet.css&#10;&#10;FALLBACK:&#10;*.html     /offline.html&#10;&#10;NETWORK:&#10;http://api.stockwebsite.com</span><br></pre></td></tr></table></figure></p>
-<p>CACHE段是项目默认的分段,其中的URI在随后首次下载时将被缓存。 <code>也可以不知道CACHE标题,直接把URI放在标题CACHE MANIFEST下面</code><br>FALLBACK段是可选的,指定了在某资源处于离线时,转而使用的其他URI。结对中的第一个URI是在线资源,第二个是本地的回退资源。可以使用通配符<em><br><code>两种URL都必须有相对路径名称,这里的URI域缓存清单文件中其他部分中的URL,都必须有和清单文件一样的方案、主机和端口</code><br>NETWORK部分是在线访问的白名单。所有列在此标题头下的URI都必须绕过缓存访问在线资源。可以使用通配符</em></p>
-<p>修改html元素：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span> <span class="attribute">class</span>=<span class="value">"blue"</span> <span class="attribute">manifest</span>=<span class="value">"tasks.appcache"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>可以更改.appcache文件中更新修订号,测试应用是否能够加载新版本。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[本文主要讲解-客户的存储方式有哪些,以及离线执行应用。]]>
-    
-    </summary>
-    
-      <category term="html5" scheme="/tags/html5/"/>
-    
-      <category term="web" scheme="/categories/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[形状(三)]]></title>
-    <link href="/2016/06/12/shape/"/>
-    <id>/2016/06/12/shape/</id>
-    <published>2016-06-12T03:19:10.000Z</published>
-    <updated>2016-06-12T03:19:36.179Z</updated>
-    <content type="html"></content>
-    <summary type="html">
-    <![CDATA[本文主要介绍了各种背景和边框的样式。]]>
-    
-    </summary>
-    
-      <category term="css secrets" scheme="/tags/css-secrets/"/>
-    
-      <category term="web" scheme="/categories/web/"/>
     
   </entry>
   

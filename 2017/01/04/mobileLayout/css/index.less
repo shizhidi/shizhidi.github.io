@@ -1,0 +1,352 @@
+/* reset */
+body, h3{
+    margin: 0;
+}
+input{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+img{
+    border: none;
+    vertical-align: top;
+}
+a{
+    // 取消a标签手指按下时出现的黑色遮罩层
+    -webkit-tap-highlight-color:transparent;
+    text-decoration: none;
+    color: #818788;
+}
+input {
+    // 解决IOS下表单元素圆角的问题
+    -webkit-appearance:none;
+}
+
+/* LESS */
+//变量 定义rem大小，并设置单位
+@rem:40rem;
+
+/* 框架搭建 */
+html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    font-size: 20/@rem;
+    font-family: Arial,Helvetica,STHeiTi,sans-serif;
+}
+/* 工具样式 */
+.clearfix:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+/* 主体部分 */
+.head_box{
+    width: 100%;
+    height: 74/@rem;
+    background-color: #fabc09;
+    position: fixed;
+    .btn_type{
+        float: left;
+        width: 78/@rem;
+        height: 74/@rem;
+        background: url(../img/ico-type.jpg) no-repeat 22/@rem 10/@rem;
+        background-size:33/@rem 55/@rem ;
+    }
+    .search_box{
+        float: left;
+        width: 480/@rem;
+        height: 74/@rem;
+        position: relative;
+        &:before{
+            content: "";
+            position: absolute;
+            left: 16/@rem;
+            top: 25/@rem;
+            width: 22/@rem;
+            height: 23/@rem;
+            background: url(../img/ico-search.jpg) no-repeat;
+            background-size:22/@rem 23/@rem;
+        }
+//      .ico-search{
+//          position: absolute;
+//          left: 16/@rem;
+//          top: 25/@rem;
+//          width: 22/@rem;
+//          height: 23/@rem;
+//          background: url(../img/ico-search.jpg) no-repeat;
+//          background-size:22/@rem 23/@rem;
+//      }
+        .search_form{
+            padding-top: 14/@rem;
+            height: 50/@rem;
+            .search_input{
+                float: left;
+                width: 480/@rem;
+                height: 50/@rem;
+                background-color: #d5dba9;
+                border-radius: 6/@rem;
+                padding-left: 51/@rem;
+                box-sizing: border-box;
+                font-size: 20/@rem;
+            }
+        }
+    }
+    .shop_car{
+        float: left;
+        width: 82/@rem;
+        height: 74/@rem;
+        background: url(../img/ico-shopCar.jpg) no-repeat 17/@rem 8/@rem;
+        background-size: 50/@rem 56/@rem;
+    }
+}
+.wrap{
+    width: 100%;
+    padding-top: 74/@rem;
+}
+.banner{
+    width: 100%;
+    height: 272/@rem;
+    img{
+        width: 100%;
+    }
+}
+.nav{
+    width: 100%;
+    padding: 18/@rem 0 2/@rem 0;
+    box-sizing: border-box;
+    background-color: #cce3d1;
+    border-top: 1px solid #acd3b3;
+    .nav_item{
+        float: left;
+        width: 20%;
+        height: 114/@rem;
+        text-align: center;
+        margin-bottom: 8/@rem;
+        img{
+            width: 68/@rem;
+            height: 70/@rem;
+        }
+        .nav_title{
+            display: block;
+            font-weight: normal;
+            line-height: 44/@rem;
+        }
+    }
+}
+.suning_tt{
+    width: 100%;
+    height: 87/@rem;
+    background-color: #cce3d1;
+    margin-top: 2px;
+    .tt_title{
+        float: left;
+        width: 139/@rem;
+        height: 87/@rem;
+        background: url(../img/ico-tt.jpg) no-repeat 0 22/@rem;
+        background-size:124/@rem 41/@rem ;
+    }
+    .tt_line{
+        float: left;
+        width: 1px;
+        height: 33/@rem;
+        background-color: #97c1a0;
+        margin-top: 27/@rem;
+    }
+    .tt_list{
+        float: left;
+        width: 430/@rem;
+        height: 87/@rem;
+        padding-top: 14/@rem;
+        box-sizing: border-box;
+        margin-left: 32/@rem;
+        .item{
+            display: block;
+            line-height: 28/@rem;
+            background: url(../img/ico-list.jpg) no-repeat 0 10/@rem;
+            background-size:6/@rem 6/@rem ;
+            text-indent: 17/@rem;
+        }
+    }
+}
+.shoping_type{
+    margin-top: 19/@rem;
+    .type_top{
+        height: 248/@rem;
+        overflow: hidden;
+        a{
+            float: left;
+        }
+        .big_img{
+            width: 319/@rem;
+            height: 248/@rem;
+            margin-right: 1px;
+            img{
+                width: 319/@rem;
+                height: 248/@rem;
+            }
+        }
+        .sub_img{
+            width: 319/@rem;
+            height: 123/@rem;
+            margin-bottom: 1px;
+            img{
+                width: 319/@rem;
+                height: 123/@rem;
+            }
+        }
+    }
+    .bottom_item{
+        float: left;
+        margin: 0 1px 1px 0;
+        img{
+            width: 159/@rem;
+            height: 257/@rem;
+        }
+    }
+}
+.suning_qg{
+    width: 100%;
+    height: 257/@rem;
+    background-color: #cce3d1;
+    margin-top: 33px;
+    padding-left: 16/@rem;
+    box-sizing: border-box;
+    .head{
+        width: 100%;
+        height: 54/@rem;
+        .head_left{
+            float: left;
+            .title{
+                float: left;
+                width: 116/@rem;
+                height: 40/@rem;
+                margin-right: 16/@rem;
+                background: url(../img/title-qg.jpg) no-repeat;
+                background-size: 116/@rem 40/@rem;
+            }
+            .time_box{
+                float: left;
+                padding-top: 14/@rem;
+                .time_name{
+                    float: left;
+                    font-size: 18/@rem;
+                    color: #f94f4e;
+                }
+                .updeta_time{
+                    float: left;
+                    .time_item{
+                        float: left;
+                        width: 20/@rem;
+                        height: 20/@rem;
+                        border: 1px solid #809474;
+                        border-radius: 4/@rem;
+                        text-align: center;
+                        line-height: 20/@rem;
+                        color: #383938;
+                        margin: 0 8/@rem;
+                    }
+                    .time_ico{
+                        float: left;
+                    }
+                    .tips{
+                        color: #ff3739;
+                        border-color: #ff3739;
+                    }
+                }
+            }
+        }
+        .head_right{
+            float: right;
+            padding: 11/@rem 20/@rem 0 0;
+            .more{
+                float: left;
+                width: 104/@rem;
+                height: 29/@rem;
+                line-height: 29/@rem;
+                font-size: 18/@rem;
+                text-align: center;
+                background-color: #ffc001;
+                border-radius: 12/@rem;
+                color: #456c24;
+                margin-right: 2/@rem;
+            }
+            .ico_more{
+                float: left;
+                width: 15/@rem;
+                height: 25/@rem;
+                background: url(../img/ico-sj.jpg) no-repeat;
+                background-size: 100%;
+            }
+        }
+        
+    }
+    .shoping_list{
+        width: 200%;
+        .list_item{
+            width: 190/@rem;
+            float: left;
+            margin-right: 8/@rem;
+            .item_img{
+                display: block;
+                width: 188/@rem;
+                border: 1px solid #b2cdb1;
+                img{
+                    width: 100%;
+                }
+            }
+            .item_bottom{
+                box-sizing: border-box;
+                width: 100%;
+                height: 57/@rem;
+                padding-left: 16/@rem;
+                background-color: #ddd;
+                position: relative;
+                .jiage{
+                    display: block;
+                    color: #dc0000;
+                    line-height: 28/@rem;
+                }
+                .yuanjia{
+                    display: block;
+                    font-size: 16/@rem;
+                    line-height: 24/@rem;
+                    color: #999;
+                }
+                .zhekou{
+                    box-sizing: border-box;
+                    position: absolute;
+                    right: 6/@rem;
+                    top: -6/@rem;
+                    width: 61/@rem;
+                    height: 61/@rem;
+                    padding-top: 10/@rem;
+                    background: url(../img/ico-zhekou.jpg) no-repeat;
+                    background-size: 100%;
+                    color: #fff;
+                    text-align: center;
+                    .big_font{
+                        font-size: 22/@rem;
+                        span{
+                            font-size: 18/@rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.shoping_box{
+    width: 100%;
+    overflow: hidden;
+}
