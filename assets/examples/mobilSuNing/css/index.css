@@ -117,7 +117,7 @@ body {
 .nav .nav_item {
   float: left;
   width: 20%;
-  height: 1.875rem;
+  height: 2.85rem;
   text-align: center;
   margin-bottom: 0.2rem;
 }
@@ -260,7 +260,7 @@ body {
 }
 .suning_qg .head .head_right .more {
   float: left;
-  width: 2.6rem;
+  width: 3.6rem;
   height: 0.725rem;
   line-height: 0.725rem;
   font-size: 0.45rem;
