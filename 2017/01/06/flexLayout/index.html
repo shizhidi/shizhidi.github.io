@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="shizhidi&#39;s blog">
-    <title>移动端样式 - shizhidi&#39;s blog</title>
+    <title>flexLayout - shizhidi&#39;s blog</title>
     <meta name="author" content="Edison">
     <meta name="description" content="shizhidi&#39;s blog">
     <link rel="icon" href="/assets/images/null">
@@ -137,11 +137,11 @@
     
         <div class="post-header main-content-wrap">
     
-        <h1 class="post-title" itemprop="headline">移动端样式</h1>
+        <h1 class="post-title" itemprop="headline">flexLayout</h1>
     
     <div class="post-meta">
-    <time  itemprop="datePublished" content="Thu Jan 05 2017 21:48:34 GMT+0800">
-        Jan 05, 2017
+    <time  itemprop="datePublished" content="Fri Jan 06 2017 23:49:14 GMT+0800">
+        Jan 06, 2017
     </time>
     
         <span>in </span>
@@ -154,7 +154,20 @@
 </div>
     
     <div class="post-content markdown main-content-wrap" itemprop="articleBody">
-        <h3 id="重置样式">重置样式</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a&#123;</span><br><span class="line">    // 取消a标签手指按下时出现的黑色遮罩层</span><br><span class="line">    -webkit-tap-highlight-color:transparent;</span><br><span class="line">    text-decoration: none;</span><br><span class="line">    color: #818788;</span><br><span class="line">&#125;</span><br><span class="line">input &#123;</span><br><span class="line">    // 解决IOS下表单元素圆角的问题</span><br><span class="line">    -webkit-appearance:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="相关属性详解">相关属性详解</h3><p><strong>当设定横面为X轴，另一方向则为Y轴</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value">flex display:box的进化版但是兼容性</span><br><span class="line">flex-direction 设置主轴方向</span><br><span class="line">row  从左向右排列(默认值)</span><br><span class="line">row-reverse 从右向左排列</span><br><span class="line">column 从上往下排列</span><br><span class="line">column-reverse 从下往上排列</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">justify-content</span> 主轴对齐</span><br><span class="line"><span class="tag">flex-start</span> (默认) 元素在开始位置 富裕空间占据另一侧</span><br><span class="line"><span class="tag">flex-end</span> 富裕空间在开始位置 元素占据另一侧</span><br><span class="line"><span class="tag">center</span> 元素居中 富裕空间 平分左右两侧</span><br><span class="line"><span class="tag">space-between</span> 富裕空间在元素之间平均分配</span><br><span class="line"><span class="tag">space-around</span>  富裕空间在元素两侧平均分配</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">align-items</span>	侧轴对齐</span><br><span class="line"><span class="tag">flex-start</span> (默认) 元素在开始位置 富裕空间占据另一侧</span><br><span class="line"><span class="tag">flex-end</span> 富裕空间在开始位置 元素占据另一侧</span><br><span class="line"><span class="tag">center</span> 元素居中 富裕空间 平分左右两侧</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">flex-wrap</span> 换行</span><br><span class="line"><span class="tag">nowrap</span> (默认)</span><br><span class="line"><span class="tag">wrap</span> 换行</span><br><span class="line"><span class="tag">wrap-reverse</span> 反向换行</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">align-content</span> 堆栈伸缩行</span><br><span class="line"><span class="tag">align-content</span> 会更改 <span class="tag">flex-wrap</span> 的行为。它和 <span class="tag">align-items</span> 相似，但是,不是对齐伸缩项目，它对齐的是伸缩行。</span><br><span class="line"><span class="tag">flex-start</span> (默认) 元素在开始位置 富裕空间占据另一侧</span><br><span class="line"><span class="tag">flex-end</span> 富裕空间在开始位置 元素占据另一侧</span><br><span class="line"><span class="tag">center</span> 元素居中 富裕空间 平分左右两侧</span><br><span class="line"><span class="tag">space-between</span> 富裕空间在元素之间平均分配</span><br><span class="line"><span class="tag">space-around</span>  富裕空间在元素两侧平均分配</span><br><span class="line"></span><br><span class="line"><span class="tag">flex-flow</span></span><br><span class="line"><span class="tag">flex-flow</span> 是 <span class="tag">flex-direction</span> 和 <span class="tag">flex-wrap</span> 的缩写</span><br><span class="line"><span class="rule"><span class="attribute">flex-flow</span>:<span class="value"> [flex-direction] [flex-wrap]</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="下面例子">下面例子</h3><p>例子：<a href="https://shizhidi.github.io/assets/examples/flex/order.html" target="_blank" rel="external">包括order</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">order</span> 显示顺序</span><br><span class="line">数字越大，显示越靠后</span><br><span class="line">支持负数</span><br></pre></td></tr></table></figure>
+<p>例子：<a href="https://shizhidi.github.io/assets/examples/flex/flex.html" target="_blank" rel="external">包括子flex</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">flex</span> 伸缩性</span><br><span class="line"><span class="rule"><span class="attribute">flex</span>:<span class="value"> auto</span><br><span class="line">flex: none</span></span></span><br></pre></td></tr></table></figure>
+<p>例子：<a href="https://shizhidi.github.io/assets/examples/flex/align-self.html" target="_blank" rel="external">包括子align-self</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">align-self</span> 子元素侧轴对齐</span><br><span class="line"><span class="tag">flex-start</span> (默认) 元素在开始位置 富裕空间占据另一侧</span><br><span class="line"><span class="tag">flex-end</span> 富裕空间在开始位置 元素占据另一侧</span><br><span class="line"><span class="tag">center</span> 元素居中 富裕空间 平分左右两侧</span><br></pre></td></tr></table></figure>
+<p><strong>块垂直居中</strong><br>例子：<a href="https://shizhidi.github.io/assets/examples/flex/auto.html" target="_blank" rel="external">父级设置flex,子设置margin</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">margin</span>:<span class="value">auto</span></span>;</span><br></pre></td></tr></table></figure>
 
         
             
@@ -165,7 +178,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/ResetCSS/">ResetCSS</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/布局/">布局</a>
 
             </div>
         
@@ -174,7 +187,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/06/flexLayout/"  data-tooltip="flexLayout">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -182,7 +195,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/04/mobileLayout/" data-tooltip="移动端布局归档">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/" data-tooltip="移动端样式">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -192,17 +205,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/01/05/mobileCssReset/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/01/06/flexLayout/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/01/05/mobileCssReset/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/01/06/flexLayout/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/01/05/mobileCssReset/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/01/06/flexLayout/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -212,7 +225,7 @@
 
         
             <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-mobileCssReset" data-title="移动端样式" data-url="/2017/01/05/mobileCssReset/"></div>
+    <div class="ds-thread" data-thread-key="post-flexLayout" data-title="flexLayout" data-url="/2017/01/06/flexLayout/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -246,7 +259,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/06/flexLayout/"  data-tooltip="flexLayout">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -254,7 +267,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/04/mobileLayout/" data-tooltip="移动端布局归档">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/05/mobileCssReset/" data-tooltip="移动端样式">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -264,17 +277,17 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/01/05/mobileCssReset/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2017/01/06/flexLayout/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/01/05/mobileCssReset/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2017/01/06/flexLayout/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/01/05/mobileCssReset/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2017/01/06/flexLayout/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
