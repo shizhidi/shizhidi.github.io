@@ -5,7 +5,7 @@
   <subtitle><![CDATA[just do it!]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2017-01-06T16:04:03.794Z</updated>
+  <updated>2017-01-06T16:08:12.794Z</updated>
   <id>//</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[flexLayout]]></title>
+    <title><![CDATA[Flex详解]]></title>
     <link href="/2017/01/06/flexLayout/"/>
     <id>/2017/01/06/flexLayout/</id>
     <published>2017-01-06T15:49:14.000Z</published>
-    <updated>2017-01-06T16:04:03.794Z</updated>
+    <updated>2017-01-06T16:08:12.794Z</updated>
     <content type="html"><![CDATA[<h3 id="相关属性详解">相关属性详解</h3><p><strong>当设定横面为X轴，另一方向则为Y轴</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">display</span>:<span class="value">flex display:box的进化版但是兼容性</span><br><span class="line">flex-direction 设置主轴方向</span><br><span class="line">row  从左向右排列(默认值)</span><br><span class="line">row-reverse 从右向左排列</span><br><span class="line">column 从上往下排列</span><br><span class="line">column-reverse 从下往上排列</span></span></span><br></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">justify-content</span> 主轴对齐</span><br><span class="line"><span class="tag">flex-start</span> (默认) 元素在开始位置 富裕空间占据另一侧</span><br><span class="line"><span class="tag">flex-end</span> 富裕空间在开始位置 元素占据另一侧</span><br><span class="line"><span class="tag">center</span> 元素居中 富裕空间 平分左右两侧</span><br><span class="line"><span class="tag">space-between</span> 富裕空间在元素之间平均分配</span><br><span class="line"><span class="tag">space-around</span>  富裕空间在元素两侧平均分配</span><br></pre></td></tr></table></figure>
